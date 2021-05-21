@@ -6,8 +6,19 @@
 		<body>
 			<h1>Scores</h1>
 				<p>This is where you can find scores. Upload them here!</p>
+				<script>
+					var scoreID = 0;
+				</script>
 				<img src="https://i.ibb.co/prpRL3D/ms-2-0-icon.png" alt="logo">
 			<div>
+			<h2>Upload a score!</h2>
+				<input type="file">
+				<script>
+					createHTML({
+ 						title: scoreID;
+						scoreID = scoreID++;
+					})
+				</script>
 			<h2>Links</h2>
 				<p>
 					<a href="index.html"><b>Home</b></a>
