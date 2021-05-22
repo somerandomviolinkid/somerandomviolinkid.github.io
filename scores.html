@@ -12,12 +12,19 @@
 				<img src="https://i.ibb.co/prpRL3D/ms-2-0-icon.png" alt="logo">
 			<div>
 			<h2>Upload a score!</h2>
-				<input type="file">
+				<form action="scores.php">
+  					<label type="msfile">File:</label>
+  					<input type="file" id="msfile" name="Upload score:"><br><br>
+ 					<label for="scoretitle">Score Title:</label>
+ 					<input type="text" id="scoretitle" name="Score Title"><br><br>
+  					<input type="submit" value="Submit">
+				</form>
 				<script>
-					createHTML({
+					var html = createHTML({
  						title: scoreID;
 						scoreID = scoreID++;
 					})
+					html;
 				</script>
 			<h2>Links</h2>
 				<p>
