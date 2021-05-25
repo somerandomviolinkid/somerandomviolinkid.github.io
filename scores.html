@@ -14,7 +14,7 @@
 			<h2>Upload a score!</h2>
 				<form action="scores.php">
   					<label type="msfile">File:</label>
-  					<input type="file" id="msfile" name="Upload score:"><br><br>
+  					<input type="file" id="msfile" name="Upload score pdf:"><br><br>
  					<label for="scoretitle">Score Title:</label>
  					<input type="text" id="scoretitle" name="Score Title"><br><br>
   					<input type="submit" value="Submit">
@@ -22,9 +22,9 @@
 				<script>
 					var html = createHTML({
  						title: scoreID;
+						
 						scoreID = scoreID++;
 					})
-					html;
 				</script>
 			<h2>Links</h2>
 				<p>
