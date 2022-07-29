@@ -9,7 +9,7 @@ let workerLevel = 0;
 let workerEfficiency = [1, 2, 4, 10, 25, 75, 200, 500, 1000]
 let workerEfficiencyCosts = [0, 25, 100, 500, 2500, 10000, 50000, 200000, 1000000]
 
-let resourceSellRate = 5;
+let resourceSellRate = 0.5;
 
 function tick1() {
 
@@ -54,7 +54,7 @@ function sellResources() {
 function purchaseWorkers() {
 
     //buys workers
-    if (money > 10) {
+    if (money >= 10) {
 
         money -= 10;
         workers++;
