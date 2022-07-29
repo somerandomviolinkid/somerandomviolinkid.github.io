@@ -19,6 +19,10 @@
         <p id="energyCount"></p>
         <p id="researchPointCount"></p>
 
+        <button onclick="manualResources()">Mine resources!</button>
+        <button onclick="sellResources()">Sell resources!</button>
+        <button onclick="purchaseWorkers()">Purchase Workers!</button>
+
         <div class="tab">
 
             <button class="tablinks" onclick="openTab(event, 'Planet Overview')" id="defaultOpen">Planet Overview</button>
@@ -51,6 +55,7 @@
 
         <div id="Upgrades" class="tabcontent">
             <h2>Upgrades</h2>
+            <button id = "upgradeWorkerButton" onclick="upgradeWorkers()"></button>
         </div>
 
         <script src="page.js"></script>
