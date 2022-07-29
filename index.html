@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 
 <html>
-    <head?>
+<head?>
 
-        <title>civilization incremental game</title>
-        <link rel="stylesheet" href="stylesheet.css">
+    <title>Spaceship incremental game</title>
+    <link rel="stylesheet" href="stylesheet.css">
 
-    </head>
+</head>
 
     <body>
-        <script src="game.js"></script>
 
-        <h1>civilization incremental game</h1>
+        <h1>Spaceship Incremental Game</h1>
 
-        
+        <p id="moneyCount"></p>
+        <p id="workerCount"></p>
+        <p id="resourceCount"></p>
+        <p id="refinedResourceCount"></p>
+        <p id="energyCount"></p>
+        <p id="researchPointCount"></p>
 
         <div class="tab">
 
-            <button class="tablinks" onclick="openTab(event, 'Planet Overview')">Planet Overview</button>
+            <button class="tablinks" onclick="openTab(event, 'Planet Overview')" id="defaultOpen">Planet Overview</button>
             <button class="tablinks" onclick="openTab(event, 'System Overview')">System Overview</button>
             <button class="tablinks" onclick="openTab(event, 'Galaxy Overview')">Galaxy Overview</button>
             <button class="tablinks" onclick="openTab(event, 'Research')">Research</button>
@@ -27,14 +31,18 @@
 
         <div id="Planet Overview" class="tabcontent">
             <h2>Planet Overview</h2>
+            <img src="assets/planet.png" alt="Planet" style="width:128px;height:128px;">
+            <p id="PlanetInfo">This is your home planet.</p>
         </div>
 
         <div id="System Overview" class="tabcontent">
             <h2>System Overview</h2>
+            <img src="assets/system.png" alt="System" style="width:128px;height:128px;">
         </div>
 
         <div id="Galaxy Overview" class="tabcontent">
             <h2>Galaxy Overview</h2>
+            <img src="assets/galaxy.png" alt="Galaxy" style="width:128px;height:128px;">
         </div>
 
         <div id="Research" class="tabcontent">
@@ -44,6 +52,9 @@
         <div id="Upgrades" class="tabcontent">
             <h2>Upgrades</h2>
         </div>
+
+        <script src="page.js"></script>
+        <script src="game.js"></script>
 
     </body>
 
