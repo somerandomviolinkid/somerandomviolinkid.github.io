@@ -4,59 +4,88 @@
 <head?>
 
     <title>Spaceship incremental game</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.png">
     <link rel="stylesheet" href="stylesheet.css">
 
-</head>
+    <meta charset="UTF-8">
+    <meta name="description" content="space themed incremental game">
+    <meta name="keywords" content="Incremental, game, space">
+    <meta name="author" content="Bobby M">
+
+    </head>
 
     <body>
+        <header>
+            <h1>Spaceship Incremental Game</h1>
 
-        <h1>Spaceship Incremental Game</h1>
+            <button onclick="manualResources()">Mine resources!</button>
+            <button onclick="sellResources()">Sell resources!</button>
+            <button onclick="purchaseWorkers()">Purchase Workers!</button>
+        </header>
 
-        <p id="moneyCount"></p>
-        <p id="workerCount"></p>
-        <p id="resourceCount"></p>
-        <p id="refinedResourceCount"></p>
-        <p id="energyCount"></p>
-        <p id="researchPointCount"></p>
+        <aside>
 
-        <button onclick="manualResources()">Mine resources!</button>
-        <button onclick="sellResources()">Sell resources!</button>
-        <button onclick="purchaseWorkers()">Purchase Workers!</button>
+            <p id="moneyCount"></p>
+            <p id="workerCount"></p>
+            <p id="resourceCount"></p>
+            <p id="refinedResourceCount"></p>
+            <p id="energyCount"></p>
+            <p id="researchPointCount"></p>
 
-        <div class="tab">
+        </aside>
 
-            <button class="tablinks" onclick="openTab(event, 'Planet Overview')" id="defaultOpen">Planet Overview</button>
-            <button class="tablinks" onclick="openTab(event, 'System Overview')">System Overview</button>
-            <button class="tablinks" onclick="openTab(event, 'Galaxy Overview')">Galaxy Overview</button>
-            <button class="tablinks" onclick="openTab(event, 'Research')">Research</button>
-            <button class="tablinks" onclick="openTab(event, 'Upgrades')">Upgrades</button>
+        <nav>
+            <div class="tab">
 
-        </div>
+                <button class="tablinks" onclick="openTab(event, 'Planet Overview')" id="defaultOpen">Planet
+                    Overview</button>
+                <button class="tablinks" onclick="openTab(event, 'System Overview')">System Overview</button>
+                <button class="tablinks" onclick="openTab(event, 'Galaxy Overview')">Galaxy Overview</button>
+                <button class="tablinks" onclick="openTab(event, 'Research')">Research</button>
+                <button class="tablinks" onclick="openTab(event, 'Upgrades')">Upgrades</button>
 
-        <div id="Planet Overview" class="tabcontent">
-            <h2>Planet Overview</h2>
-            <img src="assets/planet.png" alt="Planet" style="width:128px;height:128px;">
-            <p id="PlanetInfo">This is your home planet.</p>
-        </div>
+            </div>
+        </nav>
 
-        <div id="System Overview" class="tabcontent">
-            <h2>System Overview</h2>
-            <img src="assets/system.png" alt="System" style="width:128px;height:128px;">
-        </div>
+        <section>
 
-        <div id="Galaxy Overview" class="tabcontent">
-            <h2>Galaxy Overview</h2>
-            <img src="assets/galaxy.png" alt="Galaxy" style="width:128px;height:128px;">
-        </div>
+            <div id="Planet Overview" class="tabcontent">
+                <h2>Planet Overview</h2>
 
-        <div id="Research" class="tabcontent">
-            <h2>Research</h2>
-        </div>
+                <section>
 
-        <div id="Upgrades" class="tabcontent">
-            <h2>Upgrades</h2>
-            <button id = "upgradeWorkerButton" onclick="upgradeWorkers()"></button>
-        </div>
+                    <img src="assets/planet.png" alt="Planet" style="width:128px;height:128px;">
+
+                </section>
+
+                <p id="PlanetInfo">This is your home planet.</p>
+
+            </div>
+
+            <div id="System Overview" class="tabcontent">
+                <h2>System Overview</h2>
+                <img src="assets/system.png" alt="System" style="width:128px;height:128px;">
+            </div>
+
+            <div id="Galaxy Overview" class="tabcontent">
+                <h2>Galaxy Overview</h2>
+                <img src="assets/galaxy.png" alt="Galaxy" style="width:128px;height:128px;">
+            </div>
+
+            <div id="Research" class="tabcontent">
+                <h2>Research</h2>
+                <button id="unlockSolarPanels">Unlock solar panels</button><br>
+                <button id="unlockSpacePort">Unlock spaceport</button><br>
+                <button id="unlockSpaceships">Unlock spaceships</button><br>
+                <button id="unlockShipYard">Unlock shipyard</button><br>
+            </div>
+
+            <div id="Upgrades" class="tabcontent">
+                <h2>Upgrades</h2>
+                <button id="upgradeWorkerButton" onclick="upgradeWorkers()"></button><br>
+                <button id="upgradeSolarPanelButton">Upgrade solar panels</button>
+            </div>
+        </section>
 
         <script src="page.js"></script>
         <script src="game.js"></script>
