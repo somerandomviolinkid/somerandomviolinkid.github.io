@@ -4,14 +4,12 @@ high priority:
     balance upgrades
     add functionality to all research/buildings
     add actual gameplay
+    clean up code
+        *both index.html and game.js are very messy and becoming hard to work with
 
 medium priority:
     better ui and formatting
-        *clean up uo
-        *remove upgrades tab entirely, move upgrade buttons to the tabs that they relate to
-    clean up code
-        *make it less repetive
-        *move page initalization things from game.js to page.js
+        *clean up
 
 low priority:
     icons for worker tab
