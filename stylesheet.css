@@ -56,6 +56,12 @@ h2 {
     font-family: "Courier New", "Lucida Console", monospace;
 }
 
+h3 {
+    color:aquamarine;
+    font-family: "Courier New", "Lucida Console", monospace;   
+
+}
+
 #warning {
 
     color: red;
@@ -88,7 +94,7 @@ button {
 
     background-color: lightgrey;
     border: 1px solid black;
-    width: 12.5%;
+    width: 20%;
     height: 10%;
     cursor: pointer;
     transition: 0.4s;
@@ -114,5 +120,15 @@ hr {
     color: lightcyan;
     height: 2px;
     background-color: lightcyan;
+
+}
+
+footer {
+
+    color:aqua;
+    font-size: 15px;
+    position: fixed;
+    bottom: 0;
+    font-family: "Lucida Console", "Courier New", monospace;
 
 }
