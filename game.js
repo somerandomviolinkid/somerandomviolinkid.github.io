@@ -21,6 +21,14 @@ let researchCenterEfficiencyCosts = [0, 0, 10000, 50000, 200000]
 
 let resourceSellRate = 0.1;
 
+function notEnoughMoney() {
+
+    //get more money dipshit
+    alert("You don't have enough money!");
+
+}
+
+
 function tick1() {
 
     //updates numbers on page
@@ -75,8 +83,46 @@ function purchaseWorkers() {
         workers++;
         tick1();
 
+    } else {
+        notEnoughMoney();
     }
-    if (workers == workerHousingSpace) {
+    if (workers + 1 >= workerHousingSpace) {
+        alert("You need to buy more housing for your workers.");
+    }
+
+}
+
+function purchaseWorkers10() {
+
+    //buys workers
+    if (money >= 100 && workers < workerSpace) {
+
+        money -= 100;
+        workers += 10;
+        tick1();
+
+    } else {
+        notEnoughMoney();
+    }
+    if (workers + 10 >= workerHousingSpace) {
+        alert("You need to buy more housing for your workers.");
+    }
+
+}
+
+function purchaseWorkers100() {
+
+    //buys workers
+    if (money >= 1000 && workers < workerSpace) {
+
+        money -= 1000;
+        workers += 100;
+        tick1();
+
+    } else {
+        notEnoughMoney();
+    }
+    if (workers + 100 >= workerHousingSpace) {
         alert("You need to buy more housing for your workers.");
     }
 
@@ -95,6 +141,8 @@ function upgradeWorkers() {
         workerLevel++;
         document.getElementById("upgradeWorkerButton").innerHTML = "Your workers are level " + workerLevel + ". Upgrade worker cost " + workerEfficiencyCosts[workerLevel + 1] + " money.";
 
+    } else {
+        notEnoughMoney();
     }
 
     //hides button once workers are at maximum level
@@ -116,6 +164,8 @@ function upgradeWorkerHousing() {
         workerHousingLevel++;
         document.getElementById("upgradeWorkerHousingButton").innerHTML = "Your worker housing level is " + workerHousingLevel + ". Upgrade worker housing cost " + workerHousingMoneyCosts[workerHousingLevel + 1] + " money and " + workerHousingResourceCosts[workerHousingLevel + 1] + " resources.";
 
+    } else {
+        notEnoughMoney();
     }
     //upgrades worker housing
     if (workerHousingLevel == 9) {
@@ -139,6 +189,8 @@ function buildResearchCenter() {
 
         tick1();
 
+    } else {
+        notEnoughMoney();
     }
 
 }
@@ -152,6 +204,8 @@ function upgradeResearchCenter() {
         researchCenterLevel++;
         document.getElementById("upgradeResearchCenterButton").innerHTML = "Your research center is level " + researchCenterLevel + ". Upgrade research center " + researchCenterEfficiencyCosts[researchCenterLevel + 1] + " money.";
 
+    } else {
+        notEnoughMoney();
     }
 
     //hides button once workers are at maximum level
@@ -168,3 +222,4 @@ function buildFactory() {
 
 
 }
+
