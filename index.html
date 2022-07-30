@@ -4,13 +4,14 @@
 <head?>
 
     <title>Spaceship incremental game</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.png">
     <link rel="stylesheet" href="stylesheet.css">
+
 
     <meta charset="UTF-8">
     <meta name="description" content="space themed incremental game">
     <meta name="keywords" content="Incremental, game, space">
     <meta name="author" content="Bobby M">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
 
     </head>
 
@@ -18,10 +19,6 @@
         <header>
             <h1>Spaceship Incremental Game</h1>
             <h3 id="warning">Warning! This is a very early pre-alpha. There is limited functionality.</h3>
-
-            <button onclick="manualResources()">Mine resources!</button>
-            <button onclick="sellResources()">Sell resources!</button>
-            <button onclick="purchaseWorkers()">Purchase Workers!</button>
         </header>
 
         <aside id="resourceCountView">
@@ -32,6 +29,8 @@
             <p id="refinedResourceCount"></p>
             <p id="energyCount"></p>
             <p id="researchPointCount"></p>
+            <button id="resourceButton" onclick="manualResources()">Mine resources!<br><img src="assets/mining icon.png" alt="Mining Icon" style="width:64px;height:64px;"></button><br>
+            <button id="resourceButton" onclick="sellResources()">Sell resources!<br><img src="assets/sellicon.png" alt="Selling Icon" style="width:64px;height:64px;"></button><br>
 
         </aside>
 
@@ -41,6 +40,7 @@
                 <button class="tablinks" onclick="openTab(event, 'Planet Overview')" id="defaultOpen">Planet Overview</button>
                 <button class="tablinks" onclick="openTab(event, 'System Overview')">System Overview</button>
                 <button class="tablinks" onclick="openTab(event, 'Galaxy Overview')">Galaxy Overview</button>
+                <button class="tablinks" onclick="openTab(event, 'Workers')">Workers</button>
                 <button class="tablinks" onclick="openTab(event, 'Projects')">Projects</button>
                 <button class="tablinks" onclick="openTab(event, 'Research')">Research</button>
                 <button class="tablinks" onclick="openTab(event, 'Upgrades')">Upgrades</button>
@@ -51,19 +51,23 @@
         <section>
 
             <div id="Planet Overview" class="tabcontent">
+
+                <header>
+
                 <h2>Planet Overview</h2>
 
+                </header>
                 <section>
 
                     <img src="assets/planet.png" alt="Planet" style="width:128px;height:128px;">
 
-                </section>
-
                 <h4 id="infoBox">This is your home planet.</h4>
 
-                <button id="buildResearchCenterButton" onclick="buildResearchCenter()">Build a research center<br><img src="assets/researchcentericon.png" alt="Research Center Icon" style="width:64px;height:64px;"><br>Cost: 100 Money</button><br>
-                <button>Build a factory<br><img src="assets/factoryicon.png" alt="Factory Icon" style="width:64px;height:64px;"><br>Cost: 20,000 Money, 5,000 Resources</button><br>
-                <button>Build a spaceport<br><img src="assets/spaceporticon.png" alt="Spaceport Icon" style="width:64px;height:64px;"><br>Cost: 10,000,000 Money, 200,000 Resources</button><br>
+                <button id="buildResearchCenterButton" onclick="buildResearchCenter()">Build a research center<br><img src="assets/researchcentericon.png" alt="Research Center Icon" style="width:64px;height:64px;"><br>Cost: 100 Money<br>500 Resources</button>
+                <button>Build a factory<br><img src="assets/factoryicon.png" alt="Factory Icon" style="width:64px;height:64px;"><br>Cost: 5,000 Money<br>20,000 Resources</button>
+                <button>Build a spaceport<br><img src="assets/spaceporticon.png" alt="Spaceport Icon" style="width:64px;height:64px;"><br>Cost: 400,000 Money<br>1,200,000 Resources</button>
+
+                </section>
 
             </div>
 
@@ -73,12 +77,21 @@
                 <h4 id="infoBox">This is your home system.</h4>
 
                 <button>Build a shipyard</button><br>
+                <button>Build asteroid miners</button><br>
             </div>
 
             <div id="Galaxy Overview" class="tabcontent">
                 <h2>Galaxy Overview</h2>
                 <img src="assets/galaxy.png" alt="Galaxy" style="width:128px;height:128px;">
                 <h4 id="infoBox">This is your home galaxy.</h4>
+            </div>
+
+            <div id="Workers" class="tabcontent">
+                <h2>Workers</h2>
+                <h4 id="infoBox">Here you can buy workers who mine resources for you.</h4>
+                <button onclick="purchaseWorkers()">Purchase Workers!<br>Cost: 10 money</button>
+                <button id ="upgradeWorkerHousingButton" onclick="upgradeWorkerHousing()"></button>
+                <button id="upgradeWorkerButton" onclick="upgradeWorkers()"></button><br>
             </div>
 
             <div id="Projects" class="tabcontent">
@@ -105,7 +118,6 @@
             <div id="Upgrades" class="tabcontent">
                 <h2>Upgrades</h2>
                 <h4 id="infoBox">Here you can upgrade and increase your resource output.</h4>
-                <button id="upgradeWorkerButton" onclick="upgradeWorkers()"></button><br>
                 <button id="upgradeResearchCenterButton" onclick="upgradeResearchCenter()"></button><br>
                 <button id="upgradeSolarPanelButton">Upgrade solar panels</button><br>
                 <button id="upgradeFactoryButton">Upgrade factory</button><br>
