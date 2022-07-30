@@ -5,6 +5,8 @@ let workers = 0;
 let energy = 0;
 let researchPoints = 0;
 
+let planetsControlled = 1;
+
 let workerLevel = 0;
 const workerEfficiency = [1, 2, 4, 10, 25, 75, 200, 500, 1000]
 const workerEfficiencyCosts = [0, 100, 500, 2500, 10000, 50000, 200000, 1000000, 5000000]
@@ -20,14 +22,17 @@ const researchCenterEfficiency = [0, 1, 2, 5, 10]
 const researchCenterEfficiencyCosts = [0, 0, 10000, 50000, 200000]
 
 let manualResourceLevel = 0;
-const manualResourceEfficiency = [1, 2, 4, 10]
-const manualResourceEfficiencyCosts = [0, 5, 100, 800]
+const manualResourceEfficiency = [1, 2, 4, 10, 18, 30, 50, 100]
+const manualResourceEfficiencyCosts = [0, 5, 100, 800, 10000, 200000, 3000000, 100000000]
 
 let factoryUnlocked = false;
 let factoryLevel = 0;
 
 let spaceportUnlocked = false
 let spaceportLevel = 0;
+
+let solarPanelsUnlocked = false;
+let solarPanelLevel = 0;
 
 let resourceSellRate = 0.1;
 
@@ -71,7 +76,7 @@ setInterval(tick2, 1000);
 function manualResources() {
 
     //gives resources on click
-    resources += manualResourceEfficiency[manualResourceLevel];
+    resources += manualResourceEfficiency[manualResourceLevel] * planetsControlled;
     tick1();
 
 }
@@ -91,7 +96,7 @@ function upgradeManualResources() {
         notEnoughMoney();
     }
 
-    if (manualResourceLevel == 3) {
+    if (manualResourceLevel == 7) {
 
         document.getElementById("upgradeResourceClickButton").style.visibility = "none";
 
@@ -123,9 +128,9 @@ function purchaseWorkers(amount) {
         alert("You need to buy more housing for your workers.");
     }
 
-    if (money >= 10*amount && workers + amount < workerHousingSpace[workerHousingLevel]) {
+    if (money >= 10 * amount && workers + amount < workerHousingSpace[workerHousingLevel]) {
 
-        money -= amount*10;
+        money -= amount * 10;
         let roundedMoney = money.toFixed(1);
         money = Number(roundedMoney);
 
@@ -296,6 +301,29 @@ function buildSpaceport() {
 
 }
 
+function buildSolarPanel() {
+
+    //builds solar panels
+    if (money >= 20000 && refinedResources >= 100) {
+
+        solarPanelLevel++;
+        money -= 20000;
+        refinedResources -= 100;
+        solarPanelsUnlocked = true;
+
+        document.getElementById("buildSolarPanelButton").style.visibility = "none";
+        document.getElementById("upgradeSolarPanelButton").style.visibility = "visible";
+
+        tick1();
+
+    } else {
+        notEnoughMoney();
+    }
+
+}
+
+
+
 document.getElementById("buildResearchCenterButton").style.visibility = "visible";
 document.getElementById("upgradeResearchCenterButton").style.visibility = "none";
 
@@ -305,3 +333,5 @@ document.getElementById("upgradeFactoryButton").style.visibility = "none";
 document.getElementById("buildSpaceportButton").style.visibility = "visible";
 document.getElementById("upgradeSpaceportButton").style.visibility = "none";
 
+document.getElementById("buildSolarPanelButton").style.visibility = "visible";
+document.getElementById("upgradeSolarPanelButton").style.visibility = "none";
