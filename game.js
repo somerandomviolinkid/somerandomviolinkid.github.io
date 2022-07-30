@@ -19,6 +19,10 @@ let researchCenterLevel = 0;
 let researchCenterEfficiency = [0, 1, 2, 5, 10]
 let researchCenterEfficiencyCosts = [0, 0, 10000, 50000, 200000]
 
+let manualResourceLevel = 0;
+let manualResourceEfficiency = [1, 2, 4, 10]
+let manualResourceEfficiencyCosts = [0, 5, 100, 800]
+
 let resourceSellRate = 0.1;
 
 function notEnoughMoney() {
@@ -58,7 +62,32 @@ setInterval(tick2, 1000);
 function manualResources() {
 
     //gives resources on click
-    resources++;
+    resources += manualResourceEfficiency[manualResourceLevel];
+    tick1();
+
+}
+
+function upgradeManualResources() {
+
+    //upgrades resource click
+    if (money >= manualResourceEfficiencyCosts[manualResourceLevel + 1]) {
+
+        manualResourceLevel++;
+        money -= manualResourceEfficiencyCosts[manualResourceLevel];
+        document.getElementById("upgradeResourceClickButton").innerHTML = "Your resource click level is " + manualResourceLevel + ". Upgrade resource click cost " + manualResourceEfficiencyCosts[manualResourceLevel + 1] + " money.";
+
+        tick1();
+
+    } else {
+        notEnoughMoney();
+    }
+
+    if (manualResourceLevel == 3) {
+
+        document.getElementById("upgradeResourceClickButton").style.visibility = "hidden";
+
+    }
+
     tick1();
 
 }
@@ -69,6 +98,7 @@ function sellResources() {
     money += resources * resourceSellRate;
     let roundedMoney = money.toFixed(1);
     money = Number(roundedMoney);
+
     resources = 0;
     tick1();
 
@@ -77,35 +107,31 @@ function sellResources() {
 function purchaseWorkers() {
 
     //buys 1 worker
-    if (money >= 10 && workers < workerHousingSpace[workerHousingLevel]) {
-
-        money -= 10;
-        workers++;
-        tick1();
-
-    } 
 
     if (money < 10) {
         notEnoughMoney();
-    }
+    }    
 
     if (workers + 1 >= workerHousingSpace[workerHousingLevel]) {
         alert("You need to buy more housing for your workers.");
     }
+
+    if (money >= 10 && workers < workerHousingSpace[workerHousingLevel]) {
+
+        money -= 10;
+        let roundedMoney = money.toFixed(1);
+        money = Number(roundedMoney);
+
+        workers++;
+        tick1();
+
+    } 
 
 }
 
 function purchaseWorkers10() {
 
     //buys 10 workers
-    if (money >= 100 && workers + 10 <= workerHousingSpace[workerHousingLevel]) {
-
-        money -= 100;
-        workers += 10;
-        tick1();
-
-    }     
-    
     if (workers + 10 >= workerHousingSpace[workerHousingLevel]) {
         alert("You need to buy more housing for your workers.");
     }
@@ -114,26 +140,40 @@ function purchaseWorkers10() {
         notEnoughMoney();
     }
 
+    if (money >= 100 && workers + 10 <= workerHousingSpace[workerHousingLevel]) {
+
+        money -= 100;
+        let roundedMoney = money.toFixed(1);
+        money = Number(roundedMoney);
+
+        workers += 10;
+        tick1();
+
+    }     
+
 }
 
 function purchaseWorkers100() {
 
     //buys 100 workers
-    if (money >= 1000 && workers + 100 <= workerHousingSpace[workerHousingLevel]) {
-
-        money -= 1000;
-        workers += 100;
-        tick1();
-
-    }     
-    
     if (money < 1000) {
         notEnoughMoney();
     }
 
     if (workers + 100 >= workerHousingSpace[workerHousingLevel]) {
         alert("You need to buy more housing for your workers.");
-    }
+    }    
+
+    if (money >= 1000 && workers + 100 <= workerHousingSpace[workerHousingLevel]) {
+
+        money -= 1000;
+        let roundedMoney = money.toFixed(1);
+        money = Number(roundedMoney);
+
+        workers += 100;
+        tick1();
+
+    }     
 
 }
 
@@ -151,6 +191,9 @@ function purchaseMaxWorkers() {
     while (money >= 10 && workers < workerHousingSpace[workerHousingLevel]) {
 
         money -= 10;
+        let roundedMoney = money.toFixed(1);
+        money = Number(roundedMoney);
+        
         workers++;
 
     }
@@ -159,6 +202,7 @@ function purchaseMaxWorkers() {
 
 }
 
+document.getElementById("upgradeResourceClickButton").innerHTML = "Your resource click level is " + manualResourceLevel + ". Upgrade resource click cost " + manualResourceEfficiencyCosts[manualResourceLevel + 1] + " money.";
 document.getElementById("upgradeWorkerButton").innerHTML = "Your workers are level " + workerLevel + ". Upgrade worker cost " + workerEfficiencyCosts[workerLevel + 1] + " money.";
 document.getElementById("upgradeResearchCenterButton").innerHTML = "Your research center is level " + researchCenterLevel + ". Upgrade research center " + researchCenterEfficiencyCosts[researchCenterLevel + 1] + " money.";
 document.getElementById("upgradeWorkerHousingButton").innerHTML = "Your worker housing level is " + workerHousingLevel + ". Upgrade worker housing cost " + workerHousingMoneyCosts[workerHousingLevel + 1] + " money and " + workerHousingResourceCosts[workerHousingLevel + 1] + " resources.";
@@ -253,4 +297,3 @@ function buildFactory() {
 
 
 }
-
