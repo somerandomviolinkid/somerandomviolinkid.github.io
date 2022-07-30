@@ -86,3 +86,12 @@ function upgradeWorkers() {
 
 
 }
+
+function buildResearchCenter() {
+
+}
+
+function buildFactory() {
+
+
+}
