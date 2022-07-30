@@ -10,8 +10,8 @@ medium priority:
         *clean up uo
         *remove upgrades tab entirely, move upgrade buttons to the tabs that they relate to
     clean up code
-        *use classes for research unlocks and buttons?
+        *make it less repetive
+        *move page initalization things from game.js to page.js
 
 low priority:
     icons for worker tab
-    
