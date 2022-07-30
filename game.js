@@ -41,6 +41,9 @@ function notEnoughMoney() {
 
 function tick1() {
 
+    let roundedMoney = money.toFixed(1);
+    money = Number(roundedMoney);
+
     //updates numbers on page
     document.getElementById("moneyCount").innerHTML = "Money: " + money;
     document.getElementById("workerCount").innerHTML = "Workers: " + workers + " / " + workerHousingSpace[workerHousingLevel];
@@ -301,3 +304,4 @@ document.getElementById("upgradeFactoryButton").style.visibility = "none";
 
 document.getElementById("buildSpaceportButton").style.visibility = "visible";
 document.getElementById("upgradeSpaceportButton").style.visibility = "none";
+
