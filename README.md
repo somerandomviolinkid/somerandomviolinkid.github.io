@@ -12,7 +12,4 @@ added worker tab, made page look nicer
 removed projects and upgrades tab
 
 current functional elements (anything that isn't included in this list isn't functional):
-mine & sell resources
-build research center
-all buttons on worker tab
-upgrade research center button
+mine & sell resources, build research center, all buttons on worker tab, upgrade research center button,
