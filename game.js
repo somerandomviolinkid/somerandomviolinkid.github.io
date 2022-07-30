@@ -76,17 +76,20 @@ function sellResources() {
 
 function purchaseWorkers() {
 
-    //buys workers
-    if (money >= 10 && workers < workerSpace) {
+    //buys 1 worker
+    if (money >= 10 && workers < workerHousingSpace[workerHousingLevel]) {
 
         money -= 10;
         workers++;
         tick1();
 
-    } else {
+    } 
+
+    if (money < 10) {
         notEnoughMoney();
     }
-    if (workers + 1 >= workerHousingSpace) {
+
+    if (workers + 1 >= workerHousingSpace[workerHousingLevel]) {
         alert("You need to buy more housing for your workers.");
     }
 
@@ -94,37 +97,65 @@ function purchaseWorkers() {
 
 function purchaseWorkers10() {
 
-    //buys workers
-    if (money >= 100 && workers < workerSpace) {
+    //buys 10 workers
+    if (money >= 100 && workers + 10 <= workerHousingSpace[workerHousingLevel]) {
 
         money -= 100;
         workers += 10;
         tick1();
 
-    } else {
-        notEnoughMoney();
-    }
-    if (workers + 10 >= workerHousingSpace) {
+    }     
+    
+    if (workers + 10 >= workerHousingSpace[workerHousingLevel]) {
         alert("You need to buy more housing for your workers.");
+    }
+
+    if (money < 100) {
+        notEnoughMoney();
     }
 
 }
 
 function purchaseWorkers100() {
 
-    //buys workers
-    if (money >= 1000 && workers < workerSpace) {
+    //buys 100 workers
+    if (money >= 1000 && workers + 100 <= workerHousingSpace[workerHousingLevel]) {
 
         money -= 1000;
         workers += 100;
         tick1();
 
-    } else {
+    }     
+    
+    if (money < 1000) {
         notEnoughMoney();
     }
-    if (workers + 100 >= workerHousingSpace) {
+
+    if (workers + 100 >= workerHousingSpace[workerHousingLevel]) {
         alert("You need to buy more housing for your workers.");
     }
+
+}
+
+function purchaseMaxWorkers() {
+
+    if (money < 10) {
+        notEnoughMoney();
+    }
+
+    if (workers == workerHousingSpace[workerHousingLevel]) {
+        alert("You need to buy more housing for your workers.");
+    }
+
+    //buys max workers
+    while (money >= 10 && workers < workerHousingSpace[workerHousingLevel]) {
+
+        money -= 10;
+        workers++;
+
+    }
+
+    tick1();
 
 }
 
