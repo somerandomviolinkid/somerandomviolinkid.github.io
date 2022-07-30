@@ -7,7 +7,7 @@ body {
     overflow: hidden;
     width: 80%;
     padding: 6px 12px;
-    border: 1px solid #ccc;
+    border: 1px solid darkgray;
     background-color: #f1f1f1;
 }
 
@@ -88,9 +88,17 @@ button {
 
     background-color: lightgrey;
     border: 1px solid black;
-    width: 12%;
+    width: 12.5%;
     height: 10%;
     cursor: pointer;
+    transition: 0.4s;
+
+}
+
+#resourceButton {
+
+
+    width: 80%;
 
 }
 
