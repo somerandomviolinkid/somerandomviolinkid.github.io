@@ -39,7 +39,6 @@ button:hover {
 .tabcontent {
     display: none;
     width: 80%;
-    height: 50%;
     padding: 6px 12px;
     border: 1px solid #ccc;
     background-color: gray;
@@ -98,6 +97,13 @@ button {
     height: 10%;
     cursor: pointer;
     transition: 0.4s;
+
+}
+
+.tab2 {
+
+    float: left;
+    width: 15%;
 
 }
 
