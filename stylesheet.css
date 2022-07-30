@@ -108,3 +108,11 @@ button {
     font-family: "Lucida Console", "Courier New", monospace;
 
 }
+
+hr {
+
+    color: lightcyan;
+    height: 2px;
+    background-color: lightcyan;
+
+}
