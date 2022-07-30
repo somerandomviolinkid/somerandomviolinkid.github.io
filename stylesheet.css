@@ -1,5 +1,5 @@
 body {
-    background-color: rgba(26, 26, 26, 0.767);
+    background-image: url(assets/background.png);
 }
 
 /* Style the tab */
@@ -15,7 +15,9 @@ body {
 .tab button {
     background-color: inherit;
     float: left;
-    border: none;
+    border: solid;
+    border-color: black;
+    border-width: 1px;
     outline: none;
     cursor: pointer;
     padding: 14px 16px;
@@ -24,7 +26,7 @@ body {
 }
 
 /* Change background color of buttons on hover */
-.tab button:hover {
+button:hover {
     background-color: #ddd;
 }
 
@@ -51,7 +53,6 @@ h1 {
 
 h2 {
     color: blue;
-    margin-left: 20px;
     font-family: "Courier New", "Lucida Console", monospace;
 }
 
@@ -83,8 +84,18 @@ aside {
     background-color: gray;
 }
 
-#InfoBox {
+button {
 
-    color:darkolivegreen;
+    background-color: lightgrey;
+    border: 1px solid gray;
+    width: 12%;
+    height: 10%;
+
+}
+
+#infoBox {
+
+    color: black;
+    font-family: "Lucida Console", "Courier New", monospace;
 
 }
