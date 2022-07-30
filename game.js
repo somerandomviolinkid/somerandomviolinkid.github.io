@@ -119,7 +119,7 @@ function upgradeManualResources() {
 
     if (manualResourceLevel == 7) {
 
-        document.getElementById("upgradeResourceClickButton").style.visibility = "none";
+        document.getElementById("upgradeResourceClickButton").style.display = "none";
 
     }
 
@@ -249,7 +249,7 @@ function buildResearchCenter() {
         researchCenterUnlocked = true;
 
         document.getElementById("buildResearchCenterButton").style.display = "none";
-        document.getElementById("upgradeResearchCenterButton").style.visibility = "visible";
+        document.getElementById("upgradeResearchCenterButton").style.display = "visible";
 
         tick1();
 
