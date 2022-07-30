@@ -6,22 +6,28 @@ let energy = 0;
 let researchPoints = 0;
 
 let workerLevel = 0;
-let workerEfficiency = [1, 2, 4, 10, 25, 75, 200, 500, 1000]
-let workerEfficiencyCosts = [0, 100, 500, 2500, 10000, 50000, 200000, 1000000, 5000000]
+const workerEfficiency = [1, 2, 4, 10, 25, 75, 200, 500, 1000]
+const workerEfficiencyCosts = [0, 100, 500, 2500, 10000, 50000, 200000, 1000000, 5000000]
 
 let workerHousingLevel = 0;
-let workerHousingSpace = [10, 12, 15, 20, 27, 36, 50, 75, 125, 200]
-let workerHousingMoneyCosts = [0, 20, 50, 125, 500, 2000, 10000, 40000, 100000, 250000]
-let workerHousingResourceCosts = [0, 50, 120, 250, 600, 2500, 15000, 100000, 300000, 1000000]
+const workerHousingSpace = [10, 12, 15, 20, 27, 36, 50, 75, 125, 200]
+const workerHousingMoneyCosts = [0, 20, 50, 125, 500, 2000, 10000, 40000, 100000, 250000]
+const workerHousingResourceCosts = [0, 50, 120, 250, 600, 2500, 15000, 100000, 300000, 1000000]
 
 let researchCenterUnlocked = false;
 let researchCenterLevel = 0;
-let researchCenterEfficiency = [0, 1, 2, 5, 10]
-let researchCenterEfficiencyCosts = [0, 0, 10000, 50000, 200000]
+const researchCenterEfficiency = [0, 1, 2, 5, 10]
+const researchCenterEfficiencyCosts = [0, 0, 10000, 50000, 200000]
 
 let manualResourceLevel = 0;
-let manualResourceEfficiency = [1, 2, 4, 10]
-let manualResourceEfficiencyCosts = [0, 5, 100, 800]
+const manualResourceEfficiency = [1, 2, 4, 10]
+const manualResourceEfficiencyCosts = [0, 5, 100, 800]
+
+let factoryUnlocked = false;
+let factoryLevel = 0;
+
+let spaceportUnlocked = false
+let spaceportLevel = 0;
 
 let resourceSellRate = 0.1;
 
@@ -84,7 +90,7 @@ function upgradeManualResources() {
 
     if (manualResourceLevel == 3) {
 
-        document.getElementById("upgradeResourceClickButton").style.visibility = "hidden";
+        document.getElementById("upgradeResourceClickButton").style.visibility = "none";
 
     }
 
@@ -104,76 +110,26 @@ function sellResources() {
 
 }
 
-function purchaseWorkers() {
+function purchaseWorkers(amount) {
 
-    //buys 1 worker
-
-    if (money < 10) {
-        notEnoughMoney();
-    }    
-
-    if (workers + 1 >= workerHousingSpace[workerHousingLevel]) {
-        alert("You need to buy more housing for your workers.");
-    }
-
-    if (money >= 10 && workers < workerHousingSpace[workerHousingLevel]) {
-
-        money -= 10;
-        let roundedMoney = money.toFixed(1);
-        money = Number(roundedMoney);
-
-        workers++;
-        tick1();
-
-    } 
-
-}
-
-function purchaseWorkers10() {
-
-    //buys 10 workers
-    if (workers + 10 >= workerHousingSpace[workerHousingLevel]) {
-        alert("You need to buy more housing for your workers.");
-    }
-
-    if (money < 100) {
+    if (money < (10 * amount)) {
         notEnoughMoney();
     }
 
-    if (money >= 100 && workers + 10 <= workerHousingSpace[workerHousingLevel]) {
-
-        money -= 100;
-        let roundedMoney = money.toFixed(1);
-        money = Number(roundedMoney);
-
-        workers += 10;
-        tick1();
-
-    }     
-
-}
-
-function purchaseWorkers100() {
-
-    //buys 100 workers
-    if (money < 1000) {
-        notEnoughMoney();
+    if (workers + amount > workerHousingSpace[workerHousingLevel]) {
+        alert("You need to buy more housing for your workers.");
     }
 
-    if (workers + 100 >= workerHousingSpace[workerHousingLevel]) {
-        alert("You need to buy more housing for your workers.");
-    }    
+    if (money >= 10*amount && workers + amount < workerHousingSpace[workerHousingLevel]) {
 
-    if (money >= 1000 && workers + 100 <= workerHousingSpace[workerHousingLevel]) {
-
-        money -= 1000;
+        money -= amount*10;
         let roundedMoney = money.toFixed(1);
         money = Number(roundedMoney);
 
-        workers += 100;
+        workers += amount;
         tick1();
 
-    }     
+    }
 
 }
 
@@ -223,7 +179,7 @@ function upgradeWorkers() {
     //hides button once workers are at maximum level
     if (workerLevel == 8) {
 
-        document.getElementById("upgradeWorkerButton").style.visibility = "hidden";
+        document.getElementById("upgradeWorkerButton").style.visibility = "none";
 
     }
 
@@ -245,7 +201,7 @@ function upgradeWorkerHousing() {
     //upgrades worker housing
     if (workerHousingLevel == 9) {
 
-        document.getElementById("upgradeWorkerHousingButton").style.visibility = "hidden";
+        document.getElementById("upgradeWorkerHousingButton").style.visibility = "none";
 
     }
 
@@ -254,12 +210,14 @@ function upgradeWorkerHousing() {
 function buildResearchCenter() {
 
     //builds research center
-    if (money >= 100) {
+    if (money >= 100 && resources >= 500) {
 
         researchCenterLevel++;
         money -= 100;
+        resources -= 500;
         researchCenterUnlocked = true;
 
+        document.getElementById("buildResearchCenterButton").style.visibility = "none";
         document.getElementById("upgradeResearchCenterButton").style.visibility = "visible";
 
         tick1();
@@ -272,7 +230,7 @@ function buildResearchCenter() {
 
 function upgradeResearchCenter() {
 
-    //upgrades workers
+    //upgrades research center
     if (money >= researchCenterEfficiencyCosts[researchCenterLevel + 1] && researchCenterUnlocked == true) {
 
         money -= researchCenterEfficiencyCosts[researchCenterLevel + 1];
@@ -283,10 +241,10 @@ function upgradeResearchCenter() {
         notEnoughMoney();
     }
 
-    //hides button once workers are at maximum level
+    //hides button once research center is maxxed
     if (researchCenterLevel == 4) {
 
-        document.getElementById("upgradeResearchCenterButton").style.visibility = "hidden";
+        document.getElementById("upgradeResearchCenterButton").style.visibility = "none";
 
     }
 
@@ -295,5 +253,51 @@ function upgradeResearchCenter() {
 
 function buildFactory() {
 
+    //builds factory
+    if (money >= 5000 && resources >= 20000) {
+
+        factoryLevel++;
+        money -= 5000;
+        resources -= 20000;
+        factoryUnlocked = true;
+
+        document.getElementById("buildFactoryButton").style.visibility = "none";
+        document.getElementById("upgradeFactoryButton").style.visibility = "visible";
+
+        tick1();
+
+    } else {
+        notEnoughMoney();
+    }
 
 }
+
+function buildSpaceport() {
+
+    //builds spaceport
+    if (money >= 400000 && resources >= 1200000) {
+
+        spaceportLevel++;
+        money -= 400000;
+        resources -= 1200000;
+        spaceportUnlocked = true;
+
+        document.getElementById("buildSpaceportButton").style.visibility = "none";
+        document.getElementById("upgradeSpaceportButton").style.visibility = "visible";
+
+        tick1();
+
+    } else {
+        notEnoughMoney();
+    }
+
+}
+
+document.getElementById("buildResearchCenterButton").style.visibility = "visible";
+document.getElementById("upgradeResearchCenterButton").style.visibility = "none";
+
+document.getElementById("buildFactoryButton").style.visibility = "visible";
+document.getElementById("upgradeFactoryButton").style.visibility = "none";
+
+document.getElementById("buildSpaceportButton").style.visibility = "visible";
+document.getElementById("upgradeSpaceportButton").style.visibility = "none";
