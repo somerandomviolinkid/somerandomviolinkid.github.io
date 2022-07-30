@@ -17,13 +17,14 @@
     <body>
         <header>
             <h1>Spaceship Incremental Game</h1>
+            <h3 id="warning">Warning! This is a very early pre-alpha. Only the buttons at the top of the page and the "Upgrade Workers" button works. Expect updates later.</h3>
 
             <button onclick="manualResources()">Mine resources!</button>
             <button onclick="sellResources()">Sell resources!</button>
             <button onclick="purchaseWorkers()">Purchase Workers!</button>
         </header>
 
-        <aside>
+        <aside id="resourceCountView">
 
             <p id="moneyCount"></p>
             <p id="workerCount"></p>
@@ -41,6 +42,7 @@
                     Overview</button>
                 <button class="tablinks" onclick="openTab(event, 'System Overview')">System Overview</button>
                 <button class="tablinks" onclick="openTab(event, 'Galaxy Overview')">Galaxy Overview</button>
+                <button class="tablinks" onclick="openTab(event, 'Projects')">Projects</button>
                 <button class="tablinks" onclick="openTab(event, 'Research')">Research</button>
                 <button class="tablinks" onclick="openTab(event, 'Upgrades')">Upgrades</button>
 
@@ -58,22 +60,43 @@
 
                 </section>
 
-                <p id="PlanetInfo">This is your home planet.</p>
+                <p id="infoBox">This is your home planet.</p>
+
+                <button>Build a research center<br>Cost: 100 Money</button><br>
+                <button>Build a factory<br><img src="assets/factoryicon.png" alt="Factory Icon" style="width:64px;height:64px;"><br>Cost: 20,000 Money, 5,000 Resources</button><br>
+                <button>Build a spaceport<br><img src="assets/spaceporticon.png" alt="Spaceport Icon" style="width:64px;height:64px;"><br>Cost: 10,000,000 Money, 200,000 Resources</button><br>
 
             </div>
 
             <div id="System Overview" class="tabcontent">
                 <h2>System Overview</h2>
                 <img src="assets/system.png" alt="System" style="width:128px;height:128px;">
+                <p id="infoBox">This is your home system.</p>
+
+                <button>Build a shipyard</button><br>
             </div>
 
             <div id="Galaxy Overview" class="tabcontent">
                 <h2>Galaxy Overview</h2>
                 <img src="assets/galaxy.png" alt="Galaxy" style="width:128px;height:128px;">
+                <p id="infoBox">This is your home galaxy.</p>
+            </div>
+
+            <div id="Projects" class="tabcontent">
+
+                <h2>Projects</h2>
+                <p id="infoBox">This is where you can start larger projects.</p>
+                <button id="colonizePlanet1Button">Colonize planet 1</button><br>
+                <button id="colonizePlanet2Button">Colonize planet 2</button><br> 
+                <button id="colonizePlanet3Button">Colonize planet 3</button><br> 
+                
+                <button id="startDysonSphereButton">Start dyson sphere</button><br>
             </div>
 
             <div id="Research" class="tabcontent">
                 <h2>Research</h2>
+                <p id="infoBox">Here you can research powerful items.</p>
+                <button id="unlockFactory">Unlock factory</button><br>
                 <button id="unlockSolarPanels">Unlock solar panels</button><br>
                 <button id="unlockSpacePort">Unlock spaceport</button><br>
                 <button id="unlockSpaceships">Unlock spaceships</button><br>
@@ -82,8 +105,10 @@
 
             <div id="Upgrades" class="tabcontent">
                 <h2>Upgrades</h2>
+                <p id="infoBox">Here you can upgrade and increase your resource output.</p>
                 <button id="upgradeWorkerButton" onclick="upgradeWorkers()"></button><br>
-                <button id="upgradeSolarPanelButton">Upgrade solar panels</button>
+                <button id="upgradeSolarPanelButton">Upgrade solar panels</button><br>
+                <button id="upgradeFactoryButton">Upgrade factory</button><br>
             </div>
         </section>
 
