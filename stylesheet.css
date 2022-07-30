@@ -103,12 +103,11 @@ button {
 
 #resourceButton {
 
-
     width: 80%;
 
 }
 
-#infoBox {
+.infoBox {
 
     color: black;
     font-family: "Lucida Console", "Courier New", monospace;
