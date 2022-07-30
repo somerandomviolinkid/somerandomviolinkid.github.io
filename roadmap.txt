@@ -3,14 +3,15 @@
 high priority: 
     balance upgrades
     add functionality to all research/buildings
+    add actual gameplay
 
 medium priority:
     better ui and formatting
-        *move main buttons elsewhere
-        *make the entire ui more "modern"
+        *clean up uo
+        *remove upgrades tab entirely, move upgrade buttons to the tabs that they relate to
     clean up code
         *use classes for research unlocks and buttons?
 
 low priority:
-    more pixel art
+    icons for worker tab
     
