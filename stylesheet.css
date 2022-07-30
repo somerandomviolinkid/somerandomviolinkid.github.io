@@ -37,6 +37,7 @@ body {
 .tabcontent {
     display: none;
     width: 80%;
+    height: 50%;
     padding: 6px 12px;
     border: 1px solid #ccc;
     background-color: gray;
@@ -54,14 +55,36 @@ h2 {
     font-family: "Courier New", "Lucida Console", monospace;
 }
 
+#warning {
+
+    color: red;
+    margin-left: 20px;
+    font-family: "Papyrus", "Copperplate", fantasy;
+
+}
+
 p {
     color: black;
     font-family: "Ariel", "Verdana", sans-serif;
 }
 
-aside {
+#resourceCountView {
     width: 15%;
     padding-left: 15px;
     float: right;
     background-color: lightgray;
+}
+
+aside {
+
+    width: 15%;
+    padding-left: 15px;
+    float: left;
+    background-color: gray;
+}
+
+#InfoBox {
+
+    color:darkolivegreen;
+
 }
