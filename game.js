@@ -43,6 +43,27 @@ function notEnoughMoney() {
 
 }
 
+function notEnoughResources() {
+
+        //get more resources dipshit
+        alert("You don't have enough resources!");
+
+}
+
+function notEnoughRefinedResources() {
+
+    //get more refined resources dipshit
+    alert("You don't have enough refined resources!");
+
+}
+
+function notEnoughResearch() {
+
+    //get more research dipshit
+    alert("You don't have enough research points!");
+
+}
+
 
 function tick1() {
 
@@ -187,7 +208,7 @@ function upgradeWorkers() {
     //hides button once workers are at maximum level
     if (workerLevel == 8) {
 
-        document.getElementById("upgradeWorkerButton").style.visibility = "none";
+        document.getElementById("upgradeWorkerButton").style.display = "none";
 
     }
 
@@ -203,13 +224,15 @@ function upgradeWorkerHousing() {
         workerHousingLevel++;
         document.getElementById("upgradeWorkerHousingButton").innerHTML = "Your worker housing level is " + workerHousingLevel + ". Upgrade worker housing cost " + workerHousingMoneyCosts[workerHousingLevel + 1] + " money and " + workerHousingResourceCosts[workerHousingLevel + 1] + " resources.";
 
-    } else {
+    } if (money < workerHousingMoneyCosts[workerHousingLevel + 1]) {
         notEnoughMoney();
+    } else {
+        notEnoughResources(); 
     }
     //upgrades worker housing
     if (workerHousingLevel == 9) {
 
-        document.getElementById("upgradeWorkerHousingButton").style.visibility = "none";
+        document.getElementById("upgradeWorkerHousingButton").style.display = "none";
 
     }
 
@@ -225,13 +248,15 @@ function buildResearchCenter() {
         resources -= 500;
         researchCenterUnlocked = true;
 
-        document.getElementById("buildResearchCenterButton").style.visibility = "none";
+        document.getElementById("buildResearchCenterButton").style.display = "none";
         document.getElementById("upgradeResearchCenterButton").style.visibility = "visible";
 
         tick1();
 
-    } else {
+    } if (money < 100) {
         notEnoughMoney();
+    } else {
+        notEnoughResources();
     }
 
 }
@@ -252,53 +277,67 @@ function upgradeResearchCenter() {
     //hides button once research center is maxxed
     if (researchCenterLevel == 4) {
 
-        document.getElementById("upgradeResearchCenterButton").style.visibility = "none";
+        document.getElementById("upgradeResearchCenterButton").style.display = "none";
 
     }
 
 
+}
+
+function researchFactory() {
+    if (researchPoints >= 100) {
+
+        researchPoints -= 100;
+        tick1();
+
+        document.getElementById("buildFactoryButton").style.display = "inline";
+        document.getElementById("unlockFactory").style.display = "none";
+
+        solarPanelLevel = true;
+
+    } else {
+        notEnoughResearch();
+    }
 }
 
 function buildFactory() {
 
     //builds factory
-    if (money >= 5000 && resources >= 20000) {
+    if (money >= 5000 && resources >= 20000 && factoryUnlocked == true) {
 
         factoryLevel++;
         money -= 5000;
         resources -= 20000;
-        factoryUnlocked = true;
 
-        document.getElementById("buildFactoryButton").style.visibility = "none";
-        document.getElementById("upgradeFactoryButton").style.visibility = "visible";
+        document.getElementById("buildFactoryButton").style.display = "none";
+        document.getElementById("upgradeFactoryButton").style.display = "inline";
+
+        document.getElementById("FactoryTab").style.display = "inline";
 
         tick1();
 
-    } else {
+    } if (money < 5000) {
         notEnoughMoney();
+    } else {
+        notEnoughResources();
     }
 
 }
 
-function buildSpaceport() {
+function researchSolarPanels() {
+    if (researchPoints >= 500) {
 
-    //builds spaceport
-    if (money >= 400000 && resources >= 1200000) {
-
-        spaceportLevel++;
-        money -= 400000;
-        resources -= 1200000;
-        spaceportUnlocked = true;
-
-        document.getElementById("buildSpaceportButton").style.visibility = "none";
-        document.getElementById("upgradeSpaceportButton").style.visibility = "visible";
-
+        researchPoints -= 500;
         tick1();
 
-    } else {
-        notEnoughMoney();
-    }
+        document.getElementById("buildSolarPanelButton").style.display = "inline";
+        document.getElementById("unlockSolarPanels").style.display = "none";
 
+        solarPanelLevel = true;
+
+    } else {
+        notEnoughResearch();
+    }
 }
 
 function buildSolarPanel() {
@@ -311,27 +350,70 @@ function buildSolarPanel() {
         refinedResources -= 100;
         solarPanelsUnlocked = true;
 
-        document.getElementById("buildSolarPanelButton").style.visibility = "none";
-        document.getElementById("upgradeSolarPanelButton").style.visibility = "visible";
+        document.getElementById("buildSolarPanelButton").style.display = "none";
+        document.getElementById("upgradeSolarPanelButton").style.display = "inline";
 
         tick1();
 
-    } else {
+    } if (money < 100) {
         notEnoughMoney();
+    } else {
+        notEnoughRefinedResources();
+    }
+}
+
+function researchSpaceport() {
+    if (researchPoints >= 10000) {
+
+        researchPoints -= 10000;
+        tick1();
+
+        document.getElementById("buildSpaceportButton").style.display = "inline";
+        document.getElementById("unlockSpacePort").style.display = "none";
+
+        spaceportUnlocked = true;
+
+    } else {
+        notEnoughResearch();
+    }
+}
+
+function buildSpaceport() {
+
+    //builds spaceport
+    if (money >= 400000 && resources >= 1200000) {
+
+        spaceportLevel++;
+        money -= 400000;
+        resources -= 1200000;
+        spaceportUnlocked = true;
+
+        document.getElementById("buildSpaceportButton").style.display = "none";
+        document.getElementById("upgradeSpaceportButton").style.display = "inline";
+
+        document.getElementById("SpaceportTab").style.display = "inline";
+
+        tick1();
+
+    } if (money < 400000) {
+        notEnoughMoney();
+    } else {
+        notEnoughResources();
     }
 
 }
 
+document.getElementById("buildResearchCenterButton").style.display = "inline";
+document.getElementById("upgradeResearchCenterButton").style.display = "none";
 
+document.getElementById("buildFactoryButton").style.display = "none";
+document.getElementById("upgradeFactoryButton").style.display = "none";
 
-document.getElementById("buildResearchCenterButton").style.visibility = "visible";
-document.getElementById("upgradeResearchCenterButton").style.visibility = "none";
+document.getElementById("buildSolarPanelButton").style.display = "none";
+document.getElementById("upgradeSolarPanelButton").style.display = "none";
 
-document.getElementById("buildFactoryButton").style.visibility = "visible";
-document.getElementById("upgradeFactoryButton").style.visibility = "none";
+document.getElementById("buildSpaceportButton").style.display = "none";
+document.getElementById("upgradeSpaceportButton").style.display = "none";
 
-document.getElementById("buildSpaceportButton").style.visibility = "visible";
-document.getElementById("upgradeSpaceportButton").style.visibility = "none";
-
-document.getElementById("buildSolarPanelButton").style.visibility = "visible";
-document.getElementById("upgradeSolarPanelButton").style.visibility = "none";
+document.getElementById("FactoryTab").style.display = "none";
+document.getElementById("SpaceportTab").style.display = "none";
