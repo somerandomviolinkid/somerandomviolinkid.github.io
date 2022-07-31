@@ -63,6 +63,8 @@ function saveData() {
 
 }
 
+saveData();
+
 setInterval(saveData, 20000);
 
 function resetData() {
@@ -140,7 +142,6 @@ function loadData() {
 
     //loads stuff
     const save = localStorage.getItem("saveKey");
-    if (!save) return;
     window.money = save.money;
     window.resources = save.resources;
     window.refinedResources = save.refinedResources;
