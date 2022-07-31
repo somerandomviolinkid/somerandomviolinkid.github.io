@@ -1,15 +1,11 @@
 (current road map of the game)
 
 high priority: 
-    balance upgrades
-    add functionality to all research/buildings
-    add actual gameplay
-    clean up code
-        *both index.html and game.js are very messy and becoming hard to work with
+    balance upgrades and pacing
+    add functionality to beginning game research/buildings
 
 medium priority:
-    better ui and formatting
-        *clean up
+    clean up code
 
 low priority:
     icons for worker tab
