@@ -18,7 +18,7 @@
     <body>
         <header>
             <h1>Spaceship Incremental Game</h1>
-            <h3 id="warning">Warning! This is a very early pre-alpha. There is limited functionality.</h3>
+            <h3 id="warning">Warning! This is an early pre-alpha. There is limited functionality.</h3>
         </header>
 
         <aside id="resourceCountView">
@@ -29,6 +29,8 @@
             <p id="refinedResourceCount"></p>
             <p id="energyCount"></p>
             <p id="researchPointCount"></p>
+            <p id="planetsControlledCount"></p>
+            <p id="solarPanelCount"></p>
             <button id="resourceButton" onclick="manualResources()">Mine resources!<br><img src="assets/mining icon.png" alt="Mining Icon" style="width:64px;height:64px;"></button><br>
             <button id="resourceButton" onclick="sellResources()">Sell resources!<br><img src="assets/sellicon.png" alt="Selling Icon" style="width:64px;height:64px;"></button><br>
 
@@ -70,15 +72,13 @@
                 <h3>Home planet upgrades</h3>
                 <button id="upgradeResourceClickButton" onclick="upgradeManualResources()"></button><br>
                 <button id="upgradeSolarPanelButton">Upgrade solar panels</button><br>
-                <button id="upgradeFactoryButton">Upgrade factory</button><br>
-                <button id="upgradeSpaceportButton">Upgrade spaceport</button><br>
 
             </div>
 
             <div id="System Overview" class="tabcontent">
                 <h2>System Overview</h2>
                 <img src="assets/system.png" alt="System" style="width:128px;height:128px;">
-                <h4 class="infoBox">This is your home system.</h4>
+                <h4 class="infoBox">This is your home system. Manual mining and worker housing space is multiplied by the amount of planets you've colonized.</h4>
 
                 <button>Build a shipyard</button><br>
                 <button>Build asteroid miners</button><br>
@@ -128,11 +128,14 @@
             <div id="Factory" class="tabcontent">
                 <h2>Factory</h2>
                 <p>You can refine your resources here.</p>
+                <button id="toggleFactoryButton" onclick="toggleFactory()"></button><br>
+                <button id="upgradeFactoryButton">Upgrade factory</button><br>
             </div>
 
             <div id="Spaceport" class="tabcontent">
                 <h2>Spaceport</h2>
                 <p>You can build spaceships here.</p>
+                <button id="upgradeSpaceportButton">Upgrade spaceport</button><br>
             </div>
         </section>
 
