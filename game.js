@@ -139,7 +139,7 @@ function tick2() {
 function loadData() {
 
     //loads stuff
-    const save = localStorage.getItem("spaceship-game-key");
+    const save = localStorage.getItem("saveKey");
     if (!save) return;
     window.money = save.money;
     window.resources = save.resources;
