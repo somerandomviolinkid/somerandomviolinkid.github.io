@@ -12,3 +12,5 @@ added worker tab, made page look nicer, removed projects and upgrades tab, added
 
 current functional elements (anything that isn't included in this list isn't functional):
 buildings on planet tab, everything on worker tab, build & upgrade research center and first 3 research items, everything on factory tab EXCEPT upgrade
+
+discord (join if you want to know what i'm currently working on): https://discord.gg/6jb7PmeD7m
