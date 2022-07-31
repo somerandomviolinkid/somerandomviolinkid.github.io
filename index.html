@@ -31,8 +31,8 @@
             <p id="researchPointCount"></p>
             <p id="planetsControlledCount"></p>
             <p id="solarPanelCount"></p>
-            <button id="resourceButton" onclick="manualResources()">Mine resources!<br><img src="assets/mining icon.png" alt="Mining Icon" style="width:64px;height:64px;"></button><br>
-            <button id="resourceButton" onclick="sellResources()">Sell resources!<br><img src="assets/sellicon.png" alt="Selling Icon" style="width:64px;height:64px;"></button><br>
+            <button class="resourceButton" onclick="manualResources()">Mine resources!<br><img src="assets/mining icon.png" alt="Mining Icon" style="width:64px;height:64px;"></button><br>
+            <button class="resourceButton" onclick="sellResources()">Sell resources!<br><img src="assets/sellicon.png" alt="Selling Icon" style="width:64px;height:64px;"></button><br>
 
         </aside>
 
@@ -44,6 +44,7 @@
                 <button class="tablinks" onclick="openTab(event, 'Galaxy Overview')">Galaxy Overview</button>
                 <button class="tablinks" onclick="openTab(event, 'Workers')">Workers</button>
                 <button class="tablinks" onclick="openTab(event, 'Research')">Research</button>
+                <button class="tablinks" onclick="openTab(event, 'Settings')">Settings</button>
                 <br>
                 <button class="tablinks" class="tab2" id = "FactoryTab" onclick="openTab(event, 'Factory')">Factory</button>
                 <button class="tablinks" class="tab2" id = "SpaceportTab" onclick="openTab(event, 'Spaceport')">Spaceport</button>
@@ -66,12 +67,16 @@
 
                 <h4 class="infoBox">This is your home planet.</h4>
                 <button id="buildFactoryButton" onclick="buildFactory()">Build a factory<br><img src="assets/factoryicon.png" alt="Factory Icon" style="width:64px;height:64px;"><br>Cost: 5,000 Money<br>20,000 Resources</button>
-                <button id="buildSolarPanelButton" onclick="buildSolarPanel()">Build solar panels<br><img src="assets/solarpanelicon.png" alt="Spaceport Icon" style="width:64px;height:64px;"><br>Cost: 20,000 Money<br>100 Refined Resources</button>
+                <button id="buildSolarPanelButton" onclick="buildFirstSolarPanel()">Build solar panels<br><img src="assets/solarpanelicon.png" alt="Spaceport Icon" style="width:64px;height:64px;"><br>Cost: 20,000 Money<br>100 Refined Resources</button>
                 <button id="buildSpaceportButton" onclick="buildSpaceport()">Build a spaceport<br><img src="assets/spaceporticon.png" alt="Spaceport Icon" style="width:64px;height:64px;"><br>Cost: 400,000 Money<br>1,200,000 Resources</button>
                 <hr>
                 <h3>Home planet upgrades</h3>
                 <button id="upgradeResourceClickButton" onclick="upgradeManualResources()"></button><br>
-                <button id="upgradeSolarPanelButton">Upgrade solar panels</button><br>
+                <hr class="solarpanelupgradesheader">
+                <h4 class="solarpanelupgradesheader">Solar panel upgrades</h4><br>
+                <button id="buildMoreSolarPanels" onclick="buildSolarPanel()">Build more solar panels.<br>Cost: 20,000 money and 100 refined resources.</button>
+                <button id="upgradeSolarPanelButton" onclick="upgradeSolarPanels()">Upgrade solar panels</button>
+                <button id="upgradeSolarPanelSpaceButton" onclick="upgradeSolarPanelSpace()">Upgrade solar panels</button>
 
             </div>
 
@@ -125,11 +130,17 @@
                 <button id="unlockShipYard">Unlock shipyard</button><br>
             </div>
 
+            <div id="Settings" class="tabcontent">
+                <h2>Settings</h2>
+                <button class="settingButton" onclick="saveData()">Save data</button><br>
+                <button class="settingButton" onclick="resetData()">Reset data</button><br>
+            </div>
+
             <div id="Factory" class="tabcontent">
                 <h2>Factory</h2>
                 <p>You can refine your resources here.</p>
-                <button id="toggleFactoryButton" onclick="toggleFactory()"></button><br>
-                <button id="upgradeFactoryButton">Upgrade factory</button><br>
+                <button class="settingButton "id="toggleFactoryButton" onclick="toggleFactory()"></button><br>
+                <button class="settingButton" id="upgradeFactoryButton">Upgrade factory</button><br>
             </div>
 
             <div id="Spaceport" class="tabcontent">
