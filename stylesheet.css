@@ -8,14 +8,14 @@ body {
     width: 80%;
     padding: 6px 12px;
     border: 1px solid darkgray;
-    background-color: #f1f1f1;
+    background-color: aliceblue;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
 }
 
 /* Style the buttons that are used to open the tab content */
 .tab button {
-    background-color: inherit;
+    background-color: whitesmoke;
     float: left;
     border: solid;
     border-color: black;
@@ -66,6 +66,12 @@ h3 {
 
 }
 
+h4 {
+    color: gainsboro;
+    font-family: "Courier New", "Lucida Console", monospace;
+
+}
+
 #warning {
 
     color: red;
@@ -98,23 +104,17 @@ button {
 
     background-color: lightgrey;
     border: 1px solid black;
-    width: 20%;
+    width: 16.66%;
     height: 10%;
     cursor: pointer;
     transition: 0.4s;
 
 }
 
-.tab2 {
-
-    float: left;
-    width: 15%;
-
-}
-
-#resourceButton {
+.resourceButton {
 
     width: 80%;
+    margin-left: 20px;
 
 }
 
@@ -137,6 +137,7 @@ hr {
     color: lightcyan;
     height: 2px;
     background-color: lightcyan;
+    width: 100%;
 
 }
 
@@ -147,5 +148,20 @@ footer {
     position: fixed;
     bottom: 0;
     font-family: "Lucida Console", "Courier New", monospace;
+
+}
+
+.settingButton {
+
+    border-radius: 25%;
+    width:15%;
+    margin-left:10%;
+    margin-right: 10%;
+    padding: 25px;
+    font-size: 24px;
+
+    background-color: azure;
+    border-style: solid;
+    border-color: black;
 
 }
