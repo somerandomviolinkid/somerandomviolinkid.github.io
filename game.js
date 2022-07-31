@@ -139,6 +139,7 @@ function loadData() {
 
     //loads stuff
     const save = localStorage.getItem("saveKey");
+    JSON.parse("saveKey");
     if (!save) return;
     window.money = save.money;
     window.resources = save.resources;
