@@ -1,9 +1,9 @@
-let money = 10000000;
-let resources = 1000000;
-let refinedResources = 1000000;
+let money = 0;
+let resources = 0;
+let refinedResources = 0;
 let workers = 0;
 let energy = 0;
-let researchPoints = 1000000;
+let researchPoints = 0;
 let planetsControlled = 1;
 let solarPanels = 0;
 
@@ -50,14 +50,15 @@ function saveData() {
 
     //saves stuff
     window.localStorage.setItem("saveKey", JSON.stringify({
-        money, 
-        resources, 
-        refinedResources, 
-        workers, 
-        energy, 
-        researchPoints, 
-        planetsControlled, 
-        solarPanels}))
+        money,
+        resources,
+        refinedResources,
+        workers,
+        energy,
+        researchPoints,
+        planetsControlled,
+        solarPanels
+    }))
     console.log(window.localStorage);
 
 }
