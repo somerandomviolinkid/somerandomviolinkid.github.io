@@ -1,11 +1,11 @@
-let money = 0;
-let resources = 0;
+let money = 1000000;
+let resources = 500000000;
 let refinedResources = 0;
 let workers = 0;
 let energy = 0;
-let researchPoints = 0;
-
+let researchPoints = 100000;
 let planetsControlled = 1;
+let solarPanels = 0;
 
 let workerLevel = 0;
 const workerEfficiency = [1, 2, 4, 10, 25, 75, 200, 500, 1000]
@@ -27,6 +27,8 @@ const manualResourceEfficiencyCosts = [0, 5, 100, 800, 10000, 200000, 3000000, 1
 
 let factoryUnlocked = false;
 let factoryLevel = 0;
+let factoryEfficiency = [0, 1];
+let factoryToggle = false;
 
 let spaceportUnlocked = false
 let spaceportLevel = 0;
@@ -45,8 +47,8 @@ function notEnoughMoney() {
 
 function notEnoughResources() {
 
-        //get more resources dipshit
-        alert("You don't have enough resources!");
+    //get more resources dipshit
+    alert("You don't have enough resources!");
 
 }
 
@@ -72,11 +74,13 @@ function tick1() {
 
     //updates numbers on page
     document.getElementById("moneyCount").innerHTML = "Money: " + money;
-    document.getElementById("workerCount").innerHTML = "Workers: " + workers + " / " + workerHousingSpace[workerHousingLevel];
+    document.getElementById("workerCount").innerHTML = "Workers: " + workers + " / " + (planetsControlled * workerHousingSpace[workerHousingLevel]);
     document.getElementById("resourceCount").innerHTML = "Resources: " + resources;
     document.getElementById("refinedResourceCount").innerHTML = "Refined resources: " + refinedResources;
     document.getElementById("energyCount").innerHTML = "Energy: " + energy;
     document.getElementById("researchPointCount").innerHTML = "Research points: " + researchPoints;
+    document.getElementById("planetsControlledCount").innerHTML = "Planets controlled: " + planetsControlled;
+    document.getElementById("solarPanelCount").innerHTML = "Solar panels: " + solarPanels;
 
 }
 
@@ -88,6 +92,13 @@ function tick2() {
     resources += workers * (workerEfficiency[workerLevel]);
 
     researchPoints += researchCenterEfficiency[researchCenterLevel];
+
+    if (factoryToggle == true && resources >= 2) {
+
+        resources -= 2;
+        refinedResources ++;
+
+    }
     tick1();
 
 }
@@ -109,7 +120,7 @@ function upgradeManualResources() {
 
         manualResourceLevel++;
         money -= manualResourceEfficiencyCosts[manualResourceLevel];
-        document.getElementById("upgradeResourceClickButton").innerHTML = "Your resource click level is " + manualResourceLevel + ". Upgrade resource click cost " + manualResourceEfficiencyCosts[manualResourceLevel + 1] + " money.";
+        document.getElementById("upgradeResourceClickButton").innerHTML = "Your resource click level is " + manualResourceLevel + " and you get " + manualResourceEfficiency[manualResourceLevel] + " resources per click. Upgrade resource click cost " + manualResourceEfficiencyCosts[manualResourceLevel + 1] + " money.";
 
         tick1();
 
@@ -145,11 +156,11 @@ function purchaseWorkers(amount) {
         notEnoughMoney();
     }
 
-    if (workers + amount > workerHousingSpace[workerHousingLevel]) {
+    if ((workers + amount) > (planetsControlled * workerHousingSpace[workerHousingLevel])) {
         alert("You need to buy more housing for your workers.");
     }
 
-    if (money >= 10 * amount && workers + amount < workerHousingSpace[workerHousingLevel]) {
+    if ((money >= 10 * amount) && (workers + amount) <= (planetsControlled * workerHousingSpace[workerHousingLevel])) {
 
         money -= amount * 10;
         let roundedMoney = money.toFixed(1);
@@ -168,17 +179,17 @@ function purchaseMaxWorkers() {
         notEnoughMoney();
     }
 
-    if (workers == workerHousingSpace[workerHousingLevel]) {
+    if (workers == (planetsControlled * workerHousingSpace[workerHousingLevel])) {
         alert("You need to buy more housing for your workers.");
     }
 
     //buys max workers
-    while (money >= 10 && workers < workerHousingSpace[workerHousingLevel]) {
+    while (money >= 10 && workers < (planetsControlled * workerHousingSpace[workerHousingLevel])) {
 
         money -= 10;
         let roundedMoney = money.toFixed(1);
         money = Number(roundedMoney);
-        
+
         workers++;
 
     }
@@ -187,10 +198,12 @@ function purchaseMaxWorkers() {
 
 }
 
-document.getElementById("upgradeResourceClickButton").innerHTML = "Your resource click level is " + manualResourceLevel + ". Upgrade resource click cost " + manualResourceEfficiencyCosts[manualResourceLevel + 1] + " money.";
-document.getElementById("upgradeWorkerButton").innerHTML = "Your workers are level " + workerLevel + ". Upgrade worker cost " + workerEfficiencyCosts[workerLevel + 1] + " money.";
-document.getElementById("upgradeResearchCenterButton").innerHTML = "Your research center is level " + researchCenterLevel + ". Upgrade research center " + researchCenterEfficiencyCosts[researchCenterLevel + 1] + " money.";
+document.getElementById("upgradeResourceClickButton").innerHTML = "Your resource click level is " + manualResourceLevel + " and you get " + manualResourceEfficiency[manualResourceLevel] + " resources per click. Upgrade resource click cost " + manualResourceEfficiencyCosts[manualResourceLevel + 1] + " money.";
+document.getElementById("upgradeWorkerButton").innerHTML = "Your workers are level " + workerLevel + " and each worker produces " + workerEfficiency[workerHousingLevel] + " resources per second. Upgrade worker cost " + workerEfficiencyCosts[workerLevel + 1] + " money.";
+document.getElementById("upgradeResearchCenterButton").innerHTML = "Your research center is level " + researchCenterLevel + " and you get " + researchCenterEfficiency[researchCenterLevel] + " research points every second. Upgrade research center " + researchCenterEfficiencyCosts[researchCenterLevel + 1] + " money.";
 document.getElementById("upgradeWorkerHousingButton").innerHTML = "Your worker housing level is " + workerHousingLevel + ". Upgrade worker housing cost " + workerHousingMoneyCosts[workerHousingLevel + 1] + " money and " + workerHousingResourceCosts[workerHousingLevel + 1] + " resources.";
+
+document.getElementById("toggleFactoryButton").innerHTML = "Factory power: Off";
 
 function upgradeWorkers() {
 
@@ -199,7 +212,7 @@ function upgradeWorkers() {
 
         money -= workerEfficiencyCosts[workerLevel + 1];
         workerLevel++;
-        document.getElementById("upgradeWorkerButton").innerHTML = "Your workers are level " + workerLevel + ". Upgrade worker cost " + workerEfficiencyCosts[workerLevel + 1] + " money.";
+        document.getElementById("upgradeWorkerButton").innerHTML = "Your workers are level " + workerLevel + " and each worker produces " + workerEfficiency[workerHousingLevel] + " resources per second. Upgrade worker cost " + workerEfficiencyCosts[workerLevel + 1] + " money.";
 
     } else {
         notEnoughMoney();
@@ -217,17 +230,17 @@ function upgradeWorkers() {
 
 function upgradeWorkerHousing() {
 
-    if (money >= workerHousingMoneyCosts[workerHousingLevel + 1] && resources >= workerHousingResourceCosts[workerHousingLevel +1 ]) {
+    if (money < workerHousingMoneyCosts[workerHousingLevel + 1]) {
+        notEnoughMoney();
+    } if (resources < workerHousingResourceCosts[workerHousingLevel + 1]) {
+        notEnoughResources();
+    } else {
 
         money -= workerHousingMoneyCosts[workerHousingLevel + 1];
-        resources -= workerHousingResourceCosts[workerHousingLevel +1 ];
+        resources -= workerHousingResourceCosts[workerHousingLevel + 1];
         workerHousingLevel++;
         document.getElementById("upgradeWorkerHousingButton").innerHTML = "Your worker housing level is " + workerHousingLevel + ". Upgrade worker housing cost " + workerHousingMoneyCosts[workerHousingLevel + 1] + " money and " + workerHousingResourceCosts[workerHousingLevel + 1] + " resources.";
 
-    } if (money < workerHousingMoneyCosts[workerHousingLevel + 1]) {
-        notEnoughMoney();
-    } else {
-        notEnoughResources(); 
     }
     //upgrades worker housing
     if (workerHousingLevel == 9) {
@@ -241,7 +254,11 @@ function upgradeWorkerHousing() {
 function buildResearchCenter() {
 
     //builds research center
-    if (money >= 100 && resources >= 500) {
+    if (money < 100) {
+        notEnoughMoney();
+    } if (resources < 500) {
+        notEnoughResources();
+    } else {
 
         researchCenterLevel++;
         money -= 100;
@@ -249,14 +266,11 @@ function buildResearchCenter() {
         researchCenterUnlocked = true;
 
         document.getElementById("buildResearchCenterButton").style.display = "none";
-        document.getElementById("upgradeResearchCenterButton").style.display = "visible";
+        document.getElementById("upgradeResearchCenterButton").style.display = "inline";
+        document.getElementById("upgradeResearchCenterButton").innerHTML = "Your research center is level " + researchCenterLevel + " and you get " + researchCenterEfficiency[researchCenterLevel] + " research points every second. Upgrade research center " + researchCenterEfficiencyCosts[researchCenterLevel + 1] + " money.";
 
         tick1();
 
-    } if (money < 100) {
-        notEnoughMoney();
-    } else {
-        notEnoughResources();
     }
 
 }
@@ -264,14 +278,14 @@ function buildResearchCenter() {
 function upgradeResearchCenter() {
 
     //upgrades research center
-    if (money >= researchCenterEfficiencyCosts[researchCenterLevel + 1] && researchCenterUnlocked == true) {
+    if (money < researchCenterEfficiencyCosts[researchCenterLevel + 1]) {
+        notEnoughMoney();
+    } else {
 
         money -= researchCenterEfficiencyCosts[researchCenterLevel + 1];
         researchCenterLevel++;
-        document.getElementById("upgradeResearchCenterButton").innerHTML = "Your research center is level " + researchCenterLevel + ". Upgrade research center " + researchCenterEfficiencyCosts[researchCenterLevel + 1] + " money.";
+        document.getElementById("upgradeResearchCenterButton").innerHTML = "Your research center is level " + researchCenterLevel + " and you get " + researchCenterEfficiency[researchCenterLevel] + " research points every second. Upgrade research center " + researchCenterEfficiencyCosts[researchCenterLevel + 1] + " money.";
 
-    } else {
-        notEnoughMoney();
     }
 
     //hides button once research center is maxxed
@@ -285,7 +299,9 @@ function upgradeResearchCenter() {
 }
 
 function researchFactory() {
-    if (researchPoints >= 100) {
+    if (researchPoints < 100) {
+        notEnoughResearch();
+    } else {
 
         researchPoints -= 100;
         tick1();
@@ -295,16 +311,17 @@ function researchFactory() {
 
         solarPanelLevel = true;
 
-    } else {
-        notEnoughResearch();
     }
 }
 
 function buildFactory() {
 
     //builds factory
-    if (money >= 5000 && resources >= 20000 && factoryUnlocked == true) {
-
+    if (money < 5000) {
+        notEnoughMoney();
+    } if (resources < 20000) {
+        notEnoughResources();
+    } else {
         factoryLevel++;
         money -= 5000;
         resources -= 20000;
@@ -316,16 +333,14 @@ function buildFactory() {
 
         tick1();
 
-    } if (money < 5000) {
-        notEnoughMoney();
-    } else {
-        notEnoughResources();
     }
 
 }
 
 function researchSolarPanels() {
-    if (researchPoints >= 500) {
+    if (researchPoints < 500) {
+        notEnoughResearch();
+    } else {
 
         researchPoints -= 500;
         tick1();
@@ -335,15 +350,17 @@ function researchSolarPanels() {
 
         solarPanelLevel = true;
 
-    } else {
-        notEnoughResearch();
     }
 }
 
 function buildSolarPanel() {
 
     //builds solar panels
-    if (money >= 20000 && refinedResources >= 100) {
+    if (money < 100) {
+        notEnoughMoney();
+    } if (refinedResources < 100) {
+        notEnoughRefinedResources();
+    } else {
 
         solarPanelLevel++;
         money -= 20000;
@@ -355,15 +372,13 @@ function buildSolarPanel() {
 
         tick1();
 
-    } if (money < 100) {
-        notEnoughMoney();
-    } else {
-        notEnoughRefinedResources();
     }
 }
 
 function researchSpaceport() {
-    if (researchPoints >= 10000) {
+    if (researchPoints < 10000) {
+        notEnoughResearch();
+    } else {
 
         researchPoints -= 10000;
         tick1();
@@ -373,15 +388,17 @@ function researchSpaceport() {
 
         spaceportUnlocked = true;
 
-    } else {
-        notEnoughResearch();
     }
 }
 
 function buildSpaceport() {
 
     //builds spaceport
-    if (money >= 400000 && resources >= 1200000) {
+    if (money < 400000) {
+        notEnoughMoney();
+    } if (resources < 1200000) {
+        notEnoughResources();
+    } else {
 
         spaceportLevel++;
         money -= 400000;
@@ -395,10 +412,6 @@ function buildSpaceport() {
 
         tick1();
 
-    } if (money < 400000) {
-        notEnoughMoney();
-    } else {
-        notEnoughResources();
     }
 
 }
@@ -417,3 +430,15 @@ document.getElementById("upgradeSpaceportButton").style.display = "none";
 
 document.getElementById("FactoryTab").style.display = "none";
 document.getElementById("SpaceportTab").style.display = "none";
+
+function toggleFactory() {
+
+    if (factoryToggle == false) {
+        factoryToggle = true;
+        document.getElementById("toggleFactoryButton").innerHTML = "Factory power: On";
+    } else {
+        factoryToggle = false;
+        document.getElementById("toggleFactoryButton").innerHTML = "Factory power: Off";
+    }
+
+}
