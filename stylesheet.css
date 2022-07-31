@@ -9,6 +9,8 @@ body {
     padding: 6px 12px;
     border: 1px solid darkgray;
     background-color: #f1f1f1;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -23,6 +25,7 @@ body {
     padding: 14px 16px;
     transition: 0.3s;
     font-family: "Lucida Console", "Courier New", monospace;
+    border-radius: 10px;
 }
 
 /* Change background color of buttons on hover */
@@ -32,7 +35,7 @@ button:hover {
 
 /* Create an active/current tablink class */
 .tab button.active {
-    background-color: #ccc;
+    background-color: lightgray;
 }
 
 /* Style the tab content */
@@ -43,6 +46,8 @@ button:hover {
     border: 1px solid #ccc;
     background-color: gray;
     border-top: none;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
 }
 
 h1 {
@@ -56,8 +61,8 @@ h2 {
 }
 
 h3 {
-    color:aquamarine;
-    font-family: "Courier New", "Lucida Console", monospace;   
+    color: aquamarine;
+    font-family: "Courier New", "Lucida Console", monospace;
 
 }
 
@@ -117,6 +122,13 @@ button {
 
     color: black;
     font-family: "Lucida Console", "Courier New", monospace;
+    border-color: black;
+    background-color: lightslategray;
+    border-style: solid;
+    border-width: 1px;
+    padding: 10px;
+    width: 40%;
+    border-radius: 25px;
 
 }
 
@@ -130,7 +142,7 @@ hr {
 
 footer {
 
-    color:aqua;
+    color: aqua;
     font-size: 15px;
     position: fixed;
     bottom: 0;
