@@ -138,9 +138,12 @@ function tick2() {
 function loadData() {
 
     //loads stuff
-    const save = localStorage.getItem("saveKey");
-    JSON.parse("saveKey");
-    if (!save) return;
+    const saveString = localStorage.getItem("saveKey");
+
+    if (!saveString) return;
+
+    const save = JSON.parse(saveString);
+
     window.money = save.money;
     window.resources = save.resources;
     window.refinedResources = save.refinedResources;
@@ -149,11 +152,10 @@ function loadData() {
     window.researchPoints = save.researchPoints;
     window.planetsControlled = save.planetsControlled;
     window.solarPanels = save.solarPanels;
+
     tick1();
 
 }
-
-loadData();
 
 setInterval(tick2, 1000);
 
@@ -584,3 +586,5 @@ function toggleFactory() {
     }
 
 }
+
+loadData();
