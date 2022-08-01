@@ -210,7 +210,7 @@ function upgradeManualResources() {
         notEnoughMoney();
     }
 
-    if (manualResourceLevel === 7) {
+    if (manualResourceLevel === manualResourceEfficiency.legnth - 1) {
 
         //hides button at max level
         document.getElementById("upgradeResourceClickButton").style.display = "none";
@@ -295,8 +295,14 @@ document.getElementById("toggleFactoryButton").innerHTML = "Factory power: Off";
 if (researchCenterUnlocked === false) {
     document.getElementById("buildResearchCenterButton").style.display = "inline";
     document.getElementById("upgradeResearchCenterButton").style.display = "none";
+    document.getElementById("researchPointCount").style.display = "none";
+    document.getElementById("researchTitle").style.display = "none";
+    document.getElementById("researchTitleBreak").style.display = "none";
 } else {
     document.getElementById("buildResearchCenterButton").style.display = "none";
+    document.getElementById("researchPointCount").style.display = "inline";
+    document.getElementById("researchTitle").style.display = "inline";
+    document.getElementById("researchTitleBreak").style.display = "inline";
 }
 
 if (factoryUnlocked === false) {
@@ -304,6 +310,10 @@ if (factoryUnlocked === false) {
     document.getElementById("buildFactoryButton").style.display = "none";
     document.getElementById("upgradeFactoryButton").style.display = "none";
     document.getElementById("FactoryTab").style.display = "none";
+}
+
+if (factoryLevel === 0) {
+    document.getElementById("refinedResourceCount").style.display = "none";
 }
 
 const collection = document.getElementsByClassName("solarpanelupgradesheader");
@@ -317,6 +327,8 @@ if (solarPanelsUnlocked === false) {
     document.getElementById("buildSolarPanelButton").style.display = "none";
     document.getElementById("upgradeSolarPanelButton").style.display = "none";
     document.getElementById("upgradeSolarPanelSpaceButton").style.display = "none";
+    document.getElementById("energyCount").style.display = "none";
+    document.getElementById("solarPanelCount").style.display = "none";
 }
 
 if (spaceportUnlocked === false) {
@@ -325,14 +337,9 @@ if (spaceportUnlocked === false) {
     document.getElementById("SpaceportTab").style.display = "none";
 }
 
-
-
-document.getElementById("unlockSpaceships").style.display = "none";
-document.getElementById("unlockAsteroidMiners").style.display = "none";
-document.getElementById("unlockDysonSphere").style.display = "none";
-document.getElementById("unlockShipYard").style.display = "none";
-
-document.getElementById("constructSpaceshipButton").style.display = "none";
+if (spaceshipBuilt === false) {
+    document.getElementById("constructSpaceshipButton").style.display = "none";
+}
 
 function upgradeWorkers() {
 
@@ -348,7 +355,7 @@ function upgradeWorkers() {
     }
 
     //hides button once workers are at maximum level
-    if (workerLevel === 8) {
+    if (workerLevel === workerEfficiency.legnth - 1) {
 
         document.getElementById("upgradeWorkerButton").style.display = "none";
 
@@ -373,7 +380,7 @@ function upgradeWorkerHousing() {
 
     }
     //upgrades worker housing
-    if (workerHousingLevel === 9) {
+    if (workerHousingLevel === workerHousingSpace.legnth - 1) {
 
         document.getElementById("upgradeWorkerHousingButton").style.display = "none";
 
@@ -395,6 +402,7 @@ function buildResearchCenter() {
         resources -= 500;
         researchCenterUnlocked = true;
 
+        document.getElementById("researchPointCount").style.display = "inline";
         document.getElementById("unlockFactory").style.display = "inline";
         document.getElementById("buildResearchCenterButton").style.display = "none";
         document.getElementById("upgradeResearchCenterButton").style.display = "inline";
@@ -420,7 +428,7 @@ function upgradeResearchCenter() {
     }
 
     //hides button once research center is maxxed
-    if (researchCenterLevel === 4) {
+    if (researchCenterLevel === researchCenterEfficiency.legnth - 1) {
 
         document.getElementById("upgradeResearchCenterButton").style.display = "none";
 
@@ -457,7 +465,7 @@ function buildFactory() {
         money -= 5000;
         resources -= 20000;
 
-
+        document.getElementById("refinedResourceCount").style.display = "inline";
         document.getElementById("unlockSolarPanels").style.display = "inline";
         document.getElementById("buildFactoryButton").style.display = "none";
         document.getElementById("upgradeFactoryButton").style.display = "inline";
@@ -488,7 +496,7 @@ function upgradeFactory() {
 
     }
 
-    if (factoryLevel === 4) {
+    if (factoryLevel === factoryEfficiency.legnth - 1) {
         document.getElementById("upgradeFactoryButton").style.display = "none";
     }
 
@@ -503,6 +511,8 @@ function researchSolarPanels() {
         tick1();
 
         solarPanelLevel++;
+
+        document.getElementById("energyCount").style.display - "inline";
         document.getElementById("buildSolarPanelButton").style.display = "inline";
         document.getElementById("unlockSolarPanels").style.display = "none";
 
@@ -529,6 +539,7 @@ function buildFirstSolarPanel() {
         document.getElementById("upgradeSolarPanelSpaceButton").style.display = "inline";
         document.getElementById("buildSolarPanelButton").style.display = "none";
         document.getElementById("buildMoreSolarPanels").style.display = "inline";
+        document.getElementById("solarPanelCount").style.display = "inline";
 
         document.getElementById("upgradeSolarPanelButton").innerHTML = "Your solar panel level is " + solarPanelLevel + ". Upgrade solar panels cost " + solarPanelEfficiencyMoneyCosts[solarPanelLevel + 1] + " money and " + solarPanelEfficiencyRefinedResourceCosts[solarPanelLevel + 1] + " refined resources.";
 
@@ -578,7 +589,7 @@ function upgradeSolarPanels() {
 
     }
 
-    if (solarPanelLevel === 5) {
+    if (solarPanelLevel === solarPanelEfficiency.legnth - 1) {
         document.getElementById("upgradeSolarPanelButton").style.display = "none";
     }
 }
@@ -595,7 +606,7 @@ function upgradeSolarPanelSpace() {
         tick1();
     }
 
-    if (solarPanelSpaceLevel === 7) {
+    if (solarPanelSpaceLevel === solarPanelSpace.legnth - 1) {
         document.getElementById("upgradeSolarPanelSpaceButton").style.display = "none";
     }
 }
