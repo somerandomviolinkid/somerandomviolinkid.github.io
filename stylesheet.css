@@ -156,11 +156,19 @@ footer {
     width: 15%;
     margin-left: 10%;
     margin-right: 10%;
+    margin-bottom: 10px;
     padding: 25px;
     font-size: 24px;
 
     background-color: azure;
     border-style: solid;
     border-color: black;
+
+}
+
+#resetWarning {
+
+    font-style: bold;
+    color: red;
 
 }
