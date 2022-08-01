@@ -16,7 +16,7 @@ july 31:
 release of alpha v1.0.0: added functionality for first part of game, added saving system, code changes, thanks to toby on the discord for suggestions!!:)
 
 august 1:
-fixed some minor graphical errors, fixed a LOT of bugs, added nonfunctional content for system tab
+fixed some minor graphical errors, fixed a LOT of bugs, added nonfunctional content for system tab, fixed all bugs i found while playtesting
 
 current functional elements:
 everything except system and galaxy overview tabs
