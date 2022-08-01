@@ -12,7 +12,7 @@ const workerEfficiency = [1, 2, 4, 10, 25, 75, 200, 500, 1000]
 const workerEfficiencyCosts = [0, 100, 500, 2500, 10000, 50000, 200000, 1000000, 5000000]
 
 let workerHousingLevel = 0;
-const workerHousingSpace = [10, 12, 15, 20, 27, 36, 50, 75, 125, 200]
+const workerHousingSpace = [10, 15, 24, 36, 50, 75, 110, 150, 200, 360]
 const workerHousingMoneyCosts = [0, 20, 50, 125, 500, 2000, 10000, 40000, 100000, 250000]
 const workerHousingResourceCosts = [0, 50, 120, 250, 600, 2500, 15000, 100000, 300000, 1000000]
 
@@ -76,7 +76,7 @@ function saveData() {
 
 }
 
-setInterval(saveData, 10000);
+setInterval(saveData, 5000);
 
 function loadData() {
 
@@ -283,12 +283,14 @@ function purchaseMaxWorkers() {
 }
 
 document.getElementById("upgradeResourceClickButton").innerHTML = "Your resource click level is " + manualResourceLevel + " and you get " + manualResourceEfficiency[manualResourceLevel] + " resources per click. Upgrade resource click cost " + manualResourceEfficiencyCosts[manualResourceLevel + 1] + " money.";
-document.getElementById("upgradeWorkerButton").innerHTML = "Your workers are level " + workerLevel + " and each worker produces " + workerEfficiency[workerHousingLevel] + " resources per second. Upgrade worker cost " + workerEfficiencyCosts[workerLevel + 1] + " money.";
+document.getElementById("upgradeWorkerButton").innerHTML = "Your workers are level " + workerLevel + " and each worker produces " + workerEfficiency[workerLevel] + " resources per second. Upgrade worker cost " + workerEfficiencyCosts[workerLevel + 1] + " money.";
 document.getElementById("upgradeResearchCenterButton").innerHTML = "Your research center is level " + researchCenterLevel + " and you get " + researchCenterEfficiency[researchCenterLevel] + " research points every second. Upgrade research center " + researchCenterEfficiencyCosts[researchCenterLevel + 1] + " money.";
 document.getElementById("upgradeWorkerHousingButton").innerHTML = "Your worker housing level is " + workerHousingLevel + ". Upgrade worker housing cost " + workerHousingMoneyCosts[workerHousingLevel + 1] + " money and " + workerHousingResourceCosts[workerHousingLevel + 1] + " resources.";
 
 document.getElementById("upgradeSolarPanelButton").innerHTML = "Your solar panel level is " + solarPanelLevel + ". Upgrade solar panels cost " + solarPanelEfficiencyMoneyCosts[solarPanelLevel + 1] + " money and " + solarPanelEfficiencyRefinedResourceCosts[solarPanelLevel + 1] + " refined resources.";
 document.getElementById("upgradeSolarPanelSpaceButton").innerHTML = "Your solar panel space level is " + solarPanelSpaceLevel + ". Upgrade solar panels space costs " + solarPanelSpaceCosts[solarPanelLevel + 1] + " resources.";
+
+document.getElementById("upgradeFactoryButton").innerHTML = "Your factory level is " + factoryLevel + ". Upgrade factory cost " + factoryEfficiencyMoneyCosts[factoryLevel + 1] + " money and " + factoryEfficiencyResourceCosts[factoryLevel + 1] + " resources.";
 
 document.getElementById("toggleFactoryButton").innerHTML = "Factory power: Off";
 
@@ -309,11 +311,14 @@ if (factoryUnlocked === false) {
     document.getElementById("unlockFactory").style.display = "none";
     document.getElementById("buildFactoryButton").style.display = "none";
     document.getElementById("upgradeFactoryButton").style.display = "none";
-    document.getElementById("FactoryTab").style.display = "none";
+}
+if (factoryUnlocked === true && factoryLevel === 0) {
+    document.getElementById("unlockFactory").style.display = "none";
 }
 
 if (factoryLevel === 0) {
     document.getElementById("refinedResourceCount").style.display = "none";
+    document.getElementById("FactoryTab").style.display = "none";
 }
 
 const collection = document.getElementsByClassName("solarpanelupgradesheader");
@@ -348,7 +353,7 @@ function upgradeWorkers() {
 
         money -= workerEfficiencyCosts[workerLevel + 1];
         workerLevel++;
-        document.getElementById("upgradeWorkerButton").innerHTML = "Your workers are level " + workerLevel + " and each worker produces " + workerEfficiency[workerHousingLevel] + " resources per second. Upgrade worker cost " + workerEfficiencyCosts[workerLevel + 1] + " money.";
+        document.getElementById("upgradeWorkerButton").innerHTML = "Your workers are level " + workerLevel + " and each worker produces " + workerEfficiency[workerLevel] + " resources per second. Upgrade worker cost " + workerEfficiencyCosts[workerLevel + 1] + " money.";
 
     } else {
         notEnoughMoney();
@@ -654,7 +659,7 @@ function buildSpaceport() {
 
 function toggleFactory() {
 
-    if (factoryToggle) {
+    if (factoryToggle === true) {
         factoryToggle = true;
         document.getElementById("toggleFactoryButton").innerHTML = "Factory power: On";
     } else {
