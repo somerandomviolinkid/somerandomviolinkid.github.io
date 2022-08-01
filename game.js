@@ -312,7 +312,7 @@ if (factoryUnlocked === false) {
     document.getElementById("buildFactoryButton").style.display = "none";
     document.getElementById("upgradeFactoryButton").style.display = "none";
 }
-if (factoryUnlocked === true && factoryLevel === 0) {
+if (factoryUnlocked === true) {
     document.getElementById("unlockFactory").style.display = "none";
 }
 
@@ -322,9 +322,9 @@ if (factoryLevel === 0) {
 }
 
 if (factoryLevel > 0) {
-
+    document.getElementById("unlockFactory").style.display = "none";
     document.getElementById("buildFactoryButton").style.display = "none";
-    
+
 }
 
 const collection = document.getElementsByClassName("solarpanelupgradesheader");
@@ -333,7 +333,6 @@ for (let i = 0; i < collection.length; i++) {
 }
 
 if (solarPanelsUnlocked === false) {
-    document.getElementById("unlockSolarPanels").style.display = "none";
     document.getElementById("buildMoreSolarPanels").style.display = "none";
     document.getElementById("buildSolarPanelButton").style.display = "none";
     document.getElementById("upgradeSolarPanelButton").style.display = "none";
