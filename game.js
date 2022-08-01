@@ -18,12 +18,12 @@ const workerHousingResourceCosts = [0, 50, 120, 250, 600, 2500, 15000, 100000, 3
 
 let researchCenterUnlocked = false;
 let researchCenterLevel = 0;
-const researchCenterEfficiency = [0, 1, 2, 5, 10]
+const researchCenterEfficiency = [0, 1, 5, 20, 75]
 const researchCenterEfficiencyCosts = [0, 0, 10000, 50000, 200000]
 
 let manualResourceLevel = 0;
-const manualResourceEfficiency = [1, 2, 4, 10, 18, 30, 50, 100]
-const manualResourceEfficiencyCosts = [0, 5, 100, 800, 10000, 200000, 3000000, 100000000]
+const manualResourceEfficiency = [1, 5, 20, 50, 125, 500, 2500, 10000]
+const manualResourceEfficiencyCosts = [0, 5, 100, 800, 5000, 25000, 150000, 1000000]
 
 let factoryUnlocked = false;
 let factoryLevel = 0;
@@ -41,7 +41,7 @@ const solarPanelEfficiencyMoneyCosts = [0, 75000, 180000, 800000, 2000000, 10000
 const solarPanelEfficiencyRefinedResourceCosts = [0, 500, 1200, 5000, 20000, 75000]
 let solarPanelSpaceLevel = 0;
 const solarPanelSpace = [1, 2, 3, 5, 8, 12, 18, 25]
-const solarPanelSpaceCosts = [12000, 40000, 150000, 800000, 2500000, 12000000, 50000000, 200000000]
+const solarPanelSpaceCosts = [0, 12000, 40000, 150000, 800000, 2500000, 12000000, 50000000]
 
 let spaceshipBuilt = false;
 
@@ -210,7 +210,7 @@ function upgradeManualResources() {
         notEnoughMoney();
     }
 
-    if (manualResourceLevel === manualResourceEfficiency.legnth - 1) {
+    if (manualResourceLevel === 7) {
 
         //hides button at max level
         document.getElementById("upgradeResourceClickButton").style.display = "none";
@@ -300,6 +300,7 @@ if (researchCenterUnlocked === false) {
     document.getElementById("researchPointCount").style.display = "none";
     document.getElementById("researchTitle").style.display = "none";
     document.getElementById("researchTitleBreak").style.display = "none";
+    document.getElementById("unlockFactory").style.display = "none";
 } else {
     document.getElementById("buildResearchCenterButton").style.display = "none";
     document.getElementById("researchPointCount").style.display = "inline";
@@ -308,7 +309,6 @@ if (researchCenterUnlocked === false) {
 }
 
 if (factoryUnlocked === false) {
-    document.getElementById("unlockFactory").style.display = "none";
     document.getElementById("buildFactoryButton").style.display = "none";
     document.getElementById("upgradeFactoryButton").style.display = "none";
 }
@@ -317,6 +317,7 @@ if (factoryUnlocked === true) {
 }
 
 if (factoryLevel === 0) {
+    document.getElementById("unlockSolarPanels").style.display = "none";
     document.getElementById("refinedResourceCount").style.display = "none";
     document.getElementById("FactoryTab").style.display = "none";
 }
@@ -339,6 +340,10 @@ if (solarPanelsUnlocked === false) {
     document.getElementById("upgradeSolarPanelSpaceButton").style.display = "none";
     document.getElementById("energyCount").style.display = "none";
     document.getElementById("solarPanelCount").style.display = "none";
+}
+
+if (solarPanels > 0) {
+    document.getElementById("buildSolarPanelButton").style.display = "none";
 }
 
 if (spaceportUnlocked === false) {
@@ -365,7 +370,7 @@ function upgradeWorkers() {
     }
 
     //hides button once workers are at maximum level
-    if (workerLevel === workerEfficiency.legnth - 1) {
+    if (workerLevel === 7) {
 
         document.getElementById("upgradeWorkerButton").style.display = "none";
 
@@ -390,7 +395,7 @@ function upgradeWorkerHousing() {
 
     }
     //upgrades worker housing
-    if (workerHousingLevel === workerHousingSpace.legnth) {
+    if (workerHousingLevel === 8) {
 
         document.getElementById("upgradeWorkerHousingButton").style.display = "none";
 
@@ -438,7 +443,7 @@ function upgradeResearchCenter() {
     }
 
     //hides button once research center is maxxed
-    if (researchCenterLevel === researchCenterEfficiency.legnth - 1) {
+    if (researchCenterLevel === 4) {
 
         document.getElementById("upgradeResearchCenterButton").style.display = "none";
 
@@ -479,6 +484,7 @@ function buildFactory() {
         document.getElementById("unlockSolarPanels").style.display = "inline";
         document.getElementById("buildFactoryButton").style.display = "none";
         document.getElementById("upgradeFactoryButton").style.display = "inline";
+        document.getElementById("upgradeFactoryButton").innerHTML = "Your factory level is " + factoryLevel + ". Upgrade factory cost " + factoryEfficiencyMoneyCosts[factoryLevel + 1] + " money and " + factoryEfficiencyResourceCosts[factoryLevel + 1] + " resources.";
 
         document.getElementById("FactoryTab").style.display = "inline";
 
@@ -497,8 +503,8 @@ function upgradeFactory() {
         notEnoughResources();
     } else {
 
-        money -= solarPanelEfficiencyMoneyCosts[factoryLevel + 1];
-        refinedResources -= solarPanelEfficiencyRefinedResourceCosts[factoryLevel + 1];
+        money -= factoryEfficiencyMoneyCosts[factoryLevel + 1];
+        resources -= factoryEfficiencyResourceCosts[factoryLevel + 1];
         factoryLevel++;
         document.getElementById("upgradeFactoryButton").innerHTML = "Your factory level is " + factoryLevel + ". Upgrade factory cost " + factoryEfficiencyMoneyCosts[factoryLevel + 1] + " money and " + factoryEfficiencyResourceCosts[factoryLevel + 1] + " resources.";
 
@@ -506,7 +512,7 @@ function upgradeFactory() {
 
     }
 
-    if (factoryLevel === factoryEfficiency.legnth - 1) {
+    if (factoryLevel === 4) {
         document.getElementById("upgradeFactoryButton").style.display = "none";
     }
 
@@ -565,15 +571,15 @@ function buildFirstSolarPanel() {
 function buildSolarPanel() {
     if (money < 20000) {
         notEnoughMoney();
-    } if (refinedResources < 100) {
+    } else if (refinedResources < 100) {
         notEnoughRefinedResources();
-    } if (solarPanels + 1 > solarPanelSpace[solarPanelSpaceLevel]) {
+    } else if (solarPanels === solarPanelSpace[solarPanelSpaceLevel]) {
         alert("You don't have enough space!");
     } else {
 
-        solarPanels++;
         money -= 20000;
         refinedResources -= 100;
+        solarPanels++;
 
         tick1();
 
@@ -599,7 +605,7 @@ function upgradeSolarPanels() {
 
     }
 
-    if (solarPanelLevel === solarPanelEfficiency.legnth - 1) {
+    if (solarPanelLevel === 4) {
         document.getElementById("upgradeSolarPanelButton").style.display = "none";
     }
 }
@@ -612,11 +618,11 @@ function upgradeSolarPanelSpace() {
     } else {
         resources -= solarPanelSpaceCosts[solarPanelSpaceLevel];
         solarPanelSpaceLevel++;
-        document.getElementById("upgradeSolarPanelSpaceButton").innerHTML = "Your solar panel space level is " + solarPanelSpaceLevel + ". Upgrade solar panels space costs " + solarPanelSpaceCosts[solarPanelLevel + 1] + " resources.";
+        document.getElementById("upgradeSolarPanelSpaceButton").innerHTML = "Your solar panel space level is " + solarPanelSpaceLevel + ". Upgrade solar panels space costs " + solarPanelSpaceCosts[solarPanelSpaceLevel + 1] + " resources.";
         tick1();
     }
 
-    if (solarPanelSpaceLevel === solarPanelSpace.legnth - 1) {
+    if (solarPanelSpaceLevel === 6) {
         document.getElementById("upgradeSolarPanelSpaceButton").style.display = "none";
     }
 }
