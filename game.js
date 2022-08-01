@@ -390,7 +390,7 @@ function upgradeWorkerHousing() {
 
     }
     //upgrades worker housing
-    if (workerHousingLevel === workerHousingSpace.legnth - 1) {
+    if (workerHousingLevel === workerHousingSpace.legnth) {
 
         document.getElementById("upgradeWorkerHousingButton").style.display = "none";
 
@@ -522,7 +522,7 @@ function researchSolarPanels() {
 
         solarPanelLevel++;
 
-        document.getElementById("energyCount").style.display - "inline";
+        document.getElementById("energyCount").style.display = "inline";
         document.getElementById("buildSolarPanelButton").style.display = "inline";
         document.getElementById("unlockSolarPanels").style.display = "none";
 
