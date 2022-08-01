@@ -48,7 +48,7 @@
                     Overview</button>
                 <button class="tablinks" onclick="openTab(event, 'Workers')">Workers</button>
                 <button class="tablinks" onclick="openTab(event, 'Research')">Research</button>
-                <button class="tablinks" onclick="openTab(event, 'Settings')">Settings</button>
+                <button class="tablinks" onclick="openTab(event, 'Settings/FAQ')">Settings/FAQ</button>
                 <br>
                 <button class="tablinks" class="tab2" id="FactoryTab"
                     onclick="openTab(event, 'Factory')">Factory</button>
@@ -150,10 +150,15 @@
                 <button id="unlockShipYard">Unlock shipyard</button>
             </div>
 
-            <div id="Settings" class="tabcontent">
+        <div id="Settings/FAQ" class="tabcontent">
                 <h2>Settings</h2>
                 <button class="settingButton" onclick="saveData()">Save data</button><br>
                 <button class="settingButton" onclick="resetData()">Reset data</button><br>
+                <h4 class="infoBox">Here you can save your data or read the FAQ (even though nobody's asked any questions yet)</h4>
+                <hr>
+                <h3>FAQ</h3>
+                <p>Q: The resources say NaN after I opened the game, what do I do? A: Reset your data and refresh the page</p>
+                <p>Q: I pressed reset data but nothing happened. A: Refresh the page</p>
             </div>
 
             <div id="Factory" class="tabcontent">
