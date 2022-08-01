@@ -2,10 +2,12 @@
 
 high priority: 
     balance upgrades and pacing
-    add functionality to beginning game research/buildings
+    start adding content for later stages of game
 
 medium priority:
     clean up code
+    fix minor ui graphical errors
+    make buttons in general look better
 
 low priority:
-    icons for worker tab
+    icons for upgrade buttons
