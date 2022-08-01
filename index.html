@@ -5,20 +5,19 @@
 
     <title>Spaceship incremental game</title>
     <link rel="stylesheet" href="stylesheet.css">
-    <link rel="icon" type="image/x-icon" href="assets/spaceshipicon.png">
+    <link rel="icon" type="image/x-icon" href="assets/icon.ico">
 
     <meta charset="UTF-8">
     <meta name="description" content="space themed incremental game">
     <meta name="keywords" content="Incremental, game, space">
     <meta name="author" content="Bobby M">
 
-
     </head>
 
     <body>
         <header>
             <h1>Spaceship Incremental Game</h1>
-            <h2 id="versionNumber">Alpha v1.0.0</h2>
+            <h2 id="versionNumber"> Alpha v1.0.1</h2>
         </header>
 
         <aside id="resourceCountView">
@@ -137,18 +136,18 @@
                         src="assets/researchcentericon.png" alt="Research Center Icon"
                         style="width:64px;height:64px;"><br>Cost: 100 Money<br>500 Resources</button>
                 <button id="upgradeResearchCenterButton" onclick="upgradeResearchCenter()"></button>
-                <hr>
-                <h3>Research</h3>
+                <hr id="researchTitleBreak">
+                <h3 id="researchTitle">Research</h3>
                 <button id="unlockFactory" onclick="researchFactory()">Unlock factory<br>Costs 100
-                    research.</button><br>
+                    research.</button>
                 <button id="unlockSolarPanels" onclick="researchSolarPanels()">Unlock solar panels<br>Costs 500
-                    research.</button><br>
+                    research.</button>
                 <button id="unlockSpacePort" onclick="researchSpaceport()">Unlock spaceport<br>Costs 10,000
-                    research.</button><br>
-                <button id="unlockSpaceships">Unlock spaceships</button><br>
-                <button id="unlockAsteroidMiners">Unlock asteroid miners</button><br>
-                <button id="unlockDysonSphere">Unlock Dyson sphere</button><br>
-                <button id="unlockShipYard">Unlock shipyard</button><br>
+                    research.</button>
+                <button id="unlockSpaceships">Unlock spaceships</button>
+                <button id="unlockAsteroidMiners">Unlock asteroid miners</button>
+                <button id="unlockDysonSphere">Unlock Dyson sphere</button>
+                <button id="unlockShipYard">Unlock shipyard</button>
             </div>
 
             <div id="Settings" class="tabcontent">
