@@ -115,7 +115,7 @@ loadData();
 function resetData() {
     //do this if your workers go on strike
     localStorage.clear();
-    loadData();
+    location.reload();
 }
 
 function notEnoughMoney() {
