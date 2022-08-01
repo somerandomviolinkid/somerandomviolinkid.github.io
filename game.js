@@ -321,6 +321,12 @@ if (factoryLevel === 0) {
     document.getElementById("FactoryTab").style.display = "none";
 }
 
+if (factoryLevel > 0) {
+
+    document.getElementById("buildFactoryButton").style.display = "none";
+    
+}
+
 const collection = document.getElementsByClassName("solarpanelupgradesheader");
 for (let i = 0; i < collection.length; i++) {
     collection[i].style.display = "none";
@@ -659,7 +665,7 @@ function buildSpaceport() {
 
 function toggleFactory() {
 
-    if (factoryToggle === true) {
+    if (factoryToggle === false) {
         factoryToggle = true;
         document.getElementById("toggleFactoryButton").innerHTML = "Factory power: On";
     } else {
