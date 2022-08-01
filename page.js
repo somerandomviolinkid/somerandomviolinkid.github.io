@@ -20,3 +20,8 @@ function openTab(evt, tabName) {
 }
 
 document.getElementById("defaultOpen").click();
+
+document.getElementById("unlockSpaceships").style.display = "none";
+document.getElementById("unlockAsteroidMiners").style.display = "none";
+document.getElementById("unlockDysonSphere").style.display = "none";
+document.getElementById("unlockShipYard").style.display = "none";
