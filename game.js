@@ -22,8 +22,8 @@ const researchCenterEfficiency = [0, 1, 5, 20, 75]
 const researchCenterEfficiencyCosts = [0, 0, 10000, 50000, 200000]
 
 let manualResourceLevel = 0;
-const manualResourceEfficiency = [1, 5, 20, 50, 125, 500, 2500, 10000]
-const manualResourceEfficiencyCosts = [0, 5, 100, 800, 5000, 25000, 150000, 1000000]
+const manualResourceEfficiency = [1, 5, 20, 75, 200, 500, 2500, 10000]
+const manualResourceEfficiencyCosts = [0, 5, 100, 800, 5000, 25000, 200000, 1000000]
 
 let factoryUnlocked = false;
 let factoryLevel = 0;
@@ -344,6 +344,10 @@ if (solarPanelsUnlocked === false) {
 
 if (solarPanels > 0) {
     document.getElementById("buildSolarPanelButton").style.display = "none";
+    const collection = document.getElementsByClassName("solarpanelupgradesheader");
+    for (let i = 0; i < collection.length; i++) {
+        collection[i].style.display = "inline";
+    }
 }
 
 if (spaceportUnlocked === false) {
@@ -531,8 +535,6 @@ function researchSolarPanels() {
         document.getElementById("energyCount").style.display = "inline";
         document.getElementById("buildSolarPanelButton").style.display = "inline";
         document.getElementById("unlockSolarPanels").style.display = "none";
-
-        solarPanelsUnlocked = true;
 
     }
 }
