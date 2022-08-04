@@ -18,6 +18,9 @@ release of alpha v1.0.0: added functionality for first part of game, added savin
 august 1:
 fixed some minor graphical errors, fixed a LOT of bugs, added nonfunctional content for system tab, fixed all bugs i found while playtesting
 
+august 2:
+fixed a typo that caused the html head information to not load, fixed a loading error
+
 current functional elements:
 everything except system and galaxy overview tabs
 
