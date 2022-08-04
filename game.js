@@ -383,6 +383,12 @@ function upgradeWorkers() {
 
 }
 
+if (workerLevel === 7) {
+
+    document.getElementById("upgradeWorkerButton").style.display = "none";
+
+}
+
 function upgradeWorkerHousing() {
 
     if (money < workerHousingMoneyCosts[workerHousingLevel + 1]) {
@@ -404,6 +410,12 @@ function upgradeWorkerHousing() {
         document.getElementById("upgradeWorkerHousingButton").style.display = "none";
 
     }
+
+}
+
+if (workerHousingLevel === 8) {
+
+    document.getElementById("upgradeWorkerHousingButton").style.display = "none";
 
 }
 
@@ -453,6 +465,12 @@ function upgradeResearchCenter() {
 
     }
 
+
+}
+
+if (researchCenterLevel === 4) {
+
+    document.getElementById("upgradeResearchCenterButton").style.display = "none";
 
 }
 
@@ -520,6 +538,10 @@ function upgradeFactory() {
         document.getElementById("upgradeFactoryButton").style.display = "none";
     }
 
+}
+
+if (factoryLevel === 4) {
+    document.getElementById("upgradeFactoryButton").style.display = "none";
 }
 
 function researchSolarPanels() {
@@ -612,6 +634,10 @@ function upgradeSolarPanels() {
     }
 }
 
+if (solarPanelLevel === 4) {
+    document.getElementById("upgradeSolarPanelButton").style.display = "none";
+}
+
 function upgradeSolarPanelSpace() {
 
     //upgrades solar panel space
@@ -627,6 +653,10 @@ function upgradeSolarPanelSpace() {
     if (solarPanelSpaceLevel === 6) {
         document.getElementById("upgradeSolarPanelSpaceButton").style.display = "none";
     }
+}
+
+if (solarPanelSpaceLevel === 6) {
+    document.getElementById("upgradeSolarPanelSpaceButton").style.display = "none";
 }
 
 function researchSpaceport() {
