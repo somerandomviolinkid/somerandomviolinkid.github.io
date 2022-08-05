@@ -1,9 +1,9 @@
-let money = 0;
-let resources = 0;
-let refinedResources = 0;
+let money = 10000000000;
+let resources = 1000000000000;
+let refinedResources = 10000000000;
 let workers = 0;
 let energy = 0;
-let researchPoints = 0;
+let researchPoints = 1000000000;
 let planetsControlled = 1;
 let solarPanels = 0;
 
@@ -221,6 +221,13 @@ function upgradeManualResources() {
 
 }
 
+if (manualResourceLevel === 7) {
+
+    //hides button at max level
+    document.getElementById("upgradeResourceClickButton").style.display = "none";
+
+}
+
 function sellResources() {
 
     //sells resources
@@ -334,15 +341,19 @@ for (let i = 0; i < collection.length; i++) {
 }
 
 if (solarPanelsUnlocked === false) {
-    document.getElementById("buildMoreSolarPanels").style.display = "none";
     document.getElementById("buildSolarPanelButton").style.display = "none";
-    document.getElementById("upgradeSolarPanelButton").style.display = "none";
-    document.getElementById("upgradeSolarPanelSpaceButton").style.display = "none";
     document.getElementById("energyCount").style.display = "none";
     document.getElementById("solarPanelCount").style.display = "none";
 }
 
+if (solarPanels === 0) {
+    document.getElementById("buildMoreSolarPanels").style.display = "none";
+    document.getElementById("upgradeSolarPanelButton").style.display = "none";
+    document.getElementById("upgradeSolarPanelSpaceButton").style.display = "none";
+}
+
 if (solarPanels > 0) {
+    document.getElementById("unlockSolarPanels").style.display = "none";
     document.getElementById("buildSolarPanelButton").style.display = "none";
     const collection = document.getElementsByClassName("solarpanelupgradesheader");
     for (let i = 0; i < collection.length; i++) {
@@ -358,6 +369,13 @@ if (spaceportUnlocked === false) {
 
 if (spaceshipBuilt === false) {
     document.getElementById("constructSpaceshipButton").style.display = "none";
+}
+
+if (solarPanelsUnlocked === true) {
+
+    document.getElementById("unlockSpacePort").style.display = "inline";
+    document.getElementById("unlockSolarPanels").style.display = "none";
+
 }
 
 function upgradeWorkers() {
@@ -552,6 +570,7 @@ function researchSolarPanels() {
         researchPoints -= 500;
         tick1();
 
+        solarPanelsUnlocked = true;
         solarPanelLevel++;
 
         document.getElementById("energyCount").style.display = "inline";
