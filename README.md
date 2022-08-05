@@ -24,7 +24,10 @@ fixed a typo that caused the html head information to not load, fixed a loading 
 august 4:
 fixed a lot of loading bugs
 
-current functional elements:
-everything except system and galaxy overview tabs
+august 5:
+fixed more loading bugs (spaceport and spaceship), added functionality to colonizing planets, added sell partial resource buttons
+
+current nonfunctional elements:
+buildings in system tab
 
 discord (join if you want to know what i'm currently working on): https://discord.gg/6jb7PmeD7m
