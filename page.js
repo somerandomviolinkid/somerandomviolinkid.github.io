@@ -27,3 +27,4 @@ document.getElementById("unlockDysonSphere").style.display = "none";
 document.getElementById("unlockShipYard").style.display = "none";
 document.getElementById("unlockFTLDrive").style.display = "none";
 document.getElementById("unlockUnmannedSpacecraft").style.display = "none";
+document.getElementById("galaxyOverviewTab").style.display = "none";
