@@ -1,9 +1,9 @@
-let money = 10000000000;
-let resources = 1000000000000;
-let refinedResources = 10000000000;
+let money = 0;
+let resources = 0;
+let refinedResources = 0;
 let workers = 0;
 let energy = 0;
-let researchPoints = 1000000000;
+let researchPoints = 0;
 let planetsControlled = 1;
 let solarPanels = 0;
 
