@@ -21,6 +21,9 @@ fixed some minor graphical errors, fixed a LOT of bugs, added nonfunctional cont
 august 2:
 fixed a typo that caused the html head information to not load, fixed a loading error
 
+august 4:
+fixed a lot of loading bugs
+
 current functional elements:
 everything except system and galaxy overview tabs
 
