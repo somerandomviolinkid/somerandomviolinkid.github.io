@@ -457,6 +457,9 @@ if (spaceportUnlocked === false) {
 if (spaceshipLaunched === true) {
     document.getElementById("launchSpaceshipButton").style.display = "none";
     document.getElementById("constructSpaceshipButton").style.display = "none";
+}
+
+if (spaceshipLaunched === false) {
     document.getElementById("systemOverviewTab").style.display = "none";
 }
 
