@@ -28,3 +28,9 @@ document.getElementById("unlockShipYard").style.display = "none";
 document.getElementById("unlockFTLDrive").style.display = "none";
 document.getElementById("unlockUnmannedSpacecraft").style.display = "none";
 document.getElementById("galaxyOverviewTab").style.display = "none";
+
+document.getElementById("buildOrbitalTelescope").style.display = "none";
+document.getElementById("buildSpaceStation").style.display = "none";
+document.getElementById("buildShipyard").style.display = "none";
+document.getElementById("buildAsteroidMiningComplex").style.display = "none";
+document.getElementById("buildDysonSphere").style.display = "none";
