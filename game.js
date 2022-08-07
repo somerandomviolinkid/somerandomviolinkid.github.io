@@ -217,14 +217,14 @@ function tick1() {
     money = Number(roundedMoney);
 
     //updates numbers on page
-    document.getElementById("moneyCount").innerHTML = "Money: " + money;
+    document.getElementById("moneyCount").innerHTML = "Money: " + money.toLocaleString();
     document.getElementById("workerCount").innerHTML = "Workers: " + workers + " / " + (planetsControlled * workerHousingSpace[workerHousingLevel]);
-    document.getElementById("resourceCount").innerHTML = "Resources: " + resources;
-    document.getElementById("refinedResourceCount").innerHTML = "Refined resources: " + refinedResources;
-    document.getElementById("energyCount").innerHTML = "Energy: " + energy;
-    document.getElementById("researchPointCount").innerHTML = "Research points: " + researchPoints;
+    document.getElementById("resourceCount").innerHTML = "Resources: " + resources.toLocaleString();
+    document.getElementById("refinedResourceCount").innerHTML = "Refined resources: " + refinedResources.toLocaleString();
+    document.getElementById("energyCount").innerHTML = "Energy: " + energy.toLocaleString();
+    document.getElementById("researchPointCount").innerHTML = "Research points: " + researchPoints.toLocaleString();
     document.getElementById("solarPanelCount").innerHTML = "Solar panels: " + solarPanels + " / " + (planetsControlled * solarPanelSpace[solarPanelSpaceLevel]);
-    document.getElementById("rocketFuelCount").innerHTML = "Rocket fuel: " + rocketFuel;
+    document.getElementById("rocketFuelCount").innerHTML = "Rocket fuel: " + rocketFuel.toLocaleString();
     document.getElementById("planetsControlledCount").innerHTML = "Planets controlled: " + planetsControlled;
 
 
