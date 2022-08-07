@@ -111,7 +111,6 @@ function saveData() {
       spaceshipLaunched,
     })
   );
-  console.log(window.localStorage);
 }
 
 setInterval(saveData, 5000);
