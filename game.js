@@ -1,5 +1,3 @@
-import formatNumber() from "./util.js";;
-
 let money = 0;
 let resources = 0;
 let refinedResources = 0;
@@ -73,6 +71,18 @@ const telescopeEfficiencyMoneyCosts = [0, 0, 300000, 1200000, 5000000];
 const telescopeEfficiencyRefinedResoucresCost = [0, 0, 1200, 5000, 25000];
 
 let planetsColonized = [false, false, false, false, false];
+
+function formatNumber(number) {
+  if (typeof number !== "number") {
+    if (Object.hasOwnProperty(number, "toString")) {
+      return number.toString();
+    } else {
+      return number;
+    }
+  }
+  return number.toLocaleString("en-US");
+}
+
 
 function saveData() {
   //saves stuff
