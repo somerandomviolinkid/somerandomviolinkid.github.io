@@ -1,4 +1,4 @@
-import formatNumber from "./util.js";;
+import formatNumber() from "./util.js";;
 
 let money = 0;
 let resources = 0;
