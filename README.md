@@ -27,6 +27,9 @@ fixed a lot of loading bugs
 august 5:
 fixed more loading bugs (spaceport and spaceship), added functionality to colonizing planets, added sell partial resource buttons
 
+august 7:
+new big content update! resource sell rate upgrades + 2 new home planet buildings + some balancing changes for factory + more upgrades
+
 current nonfunctional elements:
 buildings in system tab
 
