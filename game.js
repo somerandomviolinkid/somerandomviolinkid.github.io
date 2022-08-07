@@ -1,3 +1,5 @@
+import formatNumber from "./util.js";;
+
 let money = 0;
 let resources = 0;
 let refinedResources = 0;
