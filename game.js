@@ -1039,7 +1039,7 @@ function toggleRefinery() {
         refineryToggle = true;
         document.getElementById("toggleRefineryButton").innerHTML = "Refinery power: On";
     } else {
-        factoryToggle = false;
+        refineryToggle = false;
         document.getElementById("toggleRefineryButton").innerHTML = "Refinery power: Off";
     }
 
