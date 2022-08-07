@@ -304,19 +304,7 @@ if (manualResourceLevel === 7) {
 
 }
 
-function sellResources() {
-
-    //sells resources
-    money += resources * resourceSellRate;
-    let roundedMoney = money.toFixed(2);
-    money = Number(roundedMoney);
-
-    resources = 0;
-    tick1();
-
-}
-
-function sellPartialResources(percent) {
+function sellResources(percent = 100) {
 
     //sells part of resources
     money += resources * (percent / 100) * resourceSellRate;
