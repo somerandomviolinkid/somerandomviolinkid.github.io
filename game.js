@@ -530,7 +530,7 @@ if (planetsColonized[3] === true) {
     document.getElementById("colonizePlanet4Button").style.display = "none";
 }
 
-if (planetsColonized[5] === true) {
+if (planetsColonized[4] === true) {
     document.getElementById("colonizePlanet5Button").style.display = "none";
 }
 
