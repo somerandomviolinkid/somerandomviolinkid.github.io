@@ -18,19 +18,20 @@
 <body>
     <header>
         <h1>Spaceship Incremental Game</h1>
-        <h2 id="versionNumber"> Alpha v1.3.0</h2>
+        <h2 id="versionNumber"> Alpha v1.3.1</h2>
     </header>
 
     <aside id="resourceCountView">
 
-        <p id="moneyCount"></p>
-        <p id="workerCount"></p>
-        <p id="resourceCount"></p>
-        <p id="refinedResourceCount"></p>
-        <p id="researchPointCount"></p>
-        <p id="energyCount"></p>
-        <p id="solarPanelCount"></p>
-        <p id="planetsControlledCount"></p>
+        <p class="resourceNumber" id="moneyCount"></p>
+        <p class="resourceNumber" id="workerCount"></p>
+        <p class="resourceNumber" id="resourceCount"></p>
+        <p class="resourceNumber" id="refinedResourceCount"></p>
+        <p class="resourceNumber" id="researchPointCount"></p>
+        <p class="resourceNumber" id="energyCount"></p>
+        <p class="resourceNumber" id="solarPanelCount"></p>
+        <p class="resourceNumber" id="rocketFuelCount"></p>
+        <p class="resourceNumber" id="planetsControlledCount"></p>
         <button class="resourceButton" onclick="manualResources()">Mine resources!<br><img src="assets/mining icon.png"
                 alt="Mining Icon" style="width:64px;height:64px;"></button><br>
         <button class="resourceButton" onclick="sellResources()">Sell all resources!<br><img src="assets/sellicon.png"
@@ -55,7 +56,7 @@
             <button class="tablinks" class="tab2" id="FactoryTab" onclick="openTab(event, 'Factory')">Factory</button>
             <button class="tablinks" class="tab2" id="SpaceportTab"
                 onclick="openTab(event, 'Spaceport')">Spaceport</button>
-            <button class="tablinks" onclick="openTab(event, 'Settings/FAQ')">Settings/FAQ</button>
+            <button class="tablinks" onclick="openTab(event, 'Information')">Settings/Information</button>
 
         </div>
     </nav>
@@ -80,6 +81,14 @@
                 <button id="buildSolarPanelButton" onclick="buildFirstSolarPanel()">Build solar panels<br><img
                         src="assets/solarpanelicon.png" alt="Spaceport Icon" style="width:64px;height:64px;"><br>Cost:
                     20,000 Money<br>100 Refined Resources</button>
+                <button id="buildTelescope" onclick="buildTelescope()">Build a telescope<br><img
+                        src="assets/telescopeicon.png" alt="Telescope Icon" style="width:64px;height:64px;"><br>Cost:
+                    80,000 Money<br>400 Refined
+                    Resources</button>
+                <button id="buildFuelRefinery" onclick="buildFuelRefinery()">Build a fuel refinery<br><img
+                        src="assets/fuelrefineryicon.png" alt="Fuel Refinery Icon"
+                        style="width:64px;height:64px;"><br>Cost: 150,000 Money<br>1,000 Refined
+                    Resources</button>
                 <button id="buildSpaceportButton" onclick="buildSpaceport()">Build a spaceport<br><img
                         src="assets/spaceporticon.png" alt="Spaceport Icon" style="width:64px;height:64px;"><br>Cost:
                     400,000 Money<br>1,200,000 Resources</button>
@@ -93,6 +102,9 @@
                 <button id="upgradeSolarPanelButton" onclick="upgradeSolarPanels()">Upgrade solar panels</button>
                 <button id="upgradeSolarPanelSpaceButton" onclick="upgradeSolarPanelSpace()">Upgrade solar
                     panels</button>
+                <hr>
+                <h4>Telescope upgrades</h4>
+                <button id="upgradeTelescopeButton" onclick="upgradeTelescope()"></button>
 
         </div>
 
@@ -103,6 +115,14 @@
                 the amount of planets you've colonized.</h4>
             <hr>
             <h3>System Construction</h3>
+            <button id="buildOrbitalTelescope">Build orbital telescope<br><img src="assets/orbitaltelescopeicon.png"
+                    alt="Orbital Telescope Icon" style="width:64px;height:64px;"><br>Cost: 8,000,000 Money<br>400
+                Refined
+                Resources<br>1,000 Rocket Fuel</button>
+            <button id="buildSpaceStation">Build space station<br><img src="assets/spacestationicon.png"
+                    alt="Space Station Icon" style="width:64px;height:64px;"><br>Cost: 12,000,000 Money<br>100,000
+                Refined
+                Resources<br>1,500 Rocket Fuel</button>
             <button>Build a shipyard<br><img src="assets/shipyardicon.png" alt="Shipyard Icon"
                     style="width:64px;height:64px;"><br>Cost: 25,000,000 money<br>40,000,000 resources<br>200,000
                 refined resources</button>
@@ -114,11 +134,16 @@
                 resources<br>2,500,000 refined resources</button>
             <hr>
             <h3>System colonization</h3>
-            <button id="colonizePlanet1Button" onclick="colonizePlanet(100000, 'colonizePlanet1Button', 0)">Colonize planet 1<br>Cost: 100,000 energy</button>
-            <button id="colonizePlanet2Button" onclick="colonizePlanet(350000, 'colonizePlanet2Button', 1)">Colonize planet 2<br>Cost: 350,000 energy</button>
-            <button id="colonizePlanet3Button" onclick="colonizePlanet(1200000, 'colonizePlanet3Button', 2)">Colonize planet 3<br>Cost: 1,200,000 energy</button>
-            <button id="colonizePlanet4Button" onclick="colonizePlanet(8000000, 'colonizePlanet4Button', 3)">Colonize planet 4<br>Cost: 8,000,000 energy</button>
-            <button id="colonizePlanet5Button" onclick="colonizePlanet(25000000, 'colonizePlanet5Button', 4)">Colonize planet 5<br>Cost: 25,000,000 energy</button>
+            <button id="colonizePlanet1Button" onclick="colonizePlanet(100000, 'colonizePlanet1Button', 0)">Colonize
+                planet 1<br>Cost: 100,000 energy</button>
+            <button id="colonizePlanet2Button" onclick="colonizePlanet(350000, 'colonizePlanet2Button', 1)">Colonize
+                planet 2<br>Cost: 350,000 energy</button>
+            <button id="colonizePlanet3Button" onclick="colonizePlanet(1200000, 'colonizePlanet3Button', 2)">Colonize
+                planet 3<br>Cost: 1,200,000 energy</button>
+            <button id="colonizePlanet4Button" onclick="colonizePlanet(8000000, 'colonizePlanet4Button', 3)">Colonize
+                planet 4<br>Cost: 8,000,000 energy</button>
+            <button id="colonizePlanet5Button" onclick="colonizePlanet(25000000, 'colonizePlanet5Button', 4)">Colonize
+                planet 5<br>Cost: 25,000,000 energy</button>
         </div>
 
         <div id="Galaxy Overview" class="tabcontent">
@@ -153,6 +178,10 @@
                 research.</button>
             <button id="unlockSolarPanels" onclick="researchSolarPanels()">Unlock solar panels<br>Costs 500
                 research.</button>
+            <button id="unlockTelescope" onclick="researchTelescope()">Unlock telescope<br>Costs 1,500
+                research.</button>
+            <button id="unlockFuelRefinery" onclick="researchFuelRefinery()">Unlock fuel refinery<br>Costs 2,500
+                research.</button>
             <button id="unlockSpacePort" onclick="researchSpaceport()">Unlock spaceport<br>Costs 10,000
                 research.</button>
             <button id="unlockSpaceships">Unlock spaceships</button>
@@ -161,10 +190,24 @@
             <button id="unlockShipYard">Unlock shipyard</button>
             <button id="unlockDysonSphere">Unlock Dyson sphere</button>
             <button id="unlockFTLDrive">Unlock FLT drive</button>
+            <hr>
+            <h4>Resource sell rate upgrades</h4>
+            <button class="resourceUpgradeButton" id="raiseResourcePrices1Button"
+                onclick="raiseResourcePrices(25, 0.05, 'raiseResourcePrices1Button', 'raiseResourcePrices2Button', 0)">Raise
+                resource sell rate to 0.15<br>Costs 25 research.</button>
+            <button class="resourceUpgradeButton" id="raiseResourcePrices2Button"
+                onclick="raiseResourcePrices(1000, 0.1, 'raiseResourcePrices2Button', 'raiseResourcePrices3Button', 1)">Raise resource sell rate to
+                0.25<br>Costs 1,000 research.</button>
+            <button class="resourceUpgradeButton" id="raiseResourcePrices3Button"
+                onclick="raiseResourcePrices(25000, 0.15, 'raiseResourcePrices3Button', 'raiseResourcePrices4Button', 2)">Raise resource sell rate to
+                0.4<br>Costs 25,000 research.</button>
+            <button class="resourceUpgradeButton" id="raiseResourcePrices4Button"
+                onclick="raiseResourcePrices(500000, 0.6, 'raiseResourcePrices4Button',  'raiseResourcePrices5Button', 3)">Raise resource sell rate to
+                1<br>Costs 500,000 research.</button>
 
         </div>
 
-        <div id="Settings/FAQ" class="tabcontent">
+        <div id="Information" class="tabcontent">
             <h2>Settings</h2>
             <button class="settingButton" onclick="saveData()">Save data</button><br>
             <button class="settingButton" onclick="resetData()">Reset data</button><br>
@@ -172,20 +215,29 @@
             <h4 class="infoBox">Here you can save your data or read the FAQ (even though nobody's asked any
                 questions yet)</h4>
             <hr>
-            <h3>FAQ</h3>
+            <h2>FAQ</h2>
             <p>Q: The resources say NaN after I opened the game, what do I do? A: Reset your data</p>
+            <hr>
+            <h2>About me</h2>
+            <p>Hi, I'm Bobby, a violinist in high school who's interested in computer science.</p>
+            <img src="assets/portrait.png" alt="my portrait" style="width:64px;height:128px;">
+            <p>(my badly drawn portrait)</p>
         </div>
 
         <div id="Factory" class="tabcontent">
             <h2>Factory</h2>
-            <p>You can refine your resources here.</p>
-            <button id="toggleFactoryButton" onclick="toggleFactory()"></button><br>
-            <button id="upgradeFactoryButton" onclick="upgradeFactory()"></button><br>
+            <p>You can manufacture more advanced resources here.</p>
+            <button id="toggleFactoryButton" onclick="toggleFactory()"></button>
+            <button id="upgradeFactoryButton" onclick="upgradeFactory()"></button>
+            <button id="toggleRefineryButton" onclick="toggleRefinery()"></button>
+            <button id="upgradeRefineryButton" onclick="upgradeFuelRefinery()"></button>
         </div>
 
         <div id="Spaceport" class="tabcontent">
             <h2>Spaceport</h2>
             <p>You can build spaceships here.</p>
+            <button id="launchSpaceshipButton" onclick="launchSpaceship()">Launch rocket!<br>Costs 500 rocket
+                fuel.</button>
             <hr>
             <h3>Spaceport Construction</h3>
             <button id="constructSpaceshipButton" onclick="constructSpaceship()">Construct spaceship<br><img
@@ -199,11 +251,14 @@
             <p>The next level of the spaceport, where you can build large amounts of spaceships quicker.</p>
             <hr>
             <h3>Shipyard Construction</h3>
-            <button>Build asteroid miner<br><img src="assets/asteroidminericon.png" alt="Asteroid Miner Icon" style="width:64px;height:64px;"><br>Cost:
-            2,000,000 Money<br>50,000 Refined Resources</button>
-            <button>Build fighter<br><img src="assets/fightericon.png" alt="Fighter Icon" style="width:64px;height:64px;"><br>Cost:
-            40,000,000 Money<br>240,000 Refined Resources</button>
-            <button>Build battleship<br><img src="assets/battleshipicon.png" alt="Battleship Icon" style="width:64px;height:64px;"><br>Cost:
+            <button>Build asteroid miner<br><img src="assets/asteroidminericon.png" alt="Asteroid Miner Icon"
+                    style="width:64px;height:64px;"><br>Cost:
+                2,000,000 Money<br>50,000 Refined Resources</button>
+            <button>Build fighter<br><img src="assets/fightericon.png" alt="Fighter Icon"
+                    style="width:64px;height:64px;"><br>Cost:
+                40,000,000 Money<br>240,000 Refined Resources</button>
+            <button>Build battleship<br><img src="assets/battleshipicon.png" alt="Battleship Icon"
+                    style="width:64px;height:64px;"><br>Cost:
                 150,000,000 Money<br>1,200,000 Refined Resources</button>
         </div>
 
