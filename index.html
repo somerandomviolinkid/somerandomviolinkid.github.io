@@ -75,21 +75,21 @@
                 <img src="assets/planet.png" alt="Planet" style="width:128px;height:128px;">
 
                 <h4 class="infoBox">This is your home planet.</h4>
-                <button id="buildFactoryButton" onclick="buildFactory()">Build a factory<br><img
+                <button id="buildFactoryButton" onclick="buildBuilding(5000, 20000, 0, 1, 'buildFactoryButton', 'unlockSolarPanels', 'FactoryTab', 'refinedResourceCount')">Build a factory<br><img
                         src="assets/factoryicon.png" alt="Factory Icon" style="width:64px;height:64px;"><br>Cost:
                     5,000 Money<br>20,000 Resources</button>
-                <button id="buildSolarPanelButton" onclick="buildFirstSolarPanel()">Build solar panels<br><img
+                <button id="buildSolarPanelButton" onclick="buildBuilding(20000, 0, 100, 2, 'buildSolarPanelButton', 'unlockTelescope', 'upgradeSolarPanelButton', 'upgradeSolarPanelSpaceButton', 'solarPanelCount', 'buildMoreSolarPanels')">Build solar panels<br><img
                         src="assets/solarpanelicon.png" alt="Spaceport Icon" style="width:64px;height:64px;"><br>Cost:
                     20,000 Money<br>100 Refined Resources</button>
-                <button id="buildTelescope" onclick="buildTelescope()">Build a telescope<br><img
+                <button id="buildTelescope" onclick="buildBuilding(80000, 0, 400, 3, 'buildTelescope', 'unlockFuelRefinery', 'upgradeTelescopeButton')">Build a telescope<br><img
                         src="assets/telescopeicon.png" alt="Telescope Icon" style="width:64px;height:64px;"><br>Cost:
                     80,000 Money<br>400 Refined
                     Resources</button>
-                <button id="buildFuelRefinery" onclick="buildFuelRefinery()">Build a fuel refinery<br><img
+                <button id="buildFuelRefinery" onclick="buildBuilding(150000, 0, 1000, 4, 'buildFuelRefinery', 'unlockSpacePort', 'upgradeRefineryButton', 'rocketFuelCount', 'toggleRefineryButton')">Build a fuel refinery<br><img
                         src="assets/fuelrefineryicon.png" alt="Fuel Refinery Icon"
                         style="width:64px;height:64px;"><br>Cost: 150,000 Money<br>1,000 Refined
                     Resources</button>
-                <button id="buildSpaceportButton" onclick="buildSpaceport()">Build a spaceport<br><img
+                <button id="buildSpaceportButton" onclick="buildBuilding(400000, 1200000, 0, 5, 'buildSpaceportButton', 'constructSpaceshipButton', 'SpaceportTab')">Build a spaceport<br><img
                         src="assets/spaceporticon.png" alt="Spaceport Icon" style="width:64px;height:64px;"><br>Cost:
                     400,000 Money<br>1,200,000 Resources</button>
                 <hr>
@@ -168,7 +168,7 @@
         <div id="Research" class="tabcontent">
             <h2>Research</h2>
             <h4 class="infoBox">Here you can research powerful items.</h4>
-            <button id="buildResearchCenterButton" onclick="buildResearchCenter()">Build a research center<br><img
+            <button id="buildResearchCenterButton" onclick="buildBuilding(100, 500, 0, 0, 'buildResearchCenterButton', 'unlockFactory', 'raiseResourcePrices1Button', 'upgradeResearchCenterButton', 'researchPointCount')">Build a research center<br><img
                     src="assets/researchcentericon.png" alt="Research Center Icon"
                     style="width:64px;height:64px;"><br>Cost: 100 Money<br>500 Resources</button>
             <button id="upgradeResearchCenterButton" onclick="upgradeResearchCenter()"></button>
