@@ -169,46 +169,19 @@ function resetData() {
     location.reload();
 }
 
-function notEnoughMoney() {
+document.getElementById("warning").style.display = "none";
+
+function notEnoughStuff(resource) {
 
     //get more money dipshit
-    alert("You don't have enough money!");
+    document.getElementById("warning").style.display = "inline";
+    document.getElementById("warning").innerHTML = "Not enough " + resource + "!";
+    setTimeout(clearWarning, 2500);
 
 }
 
-function notEnoughFuel() {
-
-    //get more fuel dipshit
-    alert("You don't have enough fuel!");
-
-}
-
-function notEnoughResources() {
-
-    //get more resources dipshit
-    alert("You don't have enough resources!");
-
-}
-
-function notEnoughRefinedResources() {
-
-    //get more refined resources dipshit
-    alert("You don't have enough refined resources!");
-
-}
-
-function notEnoughEnergy() {
-
-    //get more energy dipshit
-    alert("You don't have enough energy!");
-
-}
-
-function notEnoughResearch() {
-
-    //get more research dipshit
-    alert("You don't have enough research points!");
-
+function clearWarning() {
+    document.getElementById("warning").style.display = "none";
 }
 
 
@@ -293,7 +266,7 @@ function upgradeManualResources() {
         tick1();
 
     } else {
-        notEnoughMoney();
+        notEnoughStuff('money');
     }
 
     if (manualResourceLevel === 7) {
@@ -332,11 +305,11 @@ function purchaseWorkers(amount) {
 
     //puchases workers from buttons
     if (money < (10 * amount)) {
-        notEnoughMoney();
+        notEnoughStuff('money');
     }
 
     if ((workers + amount) > (planetsControlled * workerHousingSpace[workerHousingLevel])) {
-        alert("You need to buy more housing for your workers.");
+        notEnoughStuff('space');
     }
 
     if ((money >= 10 * amount) && (workers + amount) <= (planetsControlled * workerHousingSpace[workerHousingLevel])) {
@@ -355,11 +328,11 @@ function purchaseWorkers(amount) {
 function purchaseMaxWorkers() {
 
     if (money < 10) {
-        notEnoughMoney();
+        notEnoughStuff('money');
     }
 
     if (workers === (planetsControlled * workerHousingSpace[workerHousingLevel])) {
-        alert("You need to buy more housing for your workers.");
+        notEnoughStuff('space');
     }
 
     //buys max workers
@@ -472,7 +445,7 @@ if (industryUpgradesBought[0] === true) {
 }
 
 if (industryUpgradesBought[1] === true || industryUpgradesBought[0] === false) {
-    document.getElementById("industryUpgrade2Button").style.display = "none";  
+    document.getElementById("industryUpgrade2Button").style.display = "none";
 }
 
 if (spaceshipBuilt === true) {
@@ -605,7 +578,7 @@ function upgradeWorkers() {
         updateButtons()
 
     } else {
-        notEnoughMoney();
+        notEnoughStuff('money');
     }
 
     //hides button once workers are at maximum level
@@ -627,9 +600,9 @@ if (workerLevel === 7) {
 function upgradeWorkerHousing() {
 
     if (money < workerHousingMoneyCosts[workerHousingLevel + 1]) {
-        notEnoughMoney();
+        notEnoughStuff('money');
     } if (resources < workerHousingResourceCosts[workerHousingLevel + 1]) {
-        notEnoughResources();
+        notEnoughStuff('resources');
     } else {
 
         money -= workerHousingMoneyCosts[workerHousingLevel + 1];
@@ -658,7 +631,7 @@ function upgradeResearchCenter() {
 
     //upgrades research center
     if (money < researchCenterEfficiencyCosts[researchCenterLevel + 1]) {
-        notEnoughMoney();
+        notEnoughStuff('money');
     } else {
 
         money -= researchCenterEfficiencyCosts[researchCenterLevel + 1];
@@ -685,7 +658,7 @@ if (researchCenterLevel === 4) {
 
 function researchFactory() {
     if (researchPoints < 100) {
-        notEnoughResearch();
+        notEnoughStuff('research');
     } else {
 
         researchPoints -= 100;
@@ -703,9 +676,9 @@ function upgradeFactory() {
 
     //upgrades solar panels
     if (money < factoryEfficiencyMoneyCosts[factoryLevel + 1]) {
-        notEnoughMoney();
+        notEnoughStuff('money');
     } if (resources < factoryEfficiencyResourceCosts[factoryLevel + 1]) {
-        notEnoughResources();
+        notEnoughStuff('resources');
     } if (money >= factoryEfficiencyMoneyCosts[factoryLevel + 1] && resources >= factoryEfficiencyResourceCosts[factoryLevel + 1]) {
 
         money -= factoryEfficiencyMoneyCosts[factoryLevel + 1];
@@ -729,7 +702,7 @@ if (factoryLevel === 5) {
 
 function researchSolarPanels() {
     if (researchPoints < 500) {
-        notEnoughResearch();
+        notEnoughStuff('research');
     } else {
 
         researchPoints -= 500;
@@ -745,9 +718,9 @@ function researchSolarPanels() {
 
 function buildSolarPanel() {
     if (money < 20000) {
-        notEnoughMoney();
+        notEnoughStuff('money');
     } else if (refinedResources < 100) {
-        notEnoughRefinedResources();
+        notEnoughStuff('refined resources');
     } else if (solarPanels === solarPanelSpace[solarPanelSpaceLevel] * planetsControlled) {
         alert("You don't have enough space!");
     } else {
@@ -765,9 +738,9 @@ function upgradeSolarPanels() {
 
     //upgrades solar panels
     if (money < solarPanelEfficiencyMoneyCosts[solarPanelLevel + 1]) {
-        notEnoughMoney();
+        notEnoughStuff('money');
     } if (refinedResources < solarPanelEfficiencyRefinedResourceCosts[solarPanelLevel + 1]) {
-        notEnoughRefinedResources();
+        notEnoughStuff('refined resources');
     } else {
 
         money -= solarPanelEfficiencyMoneyCosts[solarPanelLevel + 1];
@@ -793,7 +766,7 @@ function upgradeSolarPanelSpace() {
 
     //upgrades solar panel space
     if (resources < solarPanelSpaceCosts[solarPanelSpaceLevel + 1]) {
-        notEnoughResources();
+        notEnoughStuff('resources');
     } else {
         resources -= solarPanelSpaceCosts[solarPanelSpaceLevel + 1];
         solarPanelSpaceLevel++;
@@ -812,7 +785,7 @@ if (solarPanelSpaceLevel === 8) {
 
 function researchTelescope() {
     if (researchPoints < 1500) {
-        notEnoughResearch();
+        notEnoughStuff('research');
     } else {
         researchPoints -= 1500;
         telescopeUnlocked = true;
@@ -824,9 +797,9 @@ function researchTelescope() {
 function upgradeTelescope() {
     //upgrades telescope
     if (money < telescopeEfficiencyMoneyCosts[telescopeLevel + 1]) {
-        notEnoughMoney();
+        notEnoughStuff('money');
     } if (refinedResources < telescopeEfficiencyRefinedResoucresCost[telescopeLevel + 1]) {
-        notEnoughRefinedResources();
+        notEnoughStuff('refined resources');
     } else {
 
         money -= telescopeEfficiencyMoneyCosts[telescopeLevel + 1];
@@ -849,7 +822,7 @@ if (telescopeLevel === 4) {
 
 function researchFuelRefinery() {
     if (researchPoints < 2500) {
-        notEnoughResearch();
+        notEnoughStuff('research');
     } else {
         researchPoints -= 2500;
         fuelRefineryUnlocked = true;
@@ -862,9 +835,9 @@ function researchFuelRefinery() {
 function upgradeFuelRefinery() {
     //upgrades refinery
     if (money < fuelRefineryEfficiencyMoneyCosts[fuelRefineryLevel + 1]) {
-        notEnoughMoney();
+        notEnoughStuff('money');
     } if (refinedResources < fuelRefineryEfficiencyRefinedResourcesCost[fuelRefineryLevel + 1]) {
-        notEnoughRefinedResources();
+        notEnoughStuff('refined resources');
     } else {
 
         money -= fuelRefineryEfficiencyMoneyCosts[fuelRefineryLevel + 1];
@@ -887,7 +860,7 @@ if (fuelRefineryLevel === 4) {
 
 function researchSpaceport() {
     if (researchPoints < 10000) {
-        notEnoughResearch();
+        notEnoughStuff('research');
     } else {
 
         researchPoints -= 10000;
@@ -929,9 +902,9 @@ document.getElementById("toggleRefineryButton").innerHTML = "Refinery power: Off
 function constructSpaceship() {
 
     if (money < 10000000) {
-        notEnoughMoney();
+        notEnoughStuff('money');
     } if (refinedResources < 20000) {
-        notEnoughRefinedResources();
+        notEnoughStuff('refined resources');
     } if (money >= 10000000 && refinedResources >= 20000) {
         spaceshipBuilt = true;
         money -= 10000000;
@@ -944,7 +917,7 @@ function constructSpaceship() {
 
 function launchSpaceship() {
     if (rocketFuel < 500) {
-        notEnoughFuel();
+        notEnoughStuff('fuel');
     } else {
         rocketFuel -= 500;
         spaceshipLaunched = true;
@@ -962,7 +935,7 @@ function colonizePlanet(cost, buttonID, planetNumber) {
     //colonizes planets
 
     if (rocketFuel < cost) {
-        notEnoughFuel();
+        notEnoughStuff('fuel');
     } else {
         rocketFuel -= cost;
         document.getElementById(buttonID).style.display = "none";
@@ -977,7 +950,7 @@ function colonizePlanet(cost, buttonID, planetNumber) {
 function raiseResourcePrices(cost, raiseAmount, buttonID, nextButtonID, upgradeNumber) {
     //raises sell rate of resources
     if (researchPoints < cost) {
-        notEnoughResearch();
+        notEnoughStuff('research');
     } else {
         researchPoints -= cost;
         resourceSellRate += raiseAmount;
@@ -996,11 +969,11 @@ function raiseResourcePrices(cost, raiseAmount, buttonID, nextButtonID, upgradeN
 function buildBuilding(cost1, cost2, cost3, cost4, buildingNumber, buttonID, unlock1, unlock2, unlock3, unlock4, unlock5, unlock6) {
     //builds buildings
     if (money < cost1) {
-        notEnoughMoney();
+        notEnoughStuff('money');
     } if (resources < cost2) {
-        notEnoughResources();
+        notEnoughStuff('resources');
     } if (refinedResources < cost3) {
-        notEnoughRefinedResources();
+        notEnoughStuff('refined resources');
     } if (rocketFuel < cost4) {
         notEnoughFuel();
     } if (money >= cost1 && resources >= cost2 && refinedResources >= cost3 && rocketFuel >= cost4) {
@@ -1041,9 +1014,9 @@ function buildBuilding(cost1, cost2, cost3, cost4, buildingNumber, buttonID, unl
 function upgradeEarthIndustry(buttonID, cost1, cost2, multiplier, upgradeNumber, unlock) {
     //multiplies output of factory and refinery
     if (money < cost1) {
-        notEnoughMoney();
+        notEnoughStuff('money');
     } if (researchPoints < cost2) {
-        notEnoughResearch();
+        notEnoughStuff('research');
     } if (money >= cost1 && researchPoints >= cost2) {
         money -= cost1;
         researchPoints -= cost2;
