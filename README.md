@@ -30,7 +30,7 @@ fixed more loading bugs (spaceport and spaceship), added functionality to coloni
 august 7:
 new big content update! resource sell rate upgrades + 2 new home planet buildings + some balancing changes for factory + more upgrades
 
-current nonfunctional elements:
-buildings in system tab
+august 10:
+more upgrades! also balancing and refactoring that broke everyone's saves
 
 discord (join if you want to know what i'm currently working on): https://discord.gg/6jb7PmeD7m
