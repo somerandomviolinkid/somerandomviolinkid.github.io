@@ -257,16 +257,16 @@ function tick2() {
 
     if (factoryToggle && resources >= 2 * (factoryEfficiency[factoryLevel])) {
         //refined resource toggle
-        resources -= 2 * (factoryEfficiency[factoryLevel]);
-        refinedResources += factoryEfficiency[factoryLevel];
+        resources -= 2 * earthIndustryMulitplier * (factoryEfficiency[factoryLevel]);
+        refinedResources += earthIndustryMulitplier * factoryEfficiency[factoryLevel];
 
     }
 
     if (refineryToggle && energy >= 5 * (fuelRefineryEfficiency[fuelRefineryLevel]) && resources >= 3 * (fuelRefineryEfficiency[fuelRefineryLevel])) {
         //rocket fuel toggle
-        energy -= 5 * (fuelRefineryEfficiency[fuelRefineryLevel]);
-        resources -= 3 * (fuelRefineryEfficiency[fuelRefineryLevel]);
-        rocketFuel += (fuelRefineryEfficiency[fuelRefineryLevel]);
+        energy -= 5 * earthIndustryMulitplier * (fuelRefineryEfficiency[fuelRefineryLevel]);
+        resources -= 3 * earthIndustryMulitplier * (fuelRefineryEfficiency[fuelRefineryLevel]);
+        rocketFuel += earthIndustryMulitplier * (fuelRefineryEfficiency[fuelRefineryLevel]);
     }
     tick1();
 
