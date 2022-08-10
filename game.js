@@ -1038,21 +1038,24 @@ function buildBuilding(cost1, cost2, cost3, cost4, buildingNumber, buttonID, unl
     }
 }
 
-function upgradeEarthIndustry(buttonID, cost1, cost2, multiplier, upgradeNumber) {
+function upgradeEarthIndustry(buttonID, cost1, cost2, multiplier, upgradeNumber, unlock) {
     //multiplies output of factory and refinery
     if (money < cost1) {
         notEnoughMoney();
     } if (researchPoints < cost2) {
         notEnoughResearch();
-    } if (researchPoints >= cost1 && money >= cost2) {
-        researchPoints -= cost1;
-        money -= cost2;
+    } if (money >= cost1 && researchPoints >= cost2) {
+        money -= cost1;
+        researchPoints -= cost2;
         earthIndustryMulitplier *= multiplier;
         tick1();
 
         industryUpgradesBought[upgradeNumber] = true;
 
         document.getElementById(buttonID).style.display = "none";
+        if (unlock !== undefined) {
+            document.getElementById(unlock).style.display = "inline";
+        }
 
     }
 }
