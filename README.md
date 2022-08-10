@@ -3,6 +3,7 @@
 this is bobby's game hehe
 
 REMEMBER TO SAVE BEFORE CLOSING!!!
+also beware of nonfunctional buildings and bugs
 
 changelog:
 
