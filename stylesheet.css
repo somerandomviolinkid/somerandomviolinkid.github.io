@@ -188,3 +188,17 @@ footer {
     border-width: 2px;
     padding-left: 4px;
 }
+
+#warning {
+    text-align: center;
+    color: red;
+    width: 80%;
+    margin: auto;
+    border-style: solid;
+    border-color: black;
+    border-radius: 10px;
+    background-color: gray;
+    padding: 5px;
+
+    font-family: "Lucida Console", "Courier New", monospace;
+}
