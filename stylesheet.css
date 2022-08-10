@@ -87,6 +87,10 @@ p {
 #resourceCountView {
     width: 12%;
     padding-left: 15px;
+    padding-bottom: 15px;
+    border-style: solid;
+    border-width: 4px;
+    border-radius: 20px;
     float: right;
     background-color: lightgray;
 }
@@ -112,8 +116,10 @@ button {
 
 .resourceButton {
 
-    width: 80%;
-    margin-left: 20px;
+    width: 75%;
+    border-style: solid;
+    background-color: rgb(230, 230, 230);
+
 
 }
 
@@ -175,6 +181,10 @@ footer {
 
 .resourceNumber {
     margin-bottom: 8px;
-    float: left;
-    width: 80%;
+    width: 90%;
+    display: block;
+    border-style: solid;
+    background-color: rgb(230, 230, 230);
+    border-width: 2px;
+    padding-left: 4px;
 }
