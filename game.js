@@ -114,7 +114,6 @@ function saveData() {
       industryUpgradesBought,
     })
   );
-  console.log(window.localStorage);
 }
 
 setInterval(saveData, 5000);
