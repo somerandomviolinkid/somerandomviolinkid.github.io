@@ -113,7 +113,6 @@ function saveData() {
         industryUpgradesBought
 
     }))
-    console.log(window.localStorage);
 
 }
 
@@ -167,6 +166,27 @@ function resetData() {
     //do this if your workers go on strike
     localStorage.clear();
     location.reload();
+}
+
+function downloadData() {
+    saveData();
+    const json = localStorage.getItem("saveKey");
+    const fileName = "save.json";
+    const a = document.createElement('a');
+    const type = fileName.split(".").pop();
+    a.href = URL.createObjectURL( new Blob([json], { type:`text/${type === "txt" ? "plain" : type}` }) );
+    a.download = fileName;
+    a.click();
+}
+
+async function uploadData() {
+    try {
+        const [fileHandle] = await window.showOpenFilePicker();
+        const file = await fileHandle.getFile();
+        const contents = await file.text();
+        localStorage.setItem("saveKey", contents);
+        loadData();
+    } catch (err) {}
 }
 
 document.getElementById("warning").style.display = "none";
