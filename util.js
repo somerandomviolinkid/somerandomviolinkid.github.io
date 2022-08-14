@@ -20,4 +20,18 @@ function formatNumber(number) {
   return number.toLocaleString("en-US");
 }
 
-export {formatNumber()};
+/**
+ * @param {number} number - The number to round
+ * @param {number} places - The amount of decimal places to round to
+ * @return {number} - The rounded number
+ *
+ * @example
+ * ```js
+ * roundNumber(1.12345, 3); // returns 1.123
+ * roundNumber(1e30, 2); // returns 1e30
+ * roundNumber(1234.5678, -2); // returns 1200
+ * ```
+ */
+function roundNumber(number, places) {
+  return Math.round(number * 10 ** places) / 10 ** places;
+}
