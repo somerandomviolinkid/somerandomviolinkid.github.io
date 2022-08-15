@@ -230,7 +230,7 @@
                 resource sell price to
                 1<br>Costs 500,000 research.</button>
             <hr>
-            <h4>Worder upgrades</h4>    
+            <h4>Worker upgrades</h4>    
             <hr>
             <h4>Building upgrades</h4>
             <button class="industryUpgradeButton" id="industryUpgrade1Button"
@@ -244,9 +244,17 @@
 
         <div id="Information" class="tabcontent">
             <h2>Settings</h2>
-            <button class="settingButton" onclick="saveData()">Save data</button><br>
-            <button class="settingButton" onclick="resetData()">Reset data</button><br>
+            <div class="dataButtons">
+            <button class="settingButton" onclick="saveData()">Save data</button>
+            <button class="settingButton" onclick="resetData()">Reset data</button>
+            </div>
+            <div class="dataButtons">
+            <button class="settingButton" onclick="downloadData()">Export data</button>
+            <button class="settingButton" onclick="uploadData()">Import data</button>
+            </div>
             <p id="resetWarning">Warning! Resetting your data does in fact RESET YOUR DATA.</p>
+            <br>
+            <hr>
             <h4 class="infoBox">Here you can save your data or read the FAQ (even though nobody's asked any
                 questions yet)</h4>
             <hr>
