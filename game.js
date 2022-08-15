@@ -135,7 +135,7 @@ function saveData() {
 
     document.getElementById("warning").style.display = "inline";
     document.getElementById("warning").innerHTML = "Game saved.";
-    setTimeout(clearWarning, 1000);
+    setTimeout(clearWarning, 2000);
 
 
 }
@@ -194,6 +194,28 @@ function resetData() {
     location.reload();
 }
 
+function downloadData() {
+    saveData();
+    const json = localStorage.getItem("saveKey");
+    const fileName = "save.json";
+    const a = document.createElement('a');
+    const type = fileName.split(".").pop();
+    a.href = URL.createObjectURL( new Blob([json], { type:`text/${type === "txt" ? "plain" : type}` }) );
+    a.download = fileName;
+    a.click();
+}
+
+async function uploadData() {
+    try {
+        const [fileHandle] = await window.showOpenFilePicker();
+        const file = await fileHandle.getFile();
+        const contents = await file.text();
+        localStorage.setItem("saveKey", contents);
+        loadData();
+    } catch (err) {}
+}
+
+
 function notEnoughStuff(resource) {
 
     //get more money dipshit
@@ -224,9 +246,9 @@ function tick1() {
 
 function updateShipyardNumbers() {
     //updates buttons and numbers on shipyard tab
-    document.getElementById("asteroidMinerCount").innerHTML = "Asteroid miners: " + ships[0] + " / " + asteroidMinerSpace[asteroidMinerSpaceLevel];
-    document.getElementById("fighterCount").innerHTML = "You have " + ships[1] + " fighters.";
-    document.getElementById("battleshipCount").innerHTML = "You have " + ships[2] + " battleships.";
+    document.getElementById("asteroidMinerCount").innerHTML = "Asteroid miners: " + ships[0];
+    document.getElementById("fighterCount").innerHTML = "Fighters: " + ships[1];
+    document.getElementById("battleshipCount").innerHTML = "Battleships: " + ships[2];
 
 }
 
@@ -912,26 +934,26 @@ function toggleFactory() {
 
     if (factoryToggle === false) {
         factoryToggle = true;
-        document.getElementById("toggleFactoryButton").innerHTML = "Factory power: On";
+        document.getElementById("toggleFactoryButton").innerHTML = "Factory power: On\nUses 2 resources to make 1 refined resource.";
     } else {
         factoryToggle = false;
-        document.getElementById("toggleFactoryButton").innerHTML = "Factory power: Off";
+        document.getElementById("toggleFactoryButton").innerHTML = "Factory power: Off\nUses 2 resources to make 1 refined resource.";
     }
 
 }
-document.getElementById("toggleFactoryButton").innerHTML = "Factory power: Off";
+document.getElementById("toggleFactoryButton").innerHTML = "Factory power: Off\nUses 2 resources to make 1 refined resource.";
 function toggleRefinery() {
 
     if (refineryToggle === false) {
         refineryToggle = true;
-        document.getElementById("toggleRefineryButton").innerHTML = "Refinery power: On";
+        document.getElementById("toggleRefineryButton").innerHTML = "Refinery power: On\nUses 5 resources and 3 energy to make 2 rocket fuel.";
     } else {
         refineryToggle = false;
-        document.getElementById("toggleRefineryButton").innerHTML = "Refinery power: Off";
+        document.getElementById("toggleRefineryButton").innerHTML = "Refinery power: Off\nUses 5 resources and 3 energy to make 2 rocket fuel.";
     }
 
 }
-document.getElementById("toggleRefineryButton").innerHTML = "Refinery power: Off";
+document.getElementById("toggleRefineryButton").innerHTML = "Refinery power: Off\nUses 5 resources and 3 energy to make 2 rocket fuel.";
 
 function constructSpaceship() {
 
@@ -1076,13 +1098,14 @@ function researchChemicalRefinement() {
 }
 
 function buildShip(cost1, cost2, cost3, shipNumber) {
+    //builds spaceships
     if (money < cost1) {
         notEnoughStuff('money');
     } if (refinedResources < cost2) {
         notEnoughStuff('refined resources');
     } if (solarPanels < cost3) {
         notEnoughStuff('solar panels');
-    } else {
+    } if (money >= cost1 && refinedResources >= cost2 && solarPanels >= cost3) {
         money -= cost1;
         refinedResources -= cost2;
         solarPanels-= cost3;
