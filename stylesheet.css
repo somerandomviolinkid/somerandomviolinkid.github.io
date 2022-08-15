@@ -85,7 +85,7 @@ p {
 }
 
 #resourceCountView {
-    width: 12%;
+    max-width: 12%;
     padding-left: 15px;
     padding-bottom: 15px;
     border-style: solid;
@@ -156,22 +156,6 @@ footer {
 
 }
 
-.settingButton {
-
-    border-radius: 25%;
-    width: 15%;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-bottom: 10px;
-    padding: 25px;
-    font-size: 24px;
-
-    background-color: azure;
-    border-style: solid;
-    border-color: black;
-
-}
-
 #resetWarning {
 
     font-style: bold;
@@ -205,4 +189,28 @@ footer {
 
 .shipCount {
     display: inline;
+}
+
+.dataButtons {
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    display: inline;
+    float: left;
+}
+
+.settingButton {
+
+    border-radius: 25%;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 10px;
+    padding: 25px;
+    font-size: 24px;
+
+    background-color: azure;
+    border-style: solid;
+    border-color: black;
+
 }
