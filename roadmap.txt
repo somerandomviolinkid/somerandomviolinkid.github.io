@@ -1,0 +1,16 @@
+(current road map of the game)
+
+high priority: 
+    balance upgrades
+    add functionality to all research/buildings
+
+medium priority:
+    better ui and formatting
+        *move main buttons elsewhere
+        *make the entire ui more "modern"
+    clean up code
+        *use classes for research unlocks and buttons?
+
+low priority:
+    more pixel art
+    
