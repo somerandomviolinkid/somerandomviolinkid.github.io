@@ -1039,25 +1039,25 @@ function raiseResourcePrices(cost, raiseAmount, buttonID, nextButtonID, upgradeN
     }
 }
 
-function buildBuilding(cost1, cost2, cost3, cost4, buildingNumber, buttonID, unlock1, unlock2, unlock3, unlock4, unlock5, unlock6) {
+function buildBuilding(moneyCost, resourcesCost, refinedResourcesCost, fuelCost, buildingNumber, buttonID, unlock1, unlock2, unlock3, unlock4, unlock5, unlock6) {
     //builds buildings
-    if (money < cost1) {
+    if (money < moneyCost) {
         notEnoughStuff("money");
     }
-    if (resources < cost2) {
+    if (resources < resourcesCost) {
         notEnoughStuff("resources");
     }
-    if (refinedResources < cost3) {
+    if (refinedResources < refinedResourcesCost) {
         notEnoughStuff("refined resources");
     }
-    if (rocketFuel < cost4) {
+    if (rocketFuel < fuelCost) {
         notEnoughStuff("fuel");
     }
-    if (money >= cost1 && resources >= cost2 && refinedResources >= cost3 && rocketFuel >= cost4) {
-        money -= cost1;
-        resources -= cost2;
-        refinedResources -= cost3;
-        rocketFuel -= cost4;
+    if (money >= moneyCost && resources >= resourcesCost && refinedResources >= refinedResourcesCost && rocketFuel >= fuelCost) {
+        money -= moneyCost;
+        resources -= resourcesCost;
+        refinedResources -= refinedResourcesCost;
+        rocketFuel -= fuelCost;
         tick1();
 
         document.getElementById(buttonID).style.display = "none";
@@ -1065,7 +1065,6 @@ function buildBuilding(cost1, cost2, cost3, cost4, buildingNumber, buttonID, unl
         if (unlock2 !== undefined) {
             document.getElementById(unlock2).style.display = "inline";
         }
-
         if (unlock3 !== undefined) {
             document.getElementById(unlock3).style.display = "inline";
         }
@@ -1075,7 +1074,6 @@ function buildBuilding(cost1, cost2, cost3, cost4, buildingNumber, buttonID, unl
         if (unlock5 !== undefined) {
             document.getElementById(unlock5).style.display = "inline";
         }
-
         if (unlock6 !== undefined) {
             document.getElementById(unlock6).style.display = "block";
         }
