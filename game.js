@@ -202,8 +202,7 @@ function downloadData() {
     const json = localStorage.getItem("saveKey");
     const fileName = "save.json";
     const a = document.createElement('a');
-    const type = fileName.split(".").pop();
-    a.href = URL.createObjectURL(new Blob([json], { type: `text/${type === "txt" ? "plain" : type}` }));
+    a.href = URL.createObjectURL(new Blob([json], { type: "application/json" }));
     a.download = fileName;
     a.click();
 }
