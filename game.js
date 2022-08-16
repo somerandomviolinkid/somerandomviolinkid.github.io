@@ -499,7 +499,6 @@ function updateButtons() {
         " money and " +
         formatNumber(telescopeEfficiencyRefinedResoucresCost[telescopeLevel + 1]) +
         " refined resources.";
-    document.getElementById("toggleFactoryButton").innerHTML = "Factory power: Off";
 }
 
 updateButtons();
