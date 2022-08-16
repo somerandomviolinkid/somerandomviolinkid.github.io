@@ -34,4 +34,6 @@ new big content update! resource sell rate upgrades + 2 new home planet building
 august 10:
 more upgrades! also balancing and refactoring that broke everyone's saves
 
+august 15: forgot to update this for past few days, added more content
+
 discord (join if you want to know what i'm currently working on): https://discord.gg/6jb7PmeD7m
