@@ -1,5 +1,6 @@
 body {
     background-image: url(assets/background.png);
+    overflow-y: scroll;
 }
 
 main {
