@@ -84,6 +84,22 @@ p {
     font-family: "Ariel", "Verdana", sans-serif;
 }
 
+#warning {
+    text-align: center;
+    font-size: 24px;
+    color: red;
+    width: 20%;
+    margin: auto;
+    border-style: solid;
+    border-color: black;
+    border-radius: 10px;
+    background-color: gray;
+    padding: 5px;
+    float: center;
+
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
 #resourceCountView {
     max-width: 12%;
     padding-left: 15px;
@@ -160,6 +176,18 @@ footer {
 
     font-style: bold;
     color: red;
+    font-size: 24px;
+    text-align: center;
+
+    background-color: white;
+
+    max-width: fit-content;
+    border-style: solid;
+    border-color: black;
+    border-radius: 25px;
+    border-width: 50%;
+    padding: 8px;
+
 
 }
 
@@ -173,20 +201,6 @@ footer {
     padding-left: 4px;
 }
 
-#warning {
-    text-align: center;
-    color: red;
-    width: 80%;
-    margin: auto;
-    border-style: solid;
-    border-color: black;
-    border-radius: 10px;
-    background-color: gray;
-    padding: 5px;
-
-    font-family: "Lucida Console", "Courier New", monospace;
-}
-
 .shipCount {
     display: inline;
 }
@@ -197,6 +211,31 @@ footer {
     border-color: black;
     display: inline;
     float: left;
+}
+
+.manufacturingDiv {
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    padding: 8px;
+    width: 45%;
+    display: inline;
+    float: left;
+}
+
+.manufacturingButton {
+    border-style: solid;
+    border-radius: 15px;
+    border-color: black;
+    border-width: 2px;
+    padding: 5px;
+    font-size: 15px;
+    font-family: "Courier New", "Lucida Console", monospace;
+
+    width: 45%;
+    margin: auto;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 .settingButton {
