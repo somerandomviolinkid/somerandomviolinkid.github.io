@@ -19,6 +19,7 @@
     <header>
         <h1>Spaceship Incremental Game</h1>
         <h2 id="versionNumber"> Alpha v1.6.0 demo</h2>
+        <p id="warning"></p>
     </header>
 
     <aside id="resourceCountView">
@@ -40,8 +41,6 @@
         <button class="resourceButton" onclick="sellResources(25)">Sell 25% of resources</button><br>
         <button class="resourceButton" onclick="sellResources(50)">Sell 50% of resources</button><br><br>
 
-        <p id="warning"></p>
-
     </aside>
 
     <nav>
@@ -55,7 +54,7 @@
                 Overview</button>
             <button class="tablinks" onclick="openTab(event, 'Workers')">Workers</button>
             <button class="tablinks" onclick="openTab(event, 'Research')">Research</button>
-            <button class="tablinks" class="tab2" id="FactoryTab" onclick="openTab(event, 'Factory')">Factory</button>
+            <button class="tablinks" class="tab2" id="FactoryTab" onclick="openTab(event, 'Factory')">Manufacturing</button>
             <button class="tablinks" class="tab2" id="SpaceportTab"
                 onclick="openTab(event, 'Spaceport')">Spaceport</button>
             <button class="tablinks" onclick="openTab(event, 'Information')">Settings/Information</button>
@@ -94,7 +93,7 @@
                     80,000 Money<br>400 Refined
                     Resources</button>
                 <button id="buildFuelRefinery"
-                    onclick="buildBuilding(150000, 0, 1000, 0, 4, 'buildFuelRefinery', 'unlockSpacePort', 'upgradeRefineryButton', 'toggleRefineryButton', undefined, undefined, 'rocketFuelCount')">Build
+                    onclick="buildBuilding(150000, 0, 1000, 0, 4, 'buildFuelRefinery', 'unlockSpacePort', 'refineryDiv', undefined, undefined, undefined, 'rocketFuelCount')">Build
                     a fuel refinery<br><img src="assets/fuelrefineryicon.png" alt="Fuel Refinery Icon"
                         style="width:64px;height:64px;"><br>Cost: 150,000 Money<br>1,000 Refined
                     Resources</button>
@@ -230,29 +229,30 @@
                 resource sell price to
                 1<br>Costs 500,000 research.</button>
             <hr>
-            <h4>Worker upgrades</h4>    
+            <h4>Worker upgrades</h4>
             <hr>
             <h4>Building upgrades</h4>
             <button class="industryUpgradeButton" id="industryUpgrade1Button"
                 onclick="upgradeEarthIndustry('industryUpgrade1Button', 1000000, 15000, 2, 0, 'industryUpgrade2Button')">Industrialization<br>Multiplies
                 output of factory and fuel refinery by 2<br>Costs 1,000,000 money and 15,000 research</button>
             <button class="industryUpgradeButton" id="industryUpgrade2Button"
-                onclick="upgradeEarthIndustry('industryUpgrade2Button', 25000000, 50000, 2, 1)">Robot workers<br>Multiplies
+                onclick="upgradeEarthIndustry('industryUpgrade2Button', 25000000, 50000, 2, 1)">Robot
+                workers<br>Multiplies
                 output of factory and fuel refinery by 2<br>Costs 25,000,000 money and 50,000 research</button>
 
         </div>
 
         <div id="Information" class="tabcontent">
             <h2>Settings</h2>
-            <div class="dataButtons">
-            <button class="settingButton" onclick="saveData()">Save data</button>
-            <button class="settingButton" onclick="resetData()">Reset data</button>
-            </div>
-            <div class="dataButtons">
-            <button class="settingButton" onclick="downloadData()">Export data</button>
-            <button class="settingButton" onclick="uploadData()">Import data</button>
-            </div>
             <p id="resetWarning">Warning! Resetting your data does in fact RESET YOUR DATA.</p>
+            <div class="dataButtons">
+                <button class="settingButton" onclick="saveData()">Save data</button>
+                <button class="settingButton" onclick="resetData()">Reset data</button>
+            </div>
+            <div class="dataButtons">
+                <button class="settingButton" onclick="downloadData()">Export data</button>
+                <button class="settingButton" onclick="uploadData()">Import data</button>
+            </div>
             <br>
             <hr>
             <h4 class="infoBox">Here you can save your data or read the FAQ (even though nobody's asked any
@@ -275,12 +275,23 @@
         </div>
 
         <div id="Factory" class="tabcontent">
-            <h2>Factory</h2>
+            <h2>Manufacturing</h2>
             <p>You can manufacture more advanced resources here.</p>
-            <button id="toggleFactoryButton" onclick="toggleFactory()"></button>
-            <button id="upgradeFactoryButton" onclick="upgradeFactory()"></button>
-            <button id="toggleRefineryButton" onclick="toggleRefinery()"></button>
-            <button id="upgradeRefineryButton" onclick="upgradeFuelRefinery()"></button>
+            <hr>
+            <div class="manufacturingDiv" id="factoryDiv"> 
+                <h3>Factory</h3>
+                <p>Produce refined resources here.</p>
+                <button class="manufacturingButton" id="toggleFactoryButton" onclick="toggleFactory()"></button>
+                <button class="manufacturingButton" id="upgradeFactoryButton" onclick="upgradeFactory()"></button>
+            </div>
+            <div class="manufacturingDiv" id="refineryDiv">
+                <h3>Refinery</h3>
+                <p>Produce rocket fuel here.</p>
+                <button class="manufacturingButton" id="toggleRefineryButton" onclick="toggleRefinery()"></button>
+                <button class="manufacturingButton" id="upgradeRefineryButton" onclick="upgradeFuelRefinery()"></button>
+            </div>
+            <hr></hr>
+
         </div>
 
         <div id="Spaceport" class="tabcontent">
@@ -304,19 +315,21 @@
             <p class="shipCount" id="fighterCount"></p>
             <p class="shipCount" id="battleshipCount"></p>
             <h3>Ship Construction</h3>
-            <button id="buildAsteroidMinerButton" onclick="buildShip(2000000, 1200000, 1, 0)">Build asteroid miner<br><img src="assets/asteroidminericon.png" alt="Asteroid Miner Icon"
+            <button id="buildAsteroidMinerButton" onclick="buildShip(2000000, 1200000, 1, 0)">Build asteroid
+                miner<br><img src="assets/asteroidminericon.png" alt="Asteroid Miner Icon"
                     style="width:64px;height:64px;"><br>Cost:
                 2,000,000 Money<br>50,000 Refined Resources<br>1 solar panel</button>
-            <button id="buildFighterButton" onclick="buildShip(40000000, 240000, 0, 1)">Build fighter<br><img src="assets/fightericon.png" alt="Fighter Icon"
-                    style="width:64px;height:64px;"><br>Cost:
+            <button id="buildFighterButton" onclick="buildShip(40000000, 240000, 0, 1)">Build fighter<br><img
+                    src="assets/fightericon.png" alt="Fighter Icon" style="width:64px;height:64px;"><br>Cost:
                 40,000,000 Money<br>240,000 Refined Resources</button>
-            <button id="buildABattleshipButton" onclick="buildShip(150000000, 1200000, 0, 2)">Build battleship<br><img src="assets/battleshipicon.png" alt="Battleship Icon"
-                    style="width:64px;height:64px;"><br>Cost:
+            <button id="buildABattleshipButton" onclick="buildShip(150000000, 1200000, 0, 2)">Build battleship<br><img
+                    src="assets/battleshipicon.png" alt="Battleship Icon" style="width:64px;height:64px;"><br>Cost:
                 150,000,000 Money<br>1,200,000 Refined Resources</button>
             <hr>
             <h3>Ship Upgrades</h3>
             <button class="upgradeShip" id="upgradeAsteroidMinerButton" onclick="upgradeAsteroidMiners()"></button>
-            <button class="upgradeShip" id="upgradeAsteroidMinerSpaceButton" onclick="upgradeAsteroidMinersSpace()"></button>
+            <button class="upgradeShip" id="upgradeAsteroidMinerSpaceButton"
+                onclick="upgradeAsteroidMinersSpace()"></button>
             <button class="upgradeShip" id="upgradeFighterButton" onclick="upgradeFighters()"></button>
             <button class="upgradeShip" id="upgradeBattleshipButton" onclick="upgradeBattleships()"></button>
         </div>
@@ -328,6 +341,7 @@
     </footer>
 
     <script src="page.js"></script>
+    <script src="util.js"></script>
     <script src="game.js"></script>
 
 </body>
