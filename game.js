@@ -214,7 +214,9 @@ async function uploadData() {
         const contents = await file.text();
         localStorage.setItem("saveKey", contents);
         loadData();
-    } catch (err) { }
+    } catch (err) {
+      console.errror(err);
+    }
 }
 
 
