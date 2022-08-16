@@ -13,84 +13,84 @@ let fleetPower = ships[1] + (ships[2] * 120);
 
 
 let asteroidMinerLevel = 0;
-let asteroidMinerEfficiency = [10000, 25000, 75000, 200000]
-let asteroidMinerEfficiencyMoneyCosts = [0, 15000000, 100000000, 400000000]
-let asteroidMinerEfficiencyRefinedResourceCosts = [0, 250000, 1000000, 5000000]
+let asteroidMinerEfficiency = [10000, 25000, 75000, 200000];
+let asteroidMinerEfficiencyMoneyCosts = [0, 15000000, 100000000, 400000000];
+let asteroidMinerEfficiencyRefinedResourceCosts = [0, 250000, 1000000, 5000000];
 
 let asteroidMinerSpaceLevel = 0;
-let asteroidMinerSpace = [25, 50, 100, 250, 1000]
-let asteroidMinerSpaceMoneyCosts = [0]
-let asteroidMinerSpaceResourceCosts = [0]
+let asteroidMinerSpace = [25, 50, 100, 250, 1000];
+let asteroidMinerSpaceMoneyCosts = [0];
+let asteroidMinerSpaceResourceCosts = [0];
 
 let earthIndustryMulitplier = 1;
 
 let workerLevel = 1;
-const workerEfficiency = [0, 1, 2, 4, 10, 25, 75, 200, 500, 1000]
-const workerEfficiencyCosts = [0, 0, 100, 500, 2500, 10000, 50000, 200000, 1000000, 5000000]
+const workerEfficiency = [0, 1, 2, 4, 10, 25, 75, 200, 500, 1000];
+const workerEfficiencyCosts = [0, 0, 100, 500, 2500, 10000, 50000, 200000, 1000000, 5000000];
 
 let workerHousingLevel = 1;
-const workerHousingSpace = [0, 10, 15, 24, 36, 50, 75, 110, 150, 200, 360]
-const workerHousingMoneyCosts = [0, 0, 20, 50, 125, 500, 2000, 10000, 40000, 100000, 250000]
-const workerHousingResourceCosts = [0, 0, 50, 120, 250, 600, 2500, 15000, 100000, 300000, 1000000]
+const workerHousingSpace = [0, 10, 15, 24, 36, 50, 75, 110, 150, 200, 360];
+const workerHousingMoneyCosts = [0, 0, 20, 50, 125, 500, 2000, 10000, 40000, 100000, 250000];
+const workerHousingResourceCosts = [0, 0, 50, 120, 250, 600, 2500, 15000, 100000, 300000, 1000000];
 
 let researchCenterLevel = 1;
 const researchCenterEfficiency = [0, 1, 5, 20, 75]
-const researchCenterEfficiencyCosts = [0, 0, 10000, 50000, 200000]
+const researchCenterEfficiencyCosts = [0, 0, 10000, 50000, 200000];
 
 let manualResourceLevel = 1;
-const manualResourceEfficiency = [0, 1, 5, 20, 75, 200, 500, 2500, 10000]
-const manualResourceEfficiencyCosts = [0, 0, 5, 100, 800, 5000, 25000, 200000, 1000000]
+const manualResourceEfficiency = [0, 1, 5, 20, 75, 200, 500, 2500, 10000];
+const manualResourceEfficiencyCosts = [0, 0, 5, 100, 800, 5000, 25000, 200000, 1000000];
 
 let factoryUnlocked = false;
 let factoryLevel = 1;
 const factoryEfficiency = [0, 1, 5, 15, 40, 100];
-const factoryEfficiencyMoneyCosts = [0, 0, 40000, 75000, 500000, 2500000]
-const factoryEfficiencyResourceCosts = [0, 0, 100000, 400000, 2500000, 12000000]
+const factoryEfficiencyMoneyCosts = [0, 0, 40000, 75000, 500000, 2500000];
+const factoryEfficiencyResourceCosts = [0, 0, 100000, 400000, 2500000, 12000000];
 let factoryToggle = false;
 
 let spaceportUnlocked = false;
 
 let solarPanelsUnlocked = false;
 let solarPanelLevel = 1;
-const solarPanelEfficiency = [0, 5, 12, 25, 75, 200, 500]
-const solarPanelEfficiencyMoneyCosts = [0, 0, 75000, 180000, 800000, 2000000, 10000000]
-const solarPanelEfficiencyRefinedResourceCosts = [0, 0, 500, 1200, 5000, 20000, 75000]
+const solarPanelEfficiency = [0, 5, 12, 25, 75, 200, 500];
+const solarPanelEfficiencyMoneyCosts = [0, 0, 75000, 180000, 800000, 2000000, 10000000];
+const solarPanelEfficiencyRefinedResourceCosts = [0, 0, 500, 1200, 5000, 20000, 75000];
 let solarPanelSpaceLevel = 1;
-const solarPanelSpace = [0, 1, 2, 3, 5, 8, 12, 18, 25]
-const solarPanelSpaceCosts = [0, 0, 12000, 40000, 150000, 800000, 2500000, 12000000, 50000000]
+const solarPanelSpace = [0, 1, 2, 3, 5, 8, 12, 18, 25];
+const solarPanelSpaceCosts = [0, 0, 12000, 40000, 150000, 800000, 2500000, 12000000, 50000000];
 
 let spaceshipBuilt = false;
 let spaceshipLaunched = false;
 
 let resourceSellRate = 0.1;
-let resourceSellUpgrades = [false, false, false, false]
+let resourceSellUpgrades = [false, false, false, false];
 
 let fuelRefineryUnlocked = false;
 
 let fuelRefineryLevel = 1;
-const fuelRefineryEfficiency = [0, 2, 5, 12, 25]
-const fuelRefineryEfficiencyMoneyCosts = [0, 0, 500000, 1800000, 5000000]
-const fuelRefineryEfficiencyRefinedResourcesCost = [0, 0, 1000, 7500, 25000, 100000]
+const fuelRefineryEfficiency = [0, 2, 5, 12, 25];
+const fuelRefineryEfficiencyMoneyCosts = [0, 0, 500000, 1800000, 5000000];
+const fuelRefineryEfficiencyRefinedResourcesCost = [0, 0, 1000, 7500, 25000, 100000];
 let refineryToggle = false;
 
 let telescopeUnlocked = false;
 
 let telescopeLevel = 1;
-const telescopeEfficiency = [0, 100, 250, 750, 2000]
-const telescopeEfficiencyMoneyCosts = [0, 0, 300000, 1200000, 5000000]
-const telescopeEfficiencyRefinedResoucresCost = [0, 0, 1200, 5000, 25000]
+const telescopeEfficiency = [0, 100, 250, 750, 2000];
+const telescopeEfficiencyMoneyCosts = [0, 0, 300000, 1200000, 5000000];
+const telescopeEfficiencyRefinedResoucresCost = [0, 0, 1200, 5000, 25000];
 
-let planetsColonized = [false, false, false, false, false]
+let planetsColonized = [false, false, false, false, false];
 
-let industryUpgradesBought = [false, false]
+let industryUpgradesBought = [false, false];
 
 //research center, factory, solarpanel, telescope, refinery, spaceport, orbital telescope, space station, shipyard, asteroid mining complex, dyson sphere
 let buildingsBuilt = [false, false, false, false, false, false, false, false, false, false, false]
 
-document.getElementById("warning").style.display = "none";
+document.getElementById("warning").style.visibility = "hidden";
 
 function clearWarning() {
-    document.getElementById("warning").style.display = "none";
+    document.getElementById("warning").style.visibility = "hidden";
 }
 
 function saveData() {
@@ -133,14 +133,13 @@ function saveData() {
 
     }))
 
-    document.getElementById("warning").style.display = "inline";
+    document.getElementById("warning").style.visibility = "visible";
     document.getElementById("warning").innerHTML = "Game saved.";
+
     setTimeout(clearWarning, 2000);
 
 
 }
-
-setInterval(saveData, 5000);
 
 function loadData() {
 
@@ -186,6 +185,10 @@ function loadData() {
     tick1();
     updateShipyardNumbers();
 
+    document.getElementById("warning").style.visibility = "visible";
+    document.getElementById("warning").innerHTML = "Data successfully loaded!";
+    setTimeout(clearWarning, 2000);
+
 }
 
 function resetData() {
@@ -200,7 +203,7 @@ function downloadData() {
     const fileName = "save.json";
     const a = document.createElement('a');
     const type = fileName.split(".").pop();
-    a.href = URL.createObjectURL( new Blob([json], { type:`text/${type === "txt" ? "plain" : type}` }) );
+    a.href = URL.createObjectURL(new Blob([json], { type: `text/${type === "txt" ? "plain" : type}` }));
     a.download = fileName;
     a.click();
 }
@@ -212,47 +215,44 @@ async function uploadData() {
         const contents = await file.text();
         localStorage.setItem("saveKey", contents);
         loadData();
-    } catch (err) {}
+    } catch (err) { }
 }
 
 
 function notEnoughStuff(resource) {
 
     //get more money dipshit
-    document.getElementById("warning").style.display = "inline";
+    document.getElementById("warning").style.visibility = "visible";
     document.getElementById("warning").innerHTML = "Not enough " + resource + "!";
-    setTimeout(clearWarning, 1000);
+    setTimeout(clearWarning, 2000);
 
 }
 
 function tick1() {
-
-    let roundedMoney = money.toFixed(2);
-    money = Number(roundedMoney);
+    money = roundNumber(money, 2);
 
     //updates numbers on page
-    document.getElementById("moneyCount").innerHTML = "Money: " + money.toLocaleString();
-    document.getElementById("workerCount").innerHTML = "Workers: " + workers.toLocaleString() + " / " + (planetsControlled * workerHousingSpace[workerHousingLevel]).toLocaleString();
-    document.getElementById("resourceCount").innerHTML = "Resources: " + resources.toLocaleString();
-    document.getElementById("refinedResourceCount").innerHTML = "Refined resources: " + refinedResources.toLocaleString();
-    document.getElementById("energyCount").innerHTML = "Energy: " + energy.toLocaleString();
-    document.getElementById("researchPointCount").innerHTML = "Research points: " + researchPoints.toLocaleString();
-    document.getElementById("solarPanelCount").innerHTML = "Solar panels: " + solarPanels.toLocaleString() + " / " + (planetsControlled * solarPanelSpace[solarPanelSpaceLevel]).toLocaleString();
-    document.getElementById("rocketFuelCount").innerHTML = "Rocket fuel: " + rocketFuel.toLocaleString();
-    document.getElementById("planetsControlledCount").innerHTML = "Planets controlled: " + planetsControlled.toLocaleString();
-
-
+    document.getElementById("moneyCount").innerHTML = "Money: " + formatNumber(money);
+    document.getElementById("workerCount").innerHTML = "Workers: " + formatNumber(workers) + " / " + formatNumber(planetsControlled * workerHousingSpace[workerHousingLevel]);
+    document.getElementById("resourceCount").innerHTML = "Resources: " + formatNumber(resources);
+    document.getElementById("refinedResourceCount").innerHTML = "Refined resources: " + formatNumber(refinedResources);
+    document.getElementById("energyCount").innerHTML = "Energy: " + formatNumber(energy);
+    document.getElementById("researchPointCount").innerHTML = "Research points: " + formatNumber(researchPoints);
+    document.getElementById("solarPanelCount").innerHTML = "Solar panels: " + formatNumber(solarPanels) + " / " + formatNumber(planetsControlled * solarPanelSpace[solarPanelSpaceLevel]);
+    document.getElementById("rocketFuelCount").innerHTML = "Rocket fuel: " + formatNumber(rocketFuel);
+    document.getElementById("planetsControlledCount").innerHTML = "Planets controlled: " + formatNumber(planetsControlled);
 }
 
 function updateShipyardNumbers() {
     //updates buttons and numbers on shipyard tab
-    document.getElementById("asteroidMinerCount").innerHTML = "Asteroid miners: " + ships[0];
+    document.getElementById("asteroidMinerCount").innerHTML = "Asteroid miners: " + ships[0] + " / " + asteroidMinerSpace[asteroidMinerSpaceLevel];
     document.getElementById("fighterCount").innerHTML = "Fighters: " + ships[1];
     document.getElementById("battleshipCount").innerHTML = "Battleships: " + ships[2];
 
 }
 
 loadData();
+setInterval(saveData, 5000);
 
 tick1();
 updateShipyardNumbers();
@@ -403,18 +403,103 @@ function purchaseMaxWorkers() {
 }
 
 function updateButtons() {
-
-    document.getElementById("upgradeResourceClickButton").innerHTML = "Your resource click level is " + (manualResourceLevel) + " and you get " + manualResourceEfficiency[manualResourceLevel] + " resources per click.<br>Next upgrade will give " + manualResourceEfficiency[manualResourceLevel + 1] + " resources per click.<br>Upgrade resource click cost " + manualResourceEfficiencyCosts[manualResourceLevel + 1] + " money.";
-    document.getElementById("upgradeWorkerButton").innerHTML = "Your workers are level " + (workerLevel) + " and each worker produces " + workerEfficiency[workerLevel] + " resources per second.<br>Next upgrade will make workers produce " + workerEfficiency[workerLevel + 1] + " resources per second.<br>Upgrade worker cost " + workerEfficiencyCosts[workerLevel + 1] + " money.";
-    document.getElementById("upgradeResearchCenterButton").innerHTML = "Your research center is level " + researchCenterLevel + " and you get " + researchCenterEfficiency[researchCenterLevel] + " research points every second.<br>Next upgrade will make the research center produce " + researchCenterEfficiency[researchCenterLevel + 1] + " research points per second.<br>Upgrade research center " + researchCenterEfficiencyCosts[researchCenterLevel + 1] + " money.";
-    document.getElementById("upgradeWorkerHousingButton").innerHTML = "Your worker housing level is " + (workerHousingLevel) + ".<br>Next upgrade will make worker housing house " + workerHousingSpace[workerHousingLevel + 1] + " workers.<br>Upgrade worker housing cost " + workerHousingMoneyCosts[workerHousingLevel + 1] + " money and " + workerHousingResourceCosts[workerHousingLevel + 1] + " resources.";
-    document.getElementById("upgradeSolarPanelButton").innerHTML = "Your solar panel level is " + solarPanelLevel + " and each solar panel produces " + solarPanelEfficiency[solarPanelLevel] + " energy per second.<br>Next upgrade will make solar panels produce " + solarPanelEfficiency[solarPanelLevel + 1] + " energy per second.<br>Upgrade solar panels cost " + solarPanelEfficiencyMoneyCosts[solarPanelLevel + 1] + " money and " + solarPanelEfficiencyRefinedResourceCosts[solarPanelLevel + 1] + " refined resources.";
-    document.getElementById("upgradeSolarPanelSpaceButton").innerHTML = "Your solar panel space level is " + (solarPanelSpaceLevel) + ".<br>Next upgrade will make you have " + solarPanelSpace[solarPanelSpaceLevel + 1] + " solar panel space.<br>Upgrade solar panels space costs " + solarPanelSpaceCosts[solarPanelSpaceLevel + 1] + " resources.";
-    document.getElementById("upgradeFactoryButton").innerHTML = "Your factory level is " + factoryLevel + " and it produces " + factoryEfficiency[factoryLevel] + " refined resources per second.<br>Next upgrade will make factory produce " + factoryEfficiency[factoryLevel + 1] + " refined resources per second.<br>Upgrade factory cost " + factoryEfficiencyMoneyCosts[factoryLevel + 1] + " money and " + factoryEfficiencyResourceCosts[factoryLevel + 1] + " resources.";
-    document.getElementById("upgradeRefineryButton").innerHTML = "Your refinery level is " + fuelRefineryLevel + " and it produces " + fuelRefineryEfficiency[fuelRefineryLevel] + " fuel per second.<br>Next upgrade will make refinery produce " + fuelRefineryEfficiency[fuelRefineryLevel + 1] + " rocket fuel per second.<br>Upgrade refinery cost " + fuelRefineryEfficiencyMoneyCosts[fuelRefineryLevel + 1] + " money and " + fuelRefineryEfficiencyRefinedResourcesCost[fuelRefineryLevel + 1] + " refined resources.";
-    document.getElementById("upgradeTelescopeButton").innerHTML = "Your telescope level is " + telescopeLevel + " and it produces " + telescopeEfficiency[telescopeLevel] + " research points per second.<br>Next upgrade will make stelescope produce " + telescopeEfficiency[telescopeLevel + 1] + " research points per second.<br>Upgrade telescope cost " + telescopeEfficiencyMoneyCosts[telescopeLevel + 1] + " money and " + telescopeEfficiencyRefinedResoucresCost[telescopeLevel + 1] + " refined resources.";
+    document.getElementById("upgradeResourceClickButton").innerHTML =
+        "Your resource click level is " +
+        formatNumber(manualResourceLevel) +
+        " and you get " +
+        formatNumber(manualResourceEfficiency[manualResourceLevel]) +
+        " resources per click.<br>Next upgrade will give " +
+        formatNumber(manualResourceEfficiency[manualResourceLevel + 1]) +
+        " resources per click.<br>Upgrade resource click cost " +
+        formatNumber(manualResourceEfficiencyCosts[manualResourceLevel + 1]) +
+        " money.";
+    document.getElementById("upgradeWorkerButton").innerHTML =
+        "Your workers are level " +
+        formatNumber(workerLevel) +
+        " and each worker produces " +
+        formatNumber(workerEfficiency[workerLevel]) +
+        " resources per second.<br>Next upgrade will make workers produce " +
+        formatNumber(workerEfficiency[workerLevel + 1]) +
+        " resources per second.<br>Upgrade worker cost " +
+        formatNumber(workerEfficiencyCosts[workerLevel + 1]) +
+        " money.";
+    document.getElementById("upgradeResearchCenterButton").innerHTML =
+        "Your research center is level " +
+        formatNumber(researchCenterLevel) +
+        " and you get " +
+        formatNumber(researchCenterEfficiency[researchCenterLevel]) +
+        " research points every second.<br>Next upgrade will make the research center produce " +
+        formatNumber(researchCenterEfficiency[researchCenterLevel + 1]) +
+        " research points per second.<br>Upgrade research center " +
+        formatNumber(researchCenterEfficiencyCosts[researchCenterLevel + 1]) +
+        " money.";
+    document.getElementById("upgradeWorkerHousingButton").innerHTML =
+        "Your worker housing level is " +
+        formatNumber(workerHousingLevel) +
+        ".<br>Next upgrade will make worker housing house " +
+        formatNumber(workerHousingSpace[workerHousingLevel + 1]) +
+        " workers.<br>Upgrade worker housing cost " +
+        formatNumber(workerHousingMoneyCosts[workerHousingLevel + 1]) +
+        " money and " +
+        formatNumber(workerHousingResourceCosts[workerHousingLevel + 1]) +
+        " resources.";
+    document.getElementById("upgradeSolarPanelButton").innerHTML =
+        "Your solar panel level is " +
+        formatNumber(solarPanelLevel) +
+        " and each solar panel produces " +
+        formatNumber(solarPanelEfficiency[solarPanelLevel]) +
+        " energy per second.<br>Next upgrade will make solar panels produce " +
+        formatNumber(solarPanelEfficiency[solarPanelLevel + 1]) +
+        " energy per second.<br>Upgrade solar panels cost " +
+        formatNumber(solarPanelEfficiencyMoneyCosts[solarPanelLevel + 1]) +
+        " money and " +
+        formatNumber(solarPanelEfficiencyRefinedResourceCosts[solarPanelLevel + 1]) +
+        " refined resources.";
+    document.getElementById("upgradeSolarPanelSpaceButton").innerHTML =
+        "Your solar panel space level is " +
+        formatNumber(solarPanelSpaceLevel) +
+        ".<br>Next upgrade will make you have " +
+        formatNumber(solarPanelSpace[solarPanelSpaceLevel + 1]) +
+        " solar panel space.<br>Upgrade solar panels space costs " +
+        formatNumber(solarPanelSpaceCosts[solarPanelSpaceLevel + 1]) +
+        " resources.";
+    document.getElementById("upgradeFactoryButton").innerHTML =
+        "Your factory level is " +
+        formatNumber(factoryLevel) +
+        " and it produces " +
+        formatNumber(factoryEfficiency[factoryLevel]) +
+        " refined resources per second.<br>Next upgrade will make factory produce " +
+        formatNumber(factoryEfficiency[factoryLevel + 1]) +
+        " refined resources per second.<br>Upgrade factory cost " +
+        formatNumber(factoryEfficiencyMoneyCosts[factoryLevel + 1]) +
+        " money and " +
+        formatNumber(factoryEfficiencyResourceCosts[factoryLevel + 1]) +
+        " resources.";
+    document.getElementById("upgradeRefineryButton").innerHTML =
+        "Your refinery level is " +
+        formatNumber(fuelRefineryLevel) +
+        " and it produces " +
+        formatNumber(fuelRefineryEfficiency[fuelRefineryLevel]) +
+        " fuel per second.<br>Next upgrade will make refinery produce " +
+        formatNumber(fuelRefineryEfficiency[fuelRefineryLevel + 1]) +
+        " rocket fuel per second.<br>Upgrade refinery cost " +
+        formatNumber(fuelRefineryEfficiencyMoneyCosts[fuelRefineryLevel + 1]) +
+        " money and " +
+        formatNumber(fuelRefineryEfficiencyRefinedResourcesCost[fuelRefineryLevel + 1]) +
+        " refined resources.";
+    document.getElementById("upgradeTelescopeButton").innerHTML =
+        "Your telescope level is " +
+        formatNumber(telescopeLevel) +
+        " and it produces " +
+        formatNumber(telescopeEfficiency[telescopeLevel]) +
+        " research points per second.<br>Next upgrade will make stelescope produce " +
+        formatNumber(telescopeEfficiency[telescopeLevel + 1]) +
+        " research points per second.<br>Upgrade telescope cost " +
+        formatNumber(telescopeEfficiencyMoneyCosts[telescopeLevel + 1]) +
+        " money and " +
+        formatNumber(telescopeEfficiencyRefinedResoucresCost[telescopeLevel + 1]) +
+        " refined resources.";
     document.getElementById("toggleFactoryButton").innerHTML = "Factory power: Off";
-
 }
 
 updateButtons();
@@ -459,7 +544,6 @@ if (buildingsBuilt[1] === false) {
 
 if (solarPanelsUnlocked === false) {
     document.getElementById("buildSolarPanelButton").style.display = "none";
-    document.getElementById("energyCount").style.display = "none";
     document.getElementById("solarPanelCount").style.display = "none";
 }
 
@@ -467,6 +551,7 @@ if (buildingsBuilt[2] === false) {
     document.getElementById("buildMoreSolarPanels").style.display = "none";
     document.getElementById("upgradeSolarPanelButton").style.display = "none";
     document.getElementById("upgradeSolarPanelSpaceButton").style.display = "none";
+    document.getElementById("energyCount").style.display = "none";
     document.getElementById("unlockTelescope").style.display = "none";
 }
 
@@ -519,7 +604,10 @@ if (telescopeUnlocked === true) {
 
 if (buildingsBuilt[3] === true) {
     document.getElementById("buildTelescope").style.display = "none";
-    document.getElementById("unlockFuelRefinery").style.display = "inline";
+}
+
+if (buildingsBuilt[3] === false) {
+    document.getElementById("unlockFuelRefinery").style.display = "none";
 }
 
 if (fuelRefineryUnlocked === false) {
@@ -534,6 +622,10 @@ if (fuelRefineryUnlocked === true) {
 if (buildingsBuilt[4] === true) {
     document.getElementById("buildFuelRefinery").style.display = "none";
     document.getElementById("unlockSpacePort").style.display = "inline";
+}
+
+if (buildingsBuilt[4] === false) {
+    document.getElementById("refineryDiv").style.display = "none";
 }
 
 if (solarPanelsUnlocked === true) {
@@ -619,7 +711,7 @@ if (buildingsBuilt[9] === false || buildingsBuilt[10] === true) {
 }
 
 if (buildingsBuilt[9] === false) {
-    document.getElementById("buildAsteroidMinerButton").style.display = "none"; 
+    document.getElementById("buildAsteroidMinerButton").style.display = "none";
 }
 
 
@@ -659,7 +751,8 @@ function upgradeWorkerHousing() {
         notEnoughStuff('money');
     } if (resources < workerHousingResourceCosts[workerHousingLevel + 1]) {
         notEnoughStuff('resources');
-    } else {
+    }
+    if (money >= workerHousingMoneyCosts[workerHousingLevel + 1] && resources >= workerHousingResourceCosts[workerHousingLevel + 1]) {
 
         money -= workerHousingMoneyCosts[workerHousingLevel + 1];
         resources -= workerHousingResourceCosts[workerHousingLevel + 1];
@@ -692,7 +785,7 @@ function upgradeResearchCenter() {
 
         money -= researchCenterEfficiencyCosts[researchCenterLevel + 1];
         researchCenterLevel++;
-        document.getElementById("upgradeResearchCenterButton").innerHTML = "Your research center is level " + researchCenterLevel + " and you get " + researchCenterEfficiency[researchCenterLevel] + " research points every second.<br>Next upgrade will make the research center produce " + researchCenterEfficiency[researchCenterLevel + 1] + " research points per second.<br>Upgrade research center " + researchCenterEfficiencyCosts[researchCenterLevel + 1] + " money.";
+        updateButtons();
 
     }
 
@@ -795,7 +888,7 @@ function upgradeSolarPanels() {
     //upgrades solar panels
     if (money < solarPanelEfficiencyMoneyCosts[solarPanelLevel + 1]) {
         notEnoughStuff('money');
-    } if (refinedResources < solarPanelEfficiencyRefinedResourceCosts[solarPanelLevel + 1]) {
+    } else if (refinedResources < solarPanelEfficiencyRefinedResourceCosts[solarPanelLevel + 1]) {
         notEnoughStuff('refined resources');
     } else {
 
@@ -854,7 +947,7 @@ function upgradeTelescope() {
     //upgrades telescope
     if (money < telescopeEfficiencyMoneyCosts[telescopeLevel + 1]) {
         notEnoughStuff('money');
-    } if (refinedResources < telescopeEfficiencyRefinedResoucresCost[telescopeLevel + 1]) {
+    } else if (refinedResources < telescopeEfficiencyRefinedResoucresCost[telescopeLevel + 1]) {
         notEnoughStuff('refined resources');
     } else {
 
@@ -892,7 +985,7 @@ function upgradeFuelRefinery() {
     //upgrades refinery
     if (money < fuelRefineryEfficiencyMoneyCosts[fuelRefineryLevel + 1]) {
         notEnoughStuff('money');
-    } if (refinedResources < fuelRefineryEfficiencyRefinedResourcesCost[fuelRefineryLevel + 1]) {
+    } else if (refinedResources < fuelRefineryEfficiencyRefinedResourcesCost[fuelRefineryLevel + 1]) {
         notEnoughStuff('refined resources');
     } else {
 
@@ -934,26 +1027,29 @@ function toggleFactory() {
 
     if (factoryToggle === false) {
         factoryToggle = true;
-        document.getElementById("toggleFactoryButton").innerHTML = "Factory power: On\nUses 2 resources to make 1 refined resource.";
+        document.getElementById("toggleFactoryButton").innerHTML = "Factory power: On<br>Uses 2 resources to make 1 refined resource.";
     } else {
         factoryToggle = false;
-        document.getElementById("toggleFactoryButton").innerHTML = "Factory power: Off\nUses 2 resources to make 1 refined resource.";
+        document.getElementById("toggleFactoryButton").innerHTML = "Factory power: Off<br>Uses 2 resources to make 1 refined resource.";
     }
 
 }
-document.getElementById("toggleFactoryButton").innerHTML = "Factory power: Off\nUses 2 resources to make 1 refined resource.";
+
+document.getElementById("toggleFactoryButton").innerHTML = "Factory power: Off<br>Uses 2 resources to make 1 refined resource.";
+
 function toggleRefinery() {
 
     if (refineryToggle === false) {
         refineryToggle = true;
-        document.getElementById("toggleRefineryButton").innerHTML = "Refinery power: On\nUses 5 resources and 3 energy to make 2 rocket fuel.";
+        document.getElementById("toggleRefineryButton").innerHTML = "Refinery power: On<br>Uses 5 resources and 3 energy to make 2 rocket fuel.";
     } else {
         refineryToggle = false;
-        document.getElementById("toggleRefineryButton").innerHTML = "Refinery power: Off\nUses 5 resources and 3 energy to make 2 rocket fuel.";
+        document.getElementById("toggleRefineryButton").innerHTML = "Refinery power: Off<br>Uses 5 resources and 3 energy to make 2 rocket fuel.";
     }
 
 }
-document.getElementById("toggleRefineryButton").innerHTML = "Refinery power: Off\nUses 5 resources and 3 energy to make 2 rocket fuel.";
+
+document.getElementById("toggleRefineryButton").innerHTML = "Refinery power: Off<br>Uses 5 resources and 3 energy to make 2 rocket fuel.";
 
 function constructSpaceship() {
 
@@ -1108,7 +1204,7 @@ function buildShip(cost1, cost2, cost3, shipNumber) {
     } if (money >= cost1 && refinedResources >= cost2 && solarPanels >= cost3) {
         money -= cost1;
         refinedResources -= cost2;
-        solarPanels-= cost3;
+        solarPanels -= cost3;
         tick1();
         updateShipyardNumbers();
         ships[shipNumber]++;
