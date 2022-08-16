@@ -8,9 +8,8 @@ let planetsControlled = 1;
 let solarPanels = 1;
 let rocketFuel = 0;
 //asteroid miners, fighters, battleships
-let ships = [0, 0, 0]
-let fleetPower = ships[1] + (ships[2] * 120);
-
+let ships = [0, 0, 0];
+let fleetPower = ships[1] + ships[2] * 120;
 
 let asteroidMinerLevel = 0;
 let asteroidMinerEfficiency = [10000, 25000, 75000, 200000];
@@ -34,7 +33,7 @@ const workerHousingMoneyCosts = [0, 0, 20, 50, 125, 500, 2000, 10000, 40000, 100
 const workerHousingResourceCosts = [0, 0, 50, 120, 250, 600, 2500, 15000, 100000, 300000, 1000000];
 
 let researchCenterLevel = 1;
-const researchCenterEfficiency = [0, 1, 5, 20, 75]
+const researchCenterEfficiency = [0, 1, 5, 20, 75];
 const researchCenterEfficiencyCosts = [0, 0, 10000, 50000, 200000];
 
 let manualResourceLevel = 1;
@@ -85,7 +84,7 @@ let planetsColonized = [false, false, false, false, false];
 let industryUpgradesBought = [false, false];
 
 //research center, factory, solarpanel, telescope, refinery, spaceport, orbital telescope, space station, shipyard, asteroid mining complex, dyson sphere
-let buildingsBuilt = [false, false, false, false, false, false, false, false, false, false, false]
+let buildingsBuilt = [false, false, false, false, false, false, false, false, false, false, false];
 
 document.getElementById("warning").style.visibility = "hidden";
 
@@ -94,55 +93,48 @@ function clearWarning() {
 }
 
 function saveData() {
-
     //saves stuff
-    window.localStorage.setItem("saveKey", JSON.stringify({
-        money,
-        resources,
-        refinedResources,
-        workers,
-        energy,
-        researchPoints,
-        planetsControlled,
-        solarPanels,
-        workerLevel,
-        workerHousingLevel,
-        researchCenterLevel,
-        manualResourceLevel,
-        factoryUnlocked,
-        factoryLevel,
-        spaceportUnlocked,
-        solarPanelsUnlocked,
-        solarPanelLevel,
-        solarPanelSpaceLevel,
-        spaceshipBuilt,
-        rocketFuel,
-        resourceSellRate,
-        resourceSellUpgrades,
-        fuelRefineryUnlocked,
-        fuelRefineryLevel,
-        telescopeUnlocked,
-        telescopeLevel,
-        planetsColonized,
-        spaceshipLaunched,
-        buildingsBuilt,
-        industryUpgradesBought,
-        ships,
-        asteroidMinerLevel,
-        asteroidMinerSpaceLevel
-
-    }))
-
-    document.getElementById("warning").style.visibility = "visible";
-    document.getElementById("warning").innerHTML = "Game saved.";
-
-    setTimeout(clearWarning, 2000);
-
-
+    window.localStorage.setItem(
+        "saveKey",
+        JSON.stringify({
+            money,
+            resources,
+            refinedResources,
+            workers,
+            energy,
+            researchPoints,
+            planetsControlled,
+            solarPanels,
+            workerLevel,
+            workerHousingLevel,
+            researchCenterLevel,
+            manualResourceLevel,
+            factoryUnlocked,
+            factoryLevel,
+            spaceportUnlocked,
+            solarPanelsUnlocked,
+            solarPanelLevel,
+            solarPanelSpaceLevel,
+            spaceshipBuilt,
+            rocketFuel,
+            resourceSellRate,
+            resourceSellUpgrades,
+            fuelRefineryUnlocked,
+            fuelRefineryLevel,
+            telescopeUnlocked,
+            telescopeLevel,
+            planetsColonized,
+            spaceshipLaunched,
+            buildingsBuilt,
+            industryUpgradesBought,
+            ships,
+            asteroidMinerLevel,
+            asteroidMinerSpaceLevel,
+        })
+    );
 }
 
 function loadData() {
-
     //loads stuff
     const saveString = localStorage.getItem("saveKey");
     if (!saveString) return;
@@ -188,7 +180,6 @@ function loadData() {
     document.getElementById("warning").style.visibility = "visible";
     document.getElementById("warning").innerHTML = "Data successfully loaded!";
     setTimeout(clearWarning, 2000);
-
 }
 
 function resetData() {
@@ -201,9 +192,8 @@ function downloadData() {
     saveData();
     const json = localStorage.getItem("saveKey");
     const fileName = "save.json";
-    const a = document.createElement('a');
-    const type = fileName.split(".").pop();
-    a.href = URL.createObjectURL(new Blob([json], { type: `text/${type === "txt" ? "plain" : type}` }));
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([json], { type: "application/json" }));
     a.download = fileName;
     a.click();
 }
@@ -215,17 +205,16 @@ async function uploadData() {
         const contents = await file.text();
         localStorage.setItem("saveKey", contents);
         loadData();
-    } catch (err) { }
+    } catch (err) {
+        console.errror(err);
+    }
 }
 
-
 function notEnoughStuff(resource) {
-
     //get more money dipshit
     document.getElementById("warning").style.visibility = "visible";
     document.getElementById("warning").innerHTML = "Not enough " + resource + "!";
     setTimeout(clearWarning, 2000);
-
 }
 
 function tick1() {
@@ -248,7 +237,6 @@ function updateShipyardNumbers() {
     document.getElementById("asteroidMinerCount").innerHTML = "Asteroid miners: " + ships[0] + " / " + asteroidMinerSpace[asteroidMinerSpaceLevel];
     document.getElementById("fighterCount").innerHTML = "Fighters: " + ships[1];
     document.getElementById("battleshipCount").innerHTML = "Battleships: " + ships[2];
-
 }
 
 loadData();
@@ -258,18 +246,16 @@ tick1();
 updateShipyardNumbers();
 
 function tick2() {
-
     //updates resource amounts every second
-    resources += (workers * (workerEfficiency[workerLevel]));
-    resources += (ships[0] * asteroidMinerEfficiency[asteroidMinerLevel]);
+    resources += workers * workerEfficiency[workerLevel];
+    resources += ships[0] * asteroidMinerEfficiency[asteroidMinerLevel];
 
     if (buildingsBuilt[0] === true) {
-        researchPoints += (researchCenterEfficiency[researchCenterLevel]);
+        researchPoints += researchCenterEfficiency[researchCenterLevel];
     }
 
     if (buildingsBuilt[2] === true) {
-
-        energy += (solarPanels * solarPanelEfficiency[solarPanelLevel]);
+        energy += solarPanels * solarPanelEfficiency[solarPanelLevel];
     }
 
     if (buildingsBuilt[3] === true) {
@@ -280,67 +266,63 @@ function tick2() {
         researchPoints += 15000;
     }
 
-    if (factoryToggle && resources >= 2 * (factoryEfficiency[factoryLevel])) {
+    if (factoryToggle && resources >= 2 * factoryEfficiency[factoryLevel]) {
         //refined resource toggle
-        resources -= 2 * earthIndustryMulitplier * (factoryEfficiency[factoryLevel]);
+        resources -= 2 * earthIndustryMulitplier * factoryEfficiency[factoryLevel];
         refinedResources += earthIndustryMulitplier * factoryEfficiency[factoryLevel];
-
     }
 
-    if (refineryToggle && energy >= 5 * (fuelRefineryEfficiency[fuelRefineryLevel]) && resources >= 3 * (fuelRefineryEfficiency[fuelRefineryLevel])) {
+    if (refineryToggle && energy >= 5 * fuelRefineryEfficiency[fuelRefineryLevel] && resources >= 3 * fuelRefineryEfficiency[fuelRefineryLevel]) {
         //rocket fuel toggle
-        energy -= 5 * earthIndustryMulitplier * (fuelRefineryEfficiency[fuelRefineryLevel]);
-        resources -= 3 * earthIndustryMulitplier * (fuelRefineryEfficiency[fuelRefineryLevel]);
-        rocketFuel += earthIndustryMulitplier * (fuelRefineryEfficiency[fuelRefineryLevel]);
+        energy -= 5 * earthIndustryMulitplier * fuelRefineryEfficiency[fuelRefineryLevel];
+        resources -= 3 * earthIndustryMulitplier * fuelRefineryEfficiency[fuelRefineryLevel];
+        rocketFuel += earthIndustryMulitplier * fuelRefineryEfficiency[fuelRefineryLevel];
     }
     tick1();
-
 }
 
 setInterval(tick2, 1000);
 
 function manualResources() {
-
     //gives resources on click
     resources += manualResourceEfficiency[manualResourceLevel] * planetsControlled;
     tick1();
-
 }
 
 function upgradeManualResources() {
-
     //upgrades resource click
     if (money >= manualResourceEfficiencyCosts[manualResourceLevel + 1]) {
-
         manualResourceLevel++;
         money -= manualResourceEfficiencyCosts[manualResourceLevel];
-        document.getElementById("upgradeResourceClickButton").innerHTML = "Your resource click level is " + (manualResourceLevel) + " and you get " + manualResourceEfficiency[manualResourceLevel] + " resources per click.<br>Next upgrade will give " + manualResourceEfficiency[manualResourceLevel + 1] + " resources per click.<br>Upgrade resource click cost " + manualResourceEfficiencyCosts[manualResourceLevel + 1] + " money.";
+        document.getElementById("upgradeResourceClickButton").innerHTML =
+            "Your resource click level is " +
+            manualResourceLevel +
+            " and you get " +
+            manualResourceEfficiency[manualResourceLevel] +
+            " resources per click.<br>Next upgrade will give " +
+            manualResourceEfficiency[manualResourceLevel + 1] +
+            " resources per click.<br>Upgrade resource click cost " +
+            manualResourceEfficiencyCosts[manualResourceLevel + 1] +
+            " money.";
         tick1();
-
     } else {
-        notEnoughStuff('money');
+        notEnoughStuff("money");
     }
 
     if (manualResourceLevel === 7) {
-
         //hides button at max level
         document.getElementById("upgradeResourceClickButton").style.display = "none";
-
     }
 
     tick1();
-
 }
 
 if (manualResourceLevel === 7) {
-
     //hides button at max level
     document.getElementById("upgradeResourceClickButton").style.display = "none";
-
 }
 
 function sellResources(percent) {
-
     //sells part of resources
     money += resources * (percent / 100) * resourceSellRate;
     let roundedMoney = money.toFixed(2);
@@ -350,56 +332,47 @@ function sellResources(percent) {
     let roundedResources = resources.toFixed(1);
     resources = Number(roundedResources);
     tick1();
-
 }
 
 function purchaseWorkers(amount) {
-
     //puchases workers from buttons
-    if (money < (10 * amount)) {
-        notEnoughStuff('money');
+    if (money < 10 * amount) {
+        notEnoughStuff("money");
     }
 
-    if ((workers + amount) > (planetsControlled * workerHousingSpace[workerHousingLevel])) {
-        notEnoughStuff('space');
+    if (workers + amount > planetsControlled * workerHousingSpace[workerHousingLevel]) {
+        notEnoughStuff("space");
     }
 
-    if ((money >= 10 * amount) && (workers + amount) <= (planetsControlled * workerHousingSpace[workerHousingLevel])) {
-
+    if (money >= 10 * amount && workers + amount <= planetsControlled * workerHousingSpace[workerHousingLevel]) {
         money -= amount * 10;
         let roundedMoney = money.toFixed(2);
         money = Number(roundedMoney);
 
         workers += amount;
         tick1();
-
     }
-
 }
 
 function purchaseMaxWorkers() {
-
     if (money < 10) {
-        notEnoughStuff('money');
+        notEnoughStuff("money");
     }
 
-    if (workers === (planetsControlled * workerHousingSpace[workerHousingLevel])) {
-        notEnoughStuff('space');
+    if (workers === planetsControlled * workerHousingSpace[workerHousingLevel]) {
+        notEnoughStuff("space");
     }
 
     //buys max workers
-    while (money >= 10 && workers < (planetsControlled * workerHousingSpace[workerHousingLevel])) {
-
+    while (money >= 10 && workers < planetsControlled * workerHousingSpace[workerHousingLevel]) {
         money -= 10;
         let roundedMoney = money.toFixed(2);
         money = Number(roundedMoney);
 
         workers++;
-
     }
 
     tick1();
-
 }
 
 function updateButtons() {
@@ -527,7 +500,6 @@ if (factoryUnlocked === false) {
 
 if (factoryUnlocked === true) {
     document.getElementById("unlockFactory").style.display = "none";
-
 }
 
 if (buildingsBuilt[1] === true) {
@@ -713,102 +685,74 @@ if (buildingsBuilt[9] === false) {
     document.getElementById("buildAsteroidMinerButton").style.display = "none";
 }
 
-
-
 function upgradeWorkers() {
-
     //upgrades workers
     if (money >= workerEfficiencyCosts[workerLevel + 1]) {
-
         money -= workerEfficiencyCosts[workerLevel + 1];
         workerLevel++;
-        updateButtons()
-
+        updateButtons();
     } else {
-        notEnoughStuff('money');
+        notEnoughStuff("money");
     }
 
     //hides button once workers are at maximum level
     if (workerLevel === 7) {
-
         document.getElementById("upgradeWorkerButton").style.display = "none";
-
     }
-
-
 }
 
 if (workerLevel === 7) {
-
     document.getElementById("upgradeWorkerButton").style.display = "none";
-
 }
 
 function upgradeWorkerHousing() {
-
     if (money < workerHousingMoneyCosts[workerHousingLevel + 1]) {
-        notEnoughStuff('money');
-    } if (resources < workerHousingResourceCosts[workerHousingLevel + 1]) {
-        notEnoughStuff('resources');
+        notEnoughStuff("money");
+    }
+    if (resources < workerHousingResourceCosts[workerHousingLevel + 1]) {
+        notEnoughStuff("resources");
     }
     if (money >= workerHousingMoneyCosts[workerHousingLevel + 1] && resources >= workerHousingResourceCosts[workerHousingLevel + 1]) {
-
         money -= workerHousingMoneyCosts[workerHousingLevel + 1];
         resources -= workerHousingResourceCosts[workerHousingLevel + 1];
         workerHousingLevel++;
 
-        updateButtons()
-
+        updateButtons();
     }
     //upgrades worker housing
     if (workerHousingLevel === 8) {
-
         document.getElementById("upgradeWorkerHousingButton").style.display = "none";
-
     }
-
 }
 
 if (workerHousingLevel === 8) {
-
     document.getElementById("upgradeWorkerHousingButton").style.display = "none";
-
 }
 
 function upgradeResearchCenter() {
-
     //upgrades research center
     if (money < researchCenterEfficiencyCosts[researchCenterLevel + 1]) {
-        notEnoughStuff('money');
+        notEnoughStuff("money");
     } else {
-
         money -= researchCenterEfficiencyCosts[researchCenterLevel + 1];
         researchCenterLevel++;
         updateButtons();
-
     }
 
     //hides button once research center is maxxed
     if (researchCenterLevel === 4) {
-
         document.getElementById("upgradeResearchCenterButton").style.display = "none";
-
     }
-
-
 }
 
 if (researchCenterLevel === 4) {
-
     document.getElementById("upgradeResearchCenterButton").style.display = "none";
-
 }
 
 function researchFactory() {
     if (researchPoints < 100) {
-        notEnoughStuff('research');
+        notEnoughStuff("research");
     } else {
-
         researchPoints -= 100;
         tick1();
 
@@ -816,24 +760,23 @@ function researchFactory() {
         document.getElementById("unlockFactory").style.display = "none";
 
         factoryUnlocked = true;
-
     }
 }
 
 function upgradeFactory() {
-
     //upgrades solar panels
     if (money < factoryEfficiencyMoneyCosts[factoryLevel + 1]) {
-        notEnoughStuff('money');
-    } if (resources < factoryEfficiencyResourceCosts[factoryLevel + 1]) {
-        notEnoughStuff('resources');
-    } if (money >= factoryEfficiencyMoneyCosts[factoryLevel + 1] && resources >= factoryEfficiencyResourceCosts[factoryLevel + 1]) {
-
+        notEnoughStuff("money");
+    }
+    if (resources < factoryEfficiencyResourceCosts[factoryLevel + 1]) {
+        notEnoughStuff("resources");
+    }
+    if (money >= factoryEfficiencyMoneyCosts[factoryLevel + 1] && resources >= factoryEfficiencyResourceCosts[factoryLevel + 1]) {
         money -= factoryEfficiencyMoneyCosts[factoryLevel + 1];
         resources -= factoryEfficiencyResourceCosts[factoryLevel + 1];
 
         factoryLevel++;
-        updateButtons()
+        updateButtons();
 
         tick1();
     }
@@ -841,7 +784,6 @@ function upgradeFactory() {
     if (factoryLevel === 5) {
         document.getElementById("upgradeFactoryButton").style.display = "none";
     }
-
 }
 
 if (factoryLevel === 5) {
@@ -850,9 +792,8 @@ if (factoryLevel === 5) {
 
 function researchSolarPanels() {
     if (researchPoints < 500) {
-        notEnoughStuff('research');
+        notEnoughStuff("research");
     } else {
-
         researchPoints -= 500;
         tick1();
 
@@ -860,45 +801,39 @@ function researchSolarPanels() {
 
         document.getElementById("buildSolarPanelButton").style.display = "inline";
         document.getElementById("unlockSolarPanels").style.display = "none";
-
     }
 }
 
 function buildSolarPanel() {
     if (money < 20000) {
-        notEnoughStuff('money');
+        notEnoughStuff("money");
     } else if (refinedResources < 100) {
-        notEnoughStuff('refined resources');
+        notEnoughStuff("refined resources");
     } else if (solarPanels === solarPanelSpace[solarPanelSpaceLevel] * planetsControlled) {
-        notEnoughStuff('space');
+        notEnoughStuff("space");
     } else {
-
         money -= 20000;
         refinedResources -= 100;
         solarPanels++;
 
         tick1();
-
     }
 }
 
 function upgradeSolarPanels() {
-
     //upgrades solar panels
     if (money < solarPanelEfficiencyMoneyCosts[solarPanelLevel + 1]) {
-        notEnoughStuff('money');
+        notEnoughStuff("money");
     } else if (refinedResources < solarPanelEfficiencyRefinedResourceCosts[solarPanelLevel + 1]) {
-        notEnoughStuff('refined resources');
+        notEnoughStuff("refined resources");
     } else {
-
         money -= solarPanelEfficiencyMoneyCosts[solarPanelLevel + 1];
         refinedResources -= solarPanelEfficiencyRefinedResourceCosts[solarPanelLevel + 1];
         solarPanelLevel++;
 
-        updateButtons()
+        updateButtons();
 
         tick1();
-
     }
 
     if (solarPanelLevel === 5) {
@@ -911,14 +846,13 @@ if (solarPanelLevel === 5) {
 }
 
 function upgradeSolarPanelSpace() {
-
     //upgrades solar panel space
     if (resources < solarPanelSpaceCosts[solarPanelSpaceLevel + 1]) {
-        notEnoughStuff('resources');
+        notEnoughStuff("resources");
     } else {
         resources -= solarPanelSpaceCosts[solarPanelSpaceLevel + 1];
         solarPanelSpaceLevel++;
-        updateButtons()
+        updateButtons();
         tick1();
     }
 
@@ -933,7 +867,7 @@ if (solarPanelSpaceLevel === 8) {
 
 function researchTelescope() {
     if (researchPoints < 1500) {
-        notEnoughStuff('research');
+        notEnoughStuff("research");
     } else {
         researchPoints -= 1500;
         telescopeUnlocked = true;
@@ -945,18 +879,16 @@ function researchTelescope() {
 function upgradeTelescope() {
     //upgrades telescope
     if (money < telescopeEfficiencyMoneyCosts[telescopeLevel + 1]) {
-        notEnoughStuff('money');
+        notEnoughStuff("money");
     } else if (refinedResources < telescopeEfficiencyRefinedResoucresCost[telescopeLevel + 1]) {
-        notEnoughStuff('refined resources');
+        notEnoughStuff("refined resources");
     } else {
-
         money -= telescopeEfficiencyMoneyCosts[telescopeLevel + 1];
         refinedResources -= telescopeEfficiencyRefinedResoucresCost[telescopeLevel + 1];
         telescopeLevel++;
 
-        updateButtons()
+        updateButtons();
         tick1();
-
     }
 
     if (telescopeLevel === 4) {
@@ -970,7 +902,7 @@ if (telescopeLevel === 4) {
 
 function researchFuelRefinery() {
     if (researchPoints < 2500) {
-        notEnoughStuff('research');
+        notEnoughStuff("research");
     } else {
         researchPoints -= 2500;
         fuelRefineryUnlocked = true;
@@ -983,18 +915,16 @@ function researchFuelRefinery() {
 function upgradeFuelRefinery() {
     //upgrades refinery
     if (money < fuelRefineryEfficiencyMoneyCosts[fuelRefineryLevel + 1]) {
-        notEnoughStuff('money');
+        notEnoughStuff("money");
     } else if (refinedResources < fuelRefineryEfficiencyRefinedResourcesCost[fuelRefineryLevel + 1]) {
-        notEnoughStuff('refined resources');
+        notEnoughStuff("refined resources");
     } else {
-
         money -= fuelRefineryEfficiencyMoneyCosts[fuelRefineryLevel + 1];
         refinedResources -= fuelRefineryEfficiencyRefinedResourcesCost[fuelRefineryLevel + 1];
         fuelRefineryLevel++;
 
-        updateButtons()
+        updateButtons();
         tick1();
-
     }
 
     if (fuelRefineryLevel === 4) {
@@ -1008,9 +938,8 @@ if (fuelRefineryLevel === 4) {
 
 function researchSpaceport() {
     if (researchPoints < 10000) {
-        notEnoughStuff('research');
+        notEnoughStuff("research");
     } else {
-
         researchPoints -= 10000;
         tick1();
 
@@ -1018,12 +947,10 @@ function researchSpaceport() {
         document.getElementById("unlockSpacePort").style.display = "none";
 
         spaceportUnlocked = true;
-
     }
 }
 
 function toggleFactory() {
-
     if (factoryToggle === false) {
         factoryToggle = true;
         document.getElementById("toggleFactoryButton").innerHTML = "Factory power: On<br>Uses 2 resources to make 1 refined resource.";
@@ -1031,13 +958,11 @@ function toggleFactory() {
         factoryToggle = false;
         document.getElementById("toggleFactoryButton").innerHTML = "Factory power: Off<br>Uses 2 resources to make 1 refined resource.";
     }
-
 }
 
 document.getElementById("toggleFactoryButton").innerHTML = "Factory power: Off<br>Uses 2 resources to make 1 refined resource.";
 
 function toggleRefinery() {
-
     if (refineryToggle === false) {
         refineryToggle = true;
         document.getElementById("toggleRefineryButton").innerHTML = "Refinery power: On<br>Uses 5 resources and 3 energy to make 2 rocket fuel.";
@@ -1045,30 +970,29 @@ function toggleRefinery() {
         refineryToggle = false;
         document.getElementById("toggleRefineryButton").innerHTML = "Refinery power: Off<br>Uses 5 resources and 3 energy to make 2 rocket fuel.";
     }
-
 }
 
 document.getElementById("toggleRefineryButton").innerHTML = "Refinery power: Off<br>Uses 5 resources and 3 energy to make 2 rocket fuel.";
 
 function constructSpaceship() {
-
     if (money < 10000000) {
-        notEnoughStuff('money');
-    } if (refinedResources < 20000) {
-        notEnoughStuff('refined resources');
-    } if (money >= 10000000 && refinedResources >= 20000) {
+        notEnoughStuff("money");
+    }
+    if (refinedResources < 20000) {
+        notEnoughStuff("refined resources");
+    }
+    if (money >= 10000000 && refinedResources >= 20000) {
         spaceshipBuilt = true;
         money -= 10000000;
         refinedResources -= 20000;
         document.getElementById("launchSpaceshipButton").style.display = "inline";
         document.getElementById("constructSpaceshipButton").style.display = "none";
     }
-
 }
 
 function launchSpaceship() {
     if (rocketFuel < 500) {
-        notEnoughStuff('fuel');
+        notEnoughStuff("fuel");
     } else {
         rocketFuel -= 500;
         spaceshipLaunched = true;
@@ -1086,7 +1010,7 @@ function colonizePlanet(cost, buttonID, planetNumber) {
     //colonizes planets
 
     if (rocketFuel < cost) {
-        notEnoughStuff('fuel');
+        notEnoughStuff("fuel");
     } else {
         rocketFuel -= cost;
         document.getElementById(buttonID).style.display = "none";
@@ -1095,22 +1019,20 @@ function colonizePlanet(cost, buttonID, planetNumber) {
 
         tick1();
     }
-
 }
 
 function raiseResourcePrices(cost, raiseAmount, buttonID, nextButtonID, upgradeNumber) {
     //raises sell rate of resources
     if (researchPoints < cost) {
-        notEnoughStuff('research');
+        notEnoughStuff("research");
     } else {
         researchPoints -= cost;
         resourceSellRate += raiseAmount;
         document.getElementById(buttonID).style.display = "none";
 
-        if (nextButtonID != 'raiseResourcePrices5Button') {
+        if (nextButtonID != "raiseResourcePrices5Button") {
             document.getElementById(nextButtonID).style.display = "inline";
         }
-
 
         resourceSellUpgrades[upgradeNumber] = true;
         tick1;
@@ -1120,14 +1042,18 @@ function raiseResourcePrices(cost, raiseAmount, buttonID, nextButtonID, upgradeN
 function buildBuilding(cost1, cost2, cost3, cost4, buildingNumber, buttonID, unlock1, unlock2, unlock3, unlock4, unlock5, unlock6) {
     //builds buildings
     if (money < cost1) {
-        notEnoughStuff('money');
-    } if (resources < cost2) {
-        notEnoughStuff('resources');
-    } if (refinedResources < cost3) {
-        notEnoughStuff('refined resources');
-    } if (rocketFuel < cost4) {
-        notEnoughStuff('fuel');
-    } if (money >= cost1 && resources >= cost2 && refinedResources >= cost3 && rocketFuel >= cost4) {
+        notEnoughStuff("money");
+    }
+    if (resources < cost2) {
+        notEnoughStuff("resources");
+    }
+    if (refinedResources < cost3) {
+        notEnoughStuff("refined resources");
+    }
+    if (rocketFuel < cost4) {
+        notEnoughStuff("fuel");
+    }
+    if (money >= cost1 && resources >= cost2 && refinedResources >= cost3 && rocketFuel >= cost4) {
         money -= cost1;
         resources -= cost2;
         refinedResources -= cost3;
@@ -1140,7 +1066,6 @@ function buildBuilding(cost1, cost2, cost3, cost4, buildingNumber, buttonID, unl
             document.getElementById(unlock2).style.display = "inline";
         }
 
-
         if (unlock3 !== undefined) {
             document.getElementById(unlock3).style.display = "inline";
         }
@@ -1152,9 +1077,7 @@ function buildBuilding(cost1, cost2, cost3, cost4, buildingNumber, buttonID, unl
         }
 
         if (unlock6 !== undefined) {
-
             document.getElementById(unlock6).style.display = "block";
-
         }
         updateButtons();
 
@@ -1165,10 +1088,12 @@ function buildBuilding(cost1, cost2, cost3, cost4, buildingNumber, buttonID, unl
 function upgradeEarthIndustry(buttonID, cost1, cost2, multiplier, upgradeNumber, unlock) {
     //multiplies output of factory and refinery
     if (money < cost1) {
-        notEnoughStuff('money');
-    } if (researchPoints < cost2) {
-        notEnoughStuff('research');
-    } if (money >= cost1 && researchPoints >= cost2) {
+        notEnoughStuff("money");
+    }
+    if (researchPoints < cost2) {
+        notEnoughStuff("research");
+    }
+    if (money >= cost1 && researchPoints >= cost2) {
         money -= cost1;
         researchPoints -= cost2;
         earthIndustryMulitplier *= multiplier;
@@ -1180,7 +1105,6 @@ function upgradeEarthIndustry(buttonID, cost1, cost2, multiplier, upgradeNumber,
         if (unlock !== undefined) {
             document.getElementById(unlock).style.display = "inline";
         }
-
     }
 }
 
@@ -1195,11 +1119,11 @@ function researchChemicalRefinement() {
 function buildShip(cost1, cost2, cost3, shipNumber) {
     //builds spaceships
     if (money < cost1) {
-        notEnoughStuff('money');
+        notEnoughStuff("money");
     } else if (refinedResources < cost2) {
-        notEnoughStuff('refined resources');
+        notEnoughStuff("refined resources");
     } else if (solarPanels < cost3) {
-        notEnoughStuff('solar panels');
+        notEnoughStuff("solar panels");
     } else {
         money -= cost1;
         refinedResources -= cost2;
@@ -1210,18 +1134,10 @@ function buildShip(cost1, cost2, cost3, shipNumber) {
     }
 }
 
-function upgradeAsteroidMiners() {
+function upgradeAsteroidMiners() {}
 
-}
+function upgradeAsteroidMinersSpace() {}
 
-function upgradeAsteroidMinersSpace() {
+function upgradeFighters() {}
 
-}
-
-function upgradeFighters() {
-
-}
-
-function upgradeBattleships() {
-
-}
+function upgradeBattleships() {}
