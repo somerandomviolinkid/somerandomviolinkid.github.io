@@ -36,4 +36,6 @@ more upgrades! also balancing and refactoring that broke everyone's saves
 
 august 15: forgot to update this for past few days, added more content
 
+august 16: 1.6.0, fixed factory toggle bug, added partial functionality for asteroid miners and shipyard, import/export saves added (from henryL's pull request)
+
 discord (join if you want to know what i'm currently working on): https://discord.gg/6jb7PmeD7m
