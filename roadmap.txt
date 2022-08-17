@@ -1,16 +1,25 @@
 (current road map of the game)
 
-high priority: 
-    balance upgrades
-    add functionality to all research/buildings
+* = not implemented yet
 
-medium priority:
-    better ui and formatting
-        *move main buttons elsewhere
-        *make the entire ui more "modern"
-    clean up code
-        *use classes for research unlocks and buttons?
+planet buildings:
+research center
+oil drill*
+drilling facility*
+solar panel
+factory
+oil refinery*
+fuel refinery
+telescope
+spaceport
 
-low priority:
-    more pixel art
-    
+planet orbital buildings:
+orbital telescope
+space station
+shipyard
+asteroid mining complex
+space elevator*
+
+system buildings:
+dyson swarm
+matrioshka brain*
