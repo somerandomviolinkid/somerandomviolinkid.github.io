@@ -2,10 +2,14 @@ body {
     background-image: url(assets/background.png);
 }
 
+main {
+    width: 85%;
+}
+
 /* Style the tab */
 .tab {
     overflow: hidden;
-    width: 85%;
+    width: 100%;
     padding: 6px 12px;
     border: 1px solid darkgray;
     background-color: aliceblue;
@@ -41,7 +45,7 @@ button:hover {
 /* Style the tab content */
 .tabcontent {
     display: none;
-    width: 85%;
+    width: 100%;
     padding: 6px 12px;
     border: 1px solid #ccc;
     background-color: gray;
@@ -63,20 +67,16 @@ h2 {
 h3 {
     color: aquamarine;
     font-family: "Courier New", "Lucida Console", monospace;
-
 }
 
 h4 {
     color: gainsboro;
     font-family: "Courier New", "Lucida Console", monospace;
-
 }
 
 #versionNumber {
-
     color: blanchedalmond;
     font-family: "Courier New", "Lucida Console", monospace;
-
 }
 
 p {
@@ -102,45 +102,40 @@ p {
 
 #resourceCountView {
     max-width: 12%;
-    padding-left: 15px;
     padding-bottom: 15px;
     border-style: solid;
     border-width: 4px;
     border-radius: 20px;
     float: right;
     background-color: lightgray;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 aside {
-
-    width: 15%;
-    padding-left: 15px;
+    width: 12%;
     float: left;
     background-color: gray;
 }
 
 button {
-
     background-color: lightgrey;
     border: 1px solid black;
     width: 16.66%;
     height: 10%;
     cursor: pointer;
     transition: 0.4s;
-
 }
 
 .resourceButton {
-
     width: 75%;
     border-style: solid;
     background-color: rgb(230, 230, 230);
-
-
 }
 
 .infoBox {
-
     color: black;
     font-family: "Lucida Console", "Courier New", monospace;
     border-color: black;
@@ -150,30 +145,24 @@ button {
     padding: 10px;
     width: 40%;
     border-radius: 25px;
-
 }
 
 hr {
-
     color: lightcyan;
     height: 2px;
     background-color: lightcyan;
     width: 100%;
-
 }
 
 footer {
-
     color: aqua;
     font-size: 15px;
     position: fixed;
     bottom: 0;
     font-family: "Lucida Console", "Courier New", monospace;
-
 }
 
 #resetWarning {
-
     font-style: bold;
     color: red;
     font-size: 24px;
@@ -187,8 +176,6 @@ footer {
     border-radius: 25px;
     border-width: 50%;
     padding: 8px;
-
-
 }
 
 .resourceNumber {
@@ -239,7 +226,6 @@ footer {
 }
 
 .settingButton {
-
     border-radius: 25%;
     width: 80%;
     margin-left: 10%;
@@ -251,5 +237,4 @@ footer {
     background-color: azure;
     border-style: solid;
     border-color: black;
-
 }
