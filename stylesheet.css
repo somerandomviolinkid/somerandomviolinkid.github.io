@@ -39,7 +39,7 @@ button:hover {
 }
 
 /* Create an active/current tablink class */
-.tab button.active {
+.tab .tablinks.active {
     background-color: lightgray;
 }
 
@@ -61,7 +61,7 @@ h1 {
 }
 
 h2 {
-    color: blue;
+    color: darkblue;
     font-family: "Courier New", "Lucida Console", monospace;
 }
 
