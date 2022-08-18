@@ -72,7 +72,10 @@
             <button id="buildTelescope" onclick="buildBuilding(80000, 0, 400, 0, 3, 'buildTelescope', 'unlockFuelRefinery', 'upgradeTelescopeButton')">
               Build a telescope<br /><img src="assets/telescopeicon.png" alt="Telescope Icon" style="width: 64px; height: 64px" /><br />Cost: 80,000 Money<br />400 Refined Resources
             </button>
-            <button id="buildFuelRefinery" onclick="buildBuilding(150000, 0, 1000, 0, 4, 'buildFuelRefinery', 'unlockSpacePort', 'refineryDiv', 'toggleRefineryButton', 'upgradeRefineryButton', undefined, 'rocketFuelCount')">
+            <button
+              id="buildFuelRefinery"
+              onclick="buildBuilding(150000, 0, 1000, 0, 4, 'buildFuelRefinery', 'unlockSpacePort', 'refineryDiv', 'toggleRefineryButton', 'upgradeRefineryButton', undefined, 'rocketFuelCount')"
+            >
               Build a fuel refinery<br /><img src="assets/fuelrefineryicon.png" alt="Fuel Refinery Icon" style="width: 64px; height: 64px" /><br />Cost: 150,000 Money<br />1,000 Refined Resources
             </button>
             <button id="buildSpaceportButton" onclick="buildBuilding(400000, 1200000, 0, 0, 5, 'buildSpaceportButton', 'constructSpaceshipButton', 'SpaceportTab')">
@@ -201,7 +204,8 @@
             <button class="settingButton" onclick="saveData()">Save data</button>
             <button class="settingButton" onclick="resetData()">Reset data</button>
             <button class="settingButton" onclick="downloadData()">Export data</button>
-            <button class="settingButton" onclick="uploadData()">Import data</button>
+            <button class="settingButton" onclick="document.getElementById('importDataFiles').click()">Import data</button>
+            <input id="importDataFiles" type="file" style="display: none" accept="application/json" onchange="uploadData()" />
           </div>
           <hr />
           <h4 class="infoBox">Here you can save your data or read the FAQ (even though nobody's asked any questions yet)</h4>

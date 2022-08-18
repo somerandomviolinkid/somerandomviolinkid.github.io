@@ -230,9 +230,12 @@ function downloadData() {
 
 async function uploadData() {
     try {
-        const [fileHandle] = await window.showOpenFilePicker();
-        const file = await fileHandle.getFile();
-        const contents = await file.text();
+        /** @type {HTMLInputElement} */
+        const importInput = document.getElementById("importDataFiles");
+        if (!importInput || !importInput.files || !importInput.files[0]) return console.info("Aborted import");
+        const contents = await importInput.files[0].text();
+        // Clear input value so you can import the same file twice in a row
+        importInput.value = "";
         localStorage.setItem("saveKey", contents);
         loadData();
     } catch (err) {
