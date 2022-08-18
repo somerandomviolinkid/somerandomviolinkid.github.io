@@ -237,7 +237,7 @@ async function uploadData() {
         // Clear input value so you can import the same file twice in a row
         importInput.value = "";
         localStorage.setItem("saveKey", contents);
-        loadData();
+        initialize();
     } catch (err) {
         console.error(err);
     }
@@ -269,30 +269,24 @@ function updateShipyardNumbers() {
     document.getElementById("battleshipCount").innerHTML = "Battleships: " + ships[2];
 }
 
-loadData();
-setInterval(saveData, 5000);
-
-tick1();
-updateShipyardNumbers();
-
 function tick2() {
     //updates resource amounts every second
     resources += workers * workerEfficiency[workerLevel];
     resources += ships[0] * asteroidMinerEfficiency[asteroidMinerLevel];
 
-    if (buildingsBuilt[0] === true) {
+    if (buildingsBuilt[0]) {
         researchPoints += researchCenterEfficiency[researchCenterLevel];
     }
 
-    if (buildingsBuilt[2] === true) {
+    if (buildingsBuilt[2]) {
         energy += solarPanels * solarPanelEfficiency[solarPanelLevel];
     }
 
-    if (buildingsBuilt[3] === true) {
+    if (buildingsBuilt[3]) {
         researchPoints += telescopeEfficiency[telescopeLevel];
     }
 
-    if (buildingsBuilt[6] === true) {
+    if (buildingsBuilt[6]) {
         researchPoints += 15000;
     }
 
@@ -310,8 +304,6 @@ function tick2() {
     }
     tick1();
 }
-
-setInterval(tick2, 1000);
 
 function manualResources() {
     //gives resources on click
@@ -345,11 +337,6 @@ function upgradeManualResources() {
     }
 
     tick1();
-}
-
-if (manualResourceLevel === 7) {
-    //hides button at max level
-    document.getElementById("upgradeResourceClickButton").style.display = "none";
 }
 
 function sellResources(percent) {
@@ -504,217 +491,6 @@ function updateButtons() {
         " refined resources.";
 }
 
-updateButtons();
-
-if (buildingsBuilt[0] === false) {
-    document.getElementById("buildResearchCenterButton").style.display = "inline";
-    document.getElementById("upgradeResearchCenterButton").style.display = "none";
-    document.getElementById("researchPointCount").style.display = "none";
-    document.getElementById("researchTitle").style.display = "none";
-    document.getElementById("researchTitleBreak").style.display = "none";
-    document.getElementById("unlockFactory").style.display = "none";
-    document.getElementById("raiseResourcePrices1Button").style.display = "none";
-}
-
-if (buildingsBuilt[0] === true) {
-    document.getElementById("buildResearchCenterButton").style.display = "none";
-    document.getElementById("researchPointCount").style.display = "block";
-    document.getElementById("researchTitle").style.display = "inline";
-    document.getElementById("researchTitleBreak").style.display = "inline";
-}
-
-if (factoryUnlocked === false) {
-    document.getElementById("buildFactoryButton").style.display = "none";
-    document.getElementById("upgradeFactoryButton").style.display = "none";
-}
-
-if (factoryUnlocked === true) {
-    document.getElementById("unlockFactory").style.display = "none";
-}
-
-if (buildingsBuilt[1] === true) {
-    document.getElementById("unlockFactory").style.display = "none";
-    document.getElementById("buildFactoryButton").style.display = "none";
-}
-
-if (buildingsBuilt[1] === false) {
-    document.getElementById("unlockSolarPanels").style.display = "none";
-    document.getElementById("refinedResourceCount").style.display = "none";
-    document.getElementById("FactoryTab").style.display = "none";
-}
-
-if (solarPanelsUnlocked === false) {
-    document.getElementById("buildSolarPanelButton").style.display = "none";
-    document.getElementById("solarPanelCount").style.display = "none";
-}
-
-if (buildingsBuilt[2] === false) {
-    document.getElementById("buildMoreSolarPanels").style.display = "none";
-    document.getElementById("upgradeSolarPanelButton").style.display = "none";
-    document.getElementById("upgradeSolarPanelSpaceButton").style.display = "none";
-    document.getElementById("energyCount").style.display = "none";
-    document.getElementById("unlockTelescope").style.display = "none";
-}
-
-if (buildingsBuilt[2] === true) {
-    document.getElementById("unlockSolarPanels").style.display = "none";
-    document.getElementById("buildSolarPanelButton").style.display = "none";
-    document.getElementById("unlockTelescope").style.display = "inline";
-}
-
-if (spaceportUnlocked === false) {
-    document.getElementById("unlockSpacePort").style.display = "none";
-    document.getElementById("buildSpaceportButton").style.display = "none";
-    document.getElementById("SpaceportTab").style.display = "none";
-}
-
-if (spaceshipLaunched === true) {
-    document.getElementById("launchSpaceshipButton").style.display = "none";
-    document.getElementById("constructSpaceshipButton").style.display = "none";
-}
-
-if (spaceshipLaunched === false) {
-    document.getElementById("systemOverviewTab").style.display = "none";
-    document.getElementById("industryUpgrade1Button").style.display = "none";
-}
-
-if (industryUpgradesBought[0] === true) {
-    document.getElementById("industryUpgrade1Button").style.display = "none";
-}
-
-if (industryUpgradesBought[1] === true || industryUpgradesBought[0] === false) {
-    document.getElementById("industryUpgrade2Button").style.display = "none";
-}
-
-if (spaceshipBuilt === true) {
-    document.getElementById("constructSpaceshipButton").style.display = "none";
-}
-
-if (spaceshipBuilt === false) {
-    document.getElementById("launchSpaceshipButton").style.display = "none";
-}
-
-if (telescopeUnlocked === false) {
-    document.getElementById("buildTelescope").style.display = "none";
-    document.getElementById("unlockFuelRefinery").style.display = "none";
-}
-
-if (telescopeUnlocked === true) {
-    document.getElementById("unlockTelescope").style.display = "none";
-}
-
-if (buildingsBuilt[3] === true) {
-    document.getElementById("buildTelescope").style.display = "none";
-}
-
-if (buildingsBuilt[3] === false) {
-    document.getElementById("unlockFuelRefinery").style.display = "none";
-}
-
-if (fuelRefineryUnlocked === false) {
-    document.getElementById("buildFuelRefinery").style.display = "none";
-    document.getElementById("unlockSpacePort").style.display = "none";
-}
-
-if (fuelRefineryUnlocked === true) {
-    document.getElementById("unlockFuelRefinery").style.display = "none";
-}
-
-if (buildingsBuilt[4] === true) {
-    document.getElementById("buildFuelRefinery").style.display = "none";
-    document.getElementById("unlockSpacePort").style.display = "inline";
-}
-
-if (buildingsBuilt[4] === false) {
-    document.getElementById("refineryDiv").style.display = "none";
-}
-
-if (solarPanelsUnlocked === true) {
-    document.getElementById("unlockSolarPanels").style.display = "none";
-}
-
-if (buildingsBuilt[5] === true) {
-    document.getElementById("buildSpaceportButton").style.display = "none";
-}
-
-if (buildingsBuilt[5] === false) {
-    document.getElementById("SpaceportTab").style.display = "none";
-}
-
-if (spaceportUnlocked === true) {
-    document.getElementById("unlockSpacePort").style.display = "none";
-}
-
-if (planetsColonized[0] === true) {
-    document.getElementById("colonizePlanet1Button").style.display = "none";
-}
-
-if (planetsColonized[0] === false || planetsColonized[1] === true) {
-    document.getElementById("colonizePlanet2Button").style.display = "none";
-}
-
-if (planetsColonized[1] === false || planetsColonized[2] === true) {
-    document.getElementById("colonizePlanet3Button").style.display = "none";
-}
-
-if (planetsColonized[2] === false || planetsColonized[3] === true) {
-    document.getElementById("colonizePlanet4Button").style.display = "none";
-}
-
-if (planetsColonized[3] === false || planetsColonized[4] === true) {
-    document.getElementById("colonizePlanet5Button").style.display = "none";
-}
-
-if (resourceSellUpgrades[0] === true) {
-    document.getElementById("raiseResourcePrices1Button").style.display = "none";
-}
-
-if (resourceSellUpgrades[0] === false || resourceSellUpgrades[1] === true) {
-    document.getElementById("raiseResourcePrices2Button").style.display = "none";
-}
-
-if (resourceSellUpgrades[1] === false || resourceSellUpgrades[2] === true) {
-    document.getElementById("raiseResourcePrices3Button").style.display = "none";
-}
-
-if (resourceSellUpgrades[2] === false || resourceSellUpgrades[3] === true) {
-    document.getElementById("raiseResourcePrices4Button").style.display = "none";
-}
-
-if (buildingsBuilt[3] === false) {
-    document.getElementById("upgradeTelescopeButton").style.display = "none";
-}
-
-if (buildingsBuilt[4] === false) {
-    document.getElementById("toggleRefineryButton").style.display = "none";
-    document.getElementById("upgradeRefineryButton").style.display = "none";
-    document.getElementById("rocketFuelCount").style.display = "none";
-}
-
-if (buildingsBuilt[6] === true) {
-    document.getElementById("buildOrbitalTelescope").style.display = "none";
-}
-
-if (buildingsBuilt[6] === false || buildingsBuilt[7] === true) {
-    document.getElementById("buildSpaceStation").style.display = "none";
-}
-
-if (buildingsBuilt[7] === false || buildingsBuilt[8] === true) {
-    document.getElementById("buildShipyard").style.display = "none";
-}
-
-if (buildingsBuilt[8] === false || buildingsBuilt[7] === true) {
-    document.getElementById("buildAsteroidMiningComplex").style.display = "none";
-}
-
-if (buildingsBuilt[9] === false || buildingsBuilt[10] === true) {
-    document.getElementById("buildDysonSphere").style.display = "none";
-}
-
-if (buildingsBuilt[9] === false) {
-    document.getElementById("buildAsteroidMinerButton").style.display = "none";
-}
-
 function upgradeWorkers() {
     //upgrades workers
     if (money >= workerEfficiencyCosts[workerLevel + 1]) {
@@ -729,10 +505,6 @@ function upgradeWorkers() {
     if (workerLevel === 7) {
         document.getElementById("upgradeWorkerButton").style.display = "none";
     }
-}
-
-if (workerLevel === 7) {
-    document.getElementById("upgradeWorkerButton").style.display = "none";
 }
 
 function upgradeWorkerHousing() {
@@ -755,10 +527,6 @@ function upgradeWorkerHousing() {
     }
 }
 
-if (workerHousingLevel === 8) {
-    document.getElementById("upgradeWorkerHousingButton").style.display = "none";
-}
-
 function upgradeResearchCenter() {
     //upgrades research center
     if (money < researchCenterEfficiencyCosts[researchCenterLevel + 1]) {
@@ -773,10 +541,6 @@ function upgradeResearchCenter() {
     if (researchCenterLevel === 4) {
         document.getElementById("upgradeResearchCenterButton").style.display = "none";
     }
-}
-
-if (researchCenterLevel === 4) {
-    document.getElementById("upgradeResearchCenterButton").style.display = "none";
 }
 
 function researchFactory() {
@@ -814,10 +578,6 @@ function upgradeFactory() {
     if (factoryLevel === 5) {
         document.getElementById("upgradeFactoryButton").style.display = "none";
     }
-}
-
-if (factoryLevel === 5) {
-    document.getElementById("upgradeFactoryButton").style.display = "none";
 }
 
 function researchSolarPanels() {
@@ -871,10 +631,6 @@ function upgradeSolarPanels() {
     }
 }
 
-if (solarPanelLevel === 5) {
-    document.getElementById("upgradeSolarPanelButton").style.display = "none";
-}
-
 function upgradeSolarPanelSpace() {
     //upgrades solar panel space
     if (resources < solarPanelSpaceCosts[solarPanelSpaceLevel + 1]) {
@@ -889,10 +645,6 @@ function upgradeSolarPanelSpace() {
     if (solarPanelSpaceLevel === 8) {
         document.getElementById("upgradeSolarPanelSpaceButton").style.display = "none";
     }
-}
-
-if (solarPanelSpaceLevel === 8) {
-    document.getElementById("upgradeSolarPanelSpaceButton").style.display = "none";
 }
 
 function researchTelescope() {
@@ -924,10 +676,6 @@ function upgradeTelescope() {
     if (telescopeLevel === 4) {
         document.getElementById("upgradeTelescopeButton").style.display = "none";
     }
-}
-
-if (telescopeLevel === 4) {
-    document.getElementById("upgradeTelescopeButton").style.display = "none";
 }
 
 function researchFuelRefinery() {
@@ -962,10 +710,6 @@ function upgradeFuelRefinery() {
     }
 }
 
-if (fuelRefineryLevel === 4) {
-    document.getElementById("upgradeRefineryButton").style.display = "none";
-}
-
 function researchSpaceport() {
     if (researchPoints < 10000) {
         notEnoughStuff("research");
@@ -981,28 +725,24 @@ function researchSpaceport() {
 }
 
 function toggleFactory() {
-    if (factoryToggle === false) {
-        factoryToggle = true;
-        document.getElementById("toggleFactoryButton").innerHTML = "Factory power: On<br>Uses 2 resources to make 1 refined resource.";
-    } else {
+    if (factoryToggle) {
         factoryToggle = false;
         document.getElementById("toggleFactoryButton").innerHTML = "Factory power: Off<br>Uses 2 resources to make 1 refined resource.";
+    } else {
+        factoryToggle = true;
+        document.getElementById("toggleFactoryButton").innerHTML = "Factory power: On<br>Uses 2 resources to make 1 refined resource.";
     }
 }
-
-document.getElementById("toggleFactoryButton").innerHTML = "Factory power: Off<br>Uses 2 resources to make 1 refined resource.";
 
 function toggleRefinery() {
-    if (refineryToggle === false) {
-        refineryToggle = true;
-        document.getElementById("toggleRefineryButton").innerHTML = "Refinery power: On<br>Uses 5 resources and 3 energy to make 2 rocket fuel.";
-    } else {
+    if (refineryToggle) {
         refineryToggle = false;
         document.getElementById("toggleRefineryButton").innerHTML = "Refinery power: Off<br>Uses 5 resources and 3 energy to make 2 rocket fuel.";
+    } else {
+        refineryToggle = true;
+        document.getElementById("toggleRefineryButton").innerHTML = "Refinery power: On<br>Uses 5 resources and 3 energy to make 2 rocket fuel.";
     }
 }
-
-document.getElementById("toggleRefineryButton").innerHTML = "Refinery power: Off<br>Uses 5 resources and 3 energy to make 2 rocket fuel.";
 
 function constructSpaceship() {
     if (money < 10000000) {
@@ -1169,3 +909,234 @@ function upgradeAsteroidMinersSpace() {}
 function upgradeFighters() {}
 
 function upgradeBattleships() {}
+
+function initialize() {
+    loadData();
+    setInterval(saveData, 5000);
+
+    tick1();
+    updateShipyardNumbers();
+
+    setInterval(tick2, 1000);
+
+    updateButtons();
+
+    if (buildingsBuilt[0]) {
+        document.getElementById("buildResearchCenterButton").style.display = "none";
+        document.getElementById("researchPointCount").style.display = "block";
+        document.getElementById("researchTitle").style.display = "inline";
+        document.getElementById("researchTitleBreak").style.display = "inline";
+    } else {
+        document.getElementById("buildResearchCenterButton").style.display = "inline";
+        document.getElementById("upgradeResearchCenterButton").style.display = "none";
+        document.getElementById("researchPointCount").style.display = "none";
+        document.getElementById("researchTitle").style.display = "none";
+        document.getElementById("researchTitleBreak").style.display = "none";
+        document.getElementById("unlockFactory").style.display = "none";
+        document.getElementById("raiseResourcePrices1Button").style.display = "none";
+    }
+
+    if (factoryUnlocked) {
+        document.getElementById("unlockFactory").style.display = "none";
+    } else {
+        document.getElementById("buildFactoryButton").style.display = "none";
+        document.getElementById("upgradeFactoryButton").style.display = "none";
+    }
+
+    if (buildingsBuilt[1]) {
+        document.getElementById("unlockFactory").style.display = "none";
+        document.getElementById("buildFactoryButton").style.display = "none";
+    } else {
+        document.getElementById("unlockSolarPanels").style.display = "none";
+        document.getElementById("refinedResourceCount").style.display = "none";
+        document.getElementById("FactoryTab").style.display = "none";
+    }
+
+    if (solarPanelsUnlocked) {
+        document.getElementById("unlockSolarPanels").style.display = "none";
+    } else {
+        document.getElementById("buildSolarPanelButton").style.display = "none";
+        document.getElementById("solarPanelCount").style.display = "none";
+    }
+
+    if (buildingsBuilt[2]) {
+        document.getElementById("unlockSolarPanels").style.display = "none";
+        document.getElementById("buildSolarPanelButton").style.display = "none";
+        document.getElementById("unlockTelescope").style.display = "inline";
+    } else {
+        document.getElementById("buildMoreSolarPanels").style.display = "none";
+        document.getElementById("upgradeSolarPanelButton").style.display = "none";
+        document.getElementById("upgradeSolarPanelSpaceButton").style.display = "none";
+        document.getElementById("energyCount").style.display = "none";
+        document.getElementById("unlockTelescope").style.display = "none";
+    }
+
+    if (spaceportUnlocked) {
+        document.getElementById("unlockSpacePort").style.display = "none";
+    } else {
+        document.getElementById("unlockSpacePort").style.display = "none";
+        document.getElementById("buildSpaceportButton").style.display = "none";
+        document.getElementById("SpaceportTab").style.display = "none";
+    }
+
+    if (spaceshipLaunched) {
+        document.getElementById("launchSpaceshipButton").style.display = "none";
+        document.getElementById("constructSpaceshipButton").style.display = "none";
+    } else {
+        document.getElementById("systemOverviewTab").style.display = "none";
+        document.getElementById("industryUpgrade1Button").style.display = "none";
+    }
+
+    if (industryUpgradesBought[0]) {
+        document.getElementById("industryUpgrade1Button").style.display = "none";
+    }
+
+    if (industryUpgradesBought[1] || !industryUpgradesBought[0]) {
+        document.getElementById("industryUpgrade2Button").style.display = "none";
+    }
+
+    if (spaceshipBuilt) {
+        document.getElementById("constructSpaceshipButton").style.display = "none";
+    } else {
+        document.getElementById("launchSpaceshipButton").style.display = "none";
+    }
+
+    if (telescopeUnlocked) {
+        document.getElementById("unlockTelescope").style.display = "none";
+    } else {
+        document.getElementById("buildTelescope").style.display = "none";
+        document.getElementById("unlockFuelRefinery").style.display = "none";
+    }
+
+    if (buildingsBuilt[3]) {
+        document.getElementById("buildTelescope").style.display = "none";
+    } else {
+        document.getElementById("unlockFuelRefinery").style.display = "none";
+    }
+
+    if (fuelRefineryUnlocked) {
+        document.getElementById("unlockFuelRefinery").style.display = "none";
+    } else {
+        document.getElementById("buildFuelRefinery").style.display = "none";
+        document.getElementById("unlockSpacePort").style.display = "none";
+    }
+
+    if (buildingsBuilt[4]) {
+        document.getElementById("buildFuelRefinery").style.display = "none";
+        document.getElementById("unlockSpacePort").style.display = "inline";
+    } else {
+        document.getElementById("refineryDiv").style.display = "none";
+    }
+
+    if (buildingsBuilt[5]) {
+        document.getElementById("buildSpaceportButton").style.display = "none";
+    } else {
+        document.getElementById("SpaceportTab").style.display = "none";
+    }
+
+    if (planetsColonized[0]) {
+        document.getElementById("colonizePlanet1Button").style.display = "none";
+    }
+
+    if (!planetsColonized[0] || planetsColonized[1]) {
+        document.getElementById("colonizePlanet2Button").style.display = "none";
+    }
+
+    if (!planetsColonized[1] || planetsColonized[2]) {
+        document.getElementById("colonizePlanet3Button").style.display = "none";
+    }
+
+    if (!planetsColonized[2] || planetsColonized[3]) {
+        document.getElementById("colonizePlanet4Button").style.display = "none";
+    }
+
+    if (!planetsColonized[3] || planetsColonized[4]) {
+        document.getElementById("colonizePlanet5Button").style.display = "none";
+    }
+
+    if (resourceSellUpgrades[0]) {
+        document.getElementById("raiseResourcePrices1Button").style.display = "none";
+    }
+
+    if (!resourceSellUpgrades[0] || resourceSellUpgrades[1]) {
+        document.getElementById("raiseResourcePrices2Button").style.display = "none";
+    }
+
+    if (!resourceSellUpgrades[1] || resourceSellUpgrades[2]) {
+        document.getElementById("raiseResourcePrices3Button").style.display = "none";
+    }
+
+    if (!resourceSellUpgrades[2] || resourceSellUpgrades[3]) {
+        document.getElementById("raiseResourcePrices4Button").style.display = "none";
+    }
+
+    if (!buildingsBuilt[3]) {
+        document.getElementById("upgradeTelescopeButton").style.display = "none";
+    }
+
+    if (!buildingsBuilt[4]) {
+        document.getElementById("toggleRefineryButton").style.display = "none";
+        document.getElementById("upgradeRefineryButton").style.display = "none";
+        document.getElementById("rocketFuelCount").style.display = "none";
+    }
+
+    if (buildingsBuilt[6]) {
+        document.getElementById("buildOrbitalTelescope").style.display = "none";
+    }
+
+    if (!buildingsBuilt[6] || buildingsBuilt[7]) {
+        document.getElementById("buildSpaceStation").style.display = "none";
+    }
+
+    if (!buildingsBuilt[7] || buildingsBuilt[8]) {
+        document.getElementById("buildShipyard").style.display = "none";
+    }
+
+    if (!buildingsBuilt[8] || buildingsBuilt[7]) {
+        document.getElementById("buildAsteroidMiningComplex").style.display = "none";
+    }
+
+    if (!buildingsBuilt[9] || buildingsBuilt[10]) {
+        document.getElementById("buildDysonSphere").style.display = "none";
+    }
+
+    if (!buildingsBuilt[9]) {
+        document.getElementById("buildAsteroidMinerButton").style.display = "none";
+    }
+
+    if (workerLevel >= 7) {
+        document.getElementById("upgradeWorkerButton").style.display = "none";
+    }
+
+    if (researchCenterLevel >= 4) {
+        document.getElementById("upgradeResearchCenterButton").style.display = "none";
+    }
+
+    if (factoryLevel >= 5) {
+        document.getElementById("upgradeFactoryButton").style.display = "none";
+    }
+
+    if (solarPanelLevel >= 5) {
+        document.getElementById("upgradeSolarPanelButton").style.display = "none";
+    }
+
+    if (solarPanelSpaceLevel >= 8) {
+        document.getElementById("upgradeSolarPanelSpaceButton").style.display = "none";
+    }
+
+    if (fuelRefineryLevel >= 4) {
+        document.getElementById("upgradeRefineryButton").style.display = "none";
+    }
+
+    if (manualResourceLevel >= 7) {
+        document.getElementById("upgradeResourceClickButton").style.display = "none";
+    }
+
+    if (workerHousingLevel >= 8) {
+        document.getElementById("upgradeWorkerHousingButton").style.display = "none";
+    }
+
+    if (telescopeLevel >= 4) {
+        document.getElementById("upgradeTelescopeButton").style.display = "none";
+    }
+}
