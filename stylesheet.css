@@ -206,7 +206,7 @@ footer {
     width: 60%;
     display: grid;
     grid-template: auto auto / auto auto;
-    column-gap: 8px;
+    row-gap: 8px;
 }
 
 .settingButton {
