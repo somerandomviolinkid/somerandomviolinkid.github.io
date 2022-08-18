@@ -1,3 +1,4 @@
+"use strict";
 function openTab(evt, tabName) {
   // Get all elements with class="tabcontent" and hide them
   const tabcontent = document.getElementsByClassName("tabcontent");

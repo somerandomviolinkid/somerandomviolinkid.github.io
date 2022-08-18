@@ -1,3 +1,4 @@
+"use strict";
 /**
  * @param {number} number - The number to format
  * @return {string} - The formatted number
