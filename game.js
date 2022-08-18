@@ -236,7 +236,7 @@ async function uploadData() {
         localStorage.setItem("saveKey", contents);
         loadData();
     } catch (err) {
-        console.errror(err);
+        console.error(err);
     }
 }
 
