@@ -97,8 +97,17 @@ p {
     background-color: gray;
     padding: 5px;
     float: center;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 2s;
 
     font-family: "Lucida Console", "Courier New", monospace;
+}
+#warning:empty {
+    visibility: hidden;
+    transition: none;
 }
 
 #resourceCountView {

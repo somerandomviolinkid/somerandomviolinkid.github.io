@@ -87,10 +87,41 @@ let industryUpgradesBought = [false, false];
 //research center, factory, solarpanel, telescope, refinery, spaceport, orbital telescope, space station, shipyard, asteroid mining complex, dyson sphere
 let buildingsBuilt = [false, false, false, false, false, false, false, false, false, false, false];
 
-document.getElementById("warning").style.visibility = "hidden";
+/**
+ * Shows a given string inside the warning box.
+ *
+ * @param {string} warningText - The text to show in the warning popup
+ * @param {number | undefined} duration - Duration in milliseconds how long to show the popup for
+ */
+function showWarning(warningText, duration = 2000) {
+    const warning = document.getElementById("warning");
+    if (!warning) return console.warn("Element #warning not found");
 
-function clearWarning() {
-    document.getElementById("warning").style.visibility = "hidden";
+    warning.style.opacity = "1";
+    // Use a timeout to delay until next JS tick.
+    // Otherwise CSS calculatiosn for both values will happen simultaneously and the warning will fade in.
+    setTimeout(() => {
+        warning.innerHTML = warningText;
+
+        setTimeout(clearWarning, duration);
+    });
+}
+
+/**
+ * Hides the warning box.
+ *
+ * @param {boolean | undefined} instant - Whether the default animations should be disabled
+ */
+function clearWarning(instant = false) {
+    const warning = document.getElementById("warning");
+    if (!warning) return console.warn("Element #warning not found");
+
+    warning.style.opacity = "0";
+    if (instant) {
+        warning.innerHTML = "";
+    } else {
+        setTimeout(() => (warning.innerHTML = ""), 2000);
+    }
 }
 
 function saveData() {
@@ -178,9 +209,7 @@ function loadData() {
     tick1();
     updateShipyardNumbers();
 
-    document.getElementById("warning").style.visibility = "visible";
-    document.getElementById("warning").innerHTML = "Data successfully loaded!";
-    setTimeout(clearWarning, 2000);
+    showWarning("Data successfully loaded!");
 }
 
 function resetData() {
@@ -212,10 +241,7 @@ async function uploadData() {
 }
 
 function notEnoughStuff(resource) {
-    //get more money dipshit
-    document.getElementById("warning").style.visibility = "visible";
-    document.getElementById("warning").innerHTML = "Not enough " + resource + "!";
-    setTimeout(clearWarning, 2000);
+    showWarning(`Not enough ${resource}!`, 2000);
 }
 
 function tick1() {
