@@ -1,5 +1,6 @@
 body {
     background-image: url(assets/background.png);
+    overflow-y: scroll;
 }
 
 main {
@@ -38,7 +39,7 @@ button:hover {
 }
 
 /* Create an active/current tablink class */
-.tab button.active {
+.tab .tablinks.active {
     background-color: lightgray;
 }
 
@@ -60,7 +61,7 @@ h1 {
 }
 
 h2 {
-    color: blue;
+    color: darkblue;
     font-family: "Courier New", "Lucida Console", monospace;
 }
 
@@ -193,11 +194,19 @@ footer {
 }
 
 .dataButtons {
-    border-style: solid;
-    border-width: 2px;
-    border-color: black;
-    display: inline;
-    float: left;
+    width: 60%;
+    display: grid;
+    grid-template: auto auto / auto auto;
+    column-gap: 8px;
+}
+
+.settingButton {
+    height: 100%;
+    width: 100%;
+    padding: 15px;
+    font-size: 24px;
+
+    background-color: azure;
 }
 
 .manufacturingDiv {
@@ -223,18 +232,4 @@ footer {
     margin: auto;
     margin-left: 2%;
     margin-right: 2%;
-}
-
-.settingButton {
-    border-radius: 25%;
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-bottom: 10px;
-    padding: 25px;
-    font-size: 24px;
-
-    background-color: azure;
-    border-style: solid;
-    border-color: black;
 }
