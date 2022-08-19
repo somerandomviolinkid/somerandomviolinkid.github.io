@@ -99,8 +99,8 @@ p {
     float: center;
     position: fixed;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top: 8px;
+    transform: translate(-50%, 0);
     transition: opacity 2s;
 
     font-family: "Lucida Console", "Courier New", monospace;
