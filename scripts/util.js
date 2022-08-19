@@ -10,14 +10,14 @@
  * ```
  */
 function formatNumber(number) {
-    if (typeof number !== "number") {
-        if (Object.hasOwnProperty(number, "toString")) {
-            return number.toString();
-        } else {
-            return number;
-        }
+  if (typeof number !== "number") {
+    if (Object.hasOwnProperty(number, "toString")) {
+      return number.toString();
+    } else {
+      return number;
     }
-    return number.toLocaleString("en-US");
+  }
+  return number.toLocaleString("en-US");
 }
 
 /**
@@ -33,5 +33,5 @@ function formatNumber(number) {
  * ```
  */
 function roundNumber(number, places) {
-    return Math.round(number * 10 ** places) / 10 ** places;
+  return Math.round(number * 10 ** places) / 10 ** places;
 }
