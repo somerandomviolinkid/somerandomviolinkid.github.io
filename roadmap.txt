@@ -1,44 +1,25 @@
 (current road map of the game)
 
-new things:
+* = not implemented yet
 
-    planet buildings:
-        oil drill
-            unlocks manual oil pumping
-            upgrades:
-                output
-        oil rig
-            automatic oil gain 
-            
-        drilling facility:
-            needs workers, gives resources
-            
-        power plant
-            produces energy from oil and gas
-            upgrades: 
-                energy conversion (increases oil/gas to power rate)
-                capacity (able to accept more oil/gas per tick)
-        oil refinery
-            produces gas from oil
-            
+planet buildings:
+research center
+oil drill*
+drilling facility*
+solar panel
+factory
+oil refinery*
+fuel refinery
+telescope
+spaceport
 
-    planet orbital buildings:
-        space elevator
+planet orbital buildings:
+orbital telescope
+space station
+shipyard
+asteroid mining complex
+space elevator*
 
-    system buildings:
-        matrioshka brain
-            gives large amounts of research but consumes large amounts of energy
-
-    research:
-        
-    resources:
-        oil (can be converted to energy in early game, maybe like 1 oil to 2 energy? could be upgradeable)
-        gas (made from oil refinery, better conversion to energy and used in rocket fuel)
-        
-    ui/graphical:
-        research tree
-        detailed views of planet, solar system, and galaxy
-        in game wiki
-
-
-
+system buildings:
+dyson swarm
+matrioshka brain*

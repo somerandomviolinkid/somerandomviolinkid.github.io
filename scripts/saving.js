@@ -29,10 +29,7 @@ function saveData() {
     })
   );
 
-  document.getElementById("warning").style.visibility = "visible";
-  document.getElementById("warning").innerHTML = "Game saved.";
-
-  setTimeout(clearWarning, 2000);
+  showWarning("Game saved.");
 }
 
 function loadData() {
@@ -68,9 +65,7 @@ function loadData() {
   tick1();
   updateShipyardNumbers();
 
-  document.getElementById("warning").style.visibility = "visible";
-  document.getElementById("warning").innerHTML = "Data successfully loaded!";
-  setTimeout(clearWarning, 2000);
+  showWarning("Data successfully loaded!");
 }
 
 function resetData() {
@@ -80,29 +75,25 @@ function resetData() {
 }
 
 function downloadData() {
-  //exports data as json file i think
   saveData();
   const json = localStorage.getItem("saveKey");
-  const fileName = "save.json";
   const a = document.createElement("a");
-  const type = fileName.split(".").pop();
-  a.href = URL.createObjectURL(
-    new Blob([json], { type: `text/${type === "txt" ? "plain" : type}` })
-  );
-  a.download = fileName;
+  a.href = URL.createObjectURL(new Blob([json], { type: "application/json" }));
+  a.download = "save.json";
   a.click();
 }
 
 async function uploadData() {
-  //imports data from json file
   try {
-    const [fileHandle] = await window.showOpenFilePicker();
-    const file = await fileHandle.getFile();
-    const contents = await file.text();
+    /** @type {HTMLInputElement} */
+    const importInput = document.getElementById("importDataFiles");
+    if (!importInput || !importInput.files || !importInput.files[0]) return console.info("Aborted import");
+    const contents = await importInput.files[0].text();
+    // Clear input value so you can import the same file twice in a row
+    importInput.value = "";
     localStorage.setItem("saveKey", contents);
-    loadData();
-  } catch (err) {}
+    initialize(true);
+  } catch (err) {
+    console.error(err);
+  }
 }
-
-loadData();
-setInterval(saveData, 15000);

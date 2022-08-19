@@ -1,5 +1,6 @@
 body {
   background-image: url(assets/background.png);
+  overflow-y: scroll;
 }
 
 main {
@@ -17,6 +18,7 @@ main {
   border-top-right-radius: 25px;
 }
 
+/* Style the buttons that are used to open the tab content */
 .tab button {
   background-color: whitesmoke;
   float: left;
@@ -31,14 +33,17 @@ main {
   border-radius: 10px;
 }
 
+/* Change background color of buttons on hover */
 button:hover {
   background-color: darkgray;
 }
 
-.tab button.active {
+/* Create an active/current tablink class */
+.tab .tablinks.active {
   background-color: lightgray;
 }
 
+/* Style the tab content */
 .tabcontent {
   display: none;
   width: 100%;
@@ -90,7 +95,7 @@ h1 {
 }
 
 h2 {
-  color: blue;
+  color: blue; /* low contrast, consider changing to different color */
   font-family: "Courier New", "Lucida Console", monospace;
 }
 
@@ -111,7 +116,6 @@ p {
 }
 
 /* resource count box */
-
 #resourceCountView {
   max-width: 12%;
   padding-bottom: 15px;
@@ -128,22 +132,27 @@ p {
 }
 
 /* save and low resource warning */
-
 #warning {
   text-align: center;
-  font-size: 20px;
-  color: blue;
-  width: fit-content;
+  font-size: 24px;
+  color: red;
+  width: 20%;
   margin: auto;
   border-style: solid;
   border-color: black;
   border-radius: 10px;
   background-color: gray;
   padding: 5px;
-  display: block;
-  float: left;
-
+  float: center;
+  position: fixed;
+  left: 50%;
+  top: 8px;
+  transform: translate(-50%, 0);
   font-family: "Lucida Console", "Courier New", monospace;
+}
+#warning:empty {
+  visibility: hidden;
+  transition: none;
 }
 
 aside {
@@ -189,7 +198,6 @@ footer {
 }
 
 /* reset data warning */
-
 #resetWarning {
   font-style: bold;
   color: red;
@@ -207,7 +215,6 @@ footer {
 }
 
 /* resource count */
-
 .resourceNumber {
   margin-bottom: 8px;
   width: 90%;
@@ -217,23 +224,19 @@ footer {
 }
 
 /* ship amounts */
-
 .shipCount {
   display: inline;
 }
 
 /* saving buttons */
-
 .dataButtons {
-  border-style: solid;
-  border-width: 2px;
-  border-color: black;
-  display: inline;
-  float: left;
+  width: 60%;
+  display: grid;
+  grid-template: auto auto auto / auto auto;
+  row-gap: 8px;
 }
 
 /* factory stuff */
-
 .manufacturingDiv {
   border-style: solid;
   border-width: 2px;
@@ -265,6 +268,7 @@ footer {
 /* settings */
 
 .settingButton {
+  height: 100%;
   border-radius: 25%;
   width: 80%;
   margin-left: 10%;
