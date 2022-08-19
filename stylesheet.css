@@ -1,244 +1,445 @@
 body {
-    background-image: url(assets/background.png);
-    overflow-y: scroll;
+  background-image: url(assets/background.png);
+  overflow-y: scroll;
 }
 
 main {
-    width: 85%;
+  width: 85%;
 }
 
-/* Style the tab */
+/* totally accurate battle simulator */
 .tab {
-    overflow: hidden;
-    width: 100%;
-    padding: 6px 12px;
-    border: 1px solid darkgray;
-    background-color: aliceblue;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
+  overflow: hidden;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid darkgray;
+  background-color: aliceblue;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
 }
 
 /* Style the buttons that are used to open the tab content */
 .tab button {
-    background-color: whitesmoke;
-    float: left;
-    border: solid;
-    border-color: black;
-    border-width: 1px;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    font-family: "Lucida Console", "Courier New", monospace;
-    border-radius: 10px;
+  background-color: whitesmoke;
+  float: left;
+  border: solid;
+  border-color: black;
+  border-width: 1px;
+  outline: none;
+  cursor: pointer;
+  padding: 16px;
+  transition: 0.3s;
+  font-family: "Lucida Console", "Courier New", monospace;
+  border-radius: 10px;
 }
 
 /* Change background color of buttons on hover */
 button:hover {
-    background-color: darkgray;
+  background-color: darkgray;
 }
 
 /* Create an active/current tablink class */
 .tab .tablinks.active {
-    background-color: lightgray;
+  background-color: lightgray;
 }
 
 /* Style the tab content */
 .tabcontent {
-    display: none;
-    width: 100%;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    background-color: gray;
-    border-top: none;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
+  display: none;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  background-color: gray;
+  border-top: none;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
 }
 
+/* tooltips */
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  font-size: 15px;
+  color: navy;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 150px;
+  top: 100%;
+  left: 50%;
+  margin-left: -75px;
+  background-color: rgb(26, 25, 25);
+  color: #fff;
+  text-align: center;
+  padding: 4px;
+  border-width: 2px;
+  border-color: antiquewhite;
+  border-radius: 10px;
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  transition: 0.4s;
+}
+
+/* headings */
+
 h1 {
-    color: cyan;
-    font-family: "Courier New", "Lucida Console", monospace;
+  color: cyan;
+  font-family: "Courier New", "Lucida Console", monospace;
 }
 
 h2 {
-    color: darkblue;
-    font-family: "Courier New", "Lucida Console", monospace;
+  color: blue; /* low contrast, consider changing to different color */
+  font-family: "Courier New", "Lucida Console", monospace;
 }
 
 h3 {
-    color: aquamarine;
-    font-family: "Courier New", "Lucida Console", monospace;
+  color: aquamarine;
+  font-family: "Courier New", "Lucida Console", monospace;
 }
 
 h4 {
-    color: gainsboro;
-    font-family: "Courier New", "Lucida Console", monospace;
-}
-
-#versionNumber {
-    color: blanchedalmond;
-    font-family: "Courier New", "Lucida Console", monospace;
+  color: gainsboro;
+  font-family: "Courier New", "Lucida Console", monospace;
+  margin-left: 8px;
 }
 
 p {
-    color: black;
-    font-family: "Ariel", "Verdana", sans-serif;
+  color: black;
+  font-family: "Ariel", "Verdana", sans-serif;
 }
 
-#warning {
-    text-align: center;
-    font-size: 24px;
-    color: red;
-    width: 20%;
-    margin: auto;
-    border-style: solid;
-    border-color: black;
-    border-radius: 10px;
-    background-color: gray;
-    padding: 5px;
-    float: center;
-    position: fixed;
-    left: 50%;
-    top: 8px;
-    transform: translate(-50%, 0);
-    transition: opacity 2s;
+/* resource count box */
+#resourceCountView {
+  max-width: 12%;
+  padding-bottom: 15px;
+  border-style: solid;
+  border-width: 4px;
+  border-radius: 20px;
+  margin-top: 5%;
+  float: right;
+  background-color: lightgray;
 
-    font-family: "Lucida Console", "Courier New", monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* save and low resource warning */
+#warning {
+  text-align: center;
+  font-size: 24px;
+  color: red;
+  width: 20%;
+  margin: auto;
+  border-style: solid;
+  border-color: black;
+  border-radius: 10px;
+  background-color: gray;
+  padding: 5px;
+  float: center;
+  position: fixed;
+  left: 50%;
+  top: 8px;
+  transform: translate(-50%, 0);
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 #warning:empty {
-    visibility: hidden;
-    transition: none;
-}
-
-#resourceCountView {
-    max-width: 12%;
-    padding-bottom: 15px;
-    border-style: solid;
-    border-width: 4px;
-    border-radius: 20px;
-    float: right;
-    background-color: lightgray;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  visibility: hidden;
+  transition: none;
 }
 
 aside {
-    width: 12%;
-    float: left;
-    background-color: gray;
+  width: 12%;
+  float: left;
+  background-color: gray;
 }
 
 button {
-    background-color: lightgrey;
-    border: 1px solid black;
-    width: 16.66%;
-    height: 10%;
-    cursor: pointer;
-    transition: 0.4s;
-}
-
-.resourceButton {
-    width: 75%;
-    border-style: solid;
-    background-color: rgb(230, 230, 230);
+  background-color: lightgray;
+  border: 1px solid black;
+  width: 16.66%;
+  height: fit-content;
+  cursor: pointer;
+  transition: 0.5s;
 }
 
 .infoBox {
-    color: black;
-    font-family: "Lucida Console", "Courier New", monospace;
-    border-color: black;
-    background-color: lightslategray;
-    border-style: solid;
-    border-width: 1px;
-    padding: 10px;
-    width: 40%;
-    border-radius: 25px;
+  color: black;
+  font-family: "Lucida Console", "Courier New", monospace;
+  border-color: black;
+  background-color: lightslategray;
+  border-style: solid;
+  border-width: 1px;
+  padding: 10px;
+  width: fit-content;
+  border-radius: 25px;
 }
 
 hr {
-    color: lightcyan;
-    height: 2px;
-    background-color: lightcyan;
-    width: 100%;
+  color: lightcyan;
+  height: 2px;
+  background-color: lightcyan;
+  width: 100%;
 }
 
 footer {
-    color: aqua;
-    font-size: 15px;
-    position: fixed;
-    bottom: 0;
-    font-family: "Lucida Console", "Courier New", monospace;
+  color: aqua;
+  font-size: 15px;
+  margin-top: 8px;
+  bottom: 0;
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 
+/* reset data warning */
 #resetWarning {
-    font-style: bold;
-    color: red;
-    font-size: 24px;
-    text-align: center;
+  font-style: bold;
+  color: red;
+  font-size: 24px;
+  text-align: center;
 
-    background-color: white;
+  background-color: white;
 
-    max-width: fit-content;
-    border-style: solid;
-    border-color: black;
-    border-radius: 25px;
-    border-width: 50%;
-    padding: 8px;
+  max-width: fit-content;
+  border-style: solid;
+  border-color: black;
+  border-radius: 25px;
+  border-width: 50%;
+  padding: 8px;
 }
 
+/* resource count */
 .resourceNumber {
-    margin-bottom: 8px;
-    width: 90%;
-    display: block;
-    border-style: solid;
-    background-color: rgb(230, 230, 230);
-    border-width: 2px;
-    padding-left: 4px;
+  margin-bottom: 8px;
+  width: 90%;
+  display: block;
+  padding-left: 4px;
+  font-size: 18px;
 }
 
+/* ship amounts */
 .shipCount {
-    display: inline;
+  display: inline;
 }
 
+/* saving buttons */
 .dataButtons {
-    width: 60%;
-    display: grid;
-    grid-template: auto auto / auto auto;
-    row-gap: 8px;
+  width: 60%;
+  display: grid;
+  grid-template: auto auto auto / auto auto;
+  row-gap: 8px;
 }
 
-.settingButton {
-    height: 100%;
-    width: 100%;
-    padding: 15px;
-    font-size: 24px;
-
-    background-color: azure;
-}
-
+/* factory stuff */
 .manufacturingDiv {
-    border-style: solid;
-    border-width: 2px;
-    border-color: black;
-    padding: 8px;
-    width: 45%;
-    display: inline;
-    float: left;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  padding: 8px;
+  width: 45%;
+  height: 300px;
+  display: inline;
+  float: left;
 }
 
 .manufacturingButton {
-    border-style: solid;
-    border-radius: 15px;
-    border-color: black;
-    border-width: 2px;
-    padding: 5px;
-    font-size: 15px;
-    font-family: "Courier New", "Lucida Console", monospace;
+  border-style: solid;
+  border-radius: 15px;
+  border-color: black;
+  border-width: 2px;
+  padding: 5px;
+  font-size: 16px;
+  font-weight: 2px;
+  font-family: "Courier New", "Lucida Console", monospace;
 
-    width: 45%;
-    margin: auto;
-    margin-left: 2%;
-    margin-right: 2%;
+  width: 45%;
+  height: fit-content;
+  margin: auto;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+/* settings */
+
+.settingButton {
+  height: 100%;
+  border-radius: 25%;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 10px;
+  padding: 25px;
+  font-size: 24px;
+
+  background-color: azure;
+  border-style: solid;
+  border-color: black;
+}
+
+/* game information */
+
+#gameInfo {
+  height: 48px;
+}
+
+#gameName {
+  display: inline;
+  float: left;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+#versionNumber {
+  color: blanchedalmond;
+  font-family: "Courier New", "Lucida Console", monospace;
+  display: inline;
+  float: left;
+  margin-left: 36px;
+  margin-top: 6px;
+  margin-bottom: auto;
+}
+
+#authorName {
+  color: cornflowerblue;
+  font-family: "Courier New", "Lucida Console", monospace;
+  display: block;
+  float: left;
+  margin-left: 36px;
+  margin-top: 6px;
+  margin-bottom: auto;
+}
+
+/* planet divs*/
+#resourcesDiv {
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  background-color: darkgray;
+  width: 48%;
+  height: 270px;
+  display: inline-flex;
+}
+
+#constructionDiv {
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  background-color: darkgray;
+  position: relative;
+  right: 8px;
+  width: 48%;
+  height: 270px;
+  display: inline-flex;
+}
+
+#upgradesDiv {
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  background-color: darkgray;
+  width: 96%;
+  height: fit-content;
+  display: inline-flex;
+}
+
+.planetDivTitle {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 8px;
+  margin-right: 8px;
+  width: 150px;
+  text-align: center;
+  height: fit-content;
+  padding: 8px;
+  border-style: solid;
+  border-radius: 16px;
+  border-color: black;
+  background-color: steelblue;
+}
+
+/* manual resource gain buttons stuff */
+.manualButtonsDiv {
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  background-color: dimgray;
+  padding: 0px;
+  width: 40%;
+  position: relative;
+  top: 9px;
+  height: 252px;
+  display: inline;
+}
+
+.resourceBigButton {
+  width: 33%;
+  height: 186px;
+  border-style: solid;
+  display: inline;
+  float: left;
+  font-family: "Courier New", "Lucida Console", monospace;
+  font-weight: bold;
+}
+
+.resourceSmallButton {
+  width: 33%;
+  height: 62px;
+  border-style: solid;
+  display: block;
+  float: left;
+  font-family: "Courier New", "Lucida Console", monospace;
+  font-weight: bold;
+}
+
+.constructionButton {
+  float: left;
+  font-size: 20px;
+  width: fit-content;
+  position: relative;
+  top: 20%;
+  font-family: "Lucida Console", "Courier New", monospace;
+  font-weight: 4px;
+
+  margin-left: 8px;
+}
+
+.planetUpgradeButton {
+  height: fit-content;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 180px;
+  text-align: center;
+  font-family: "Courier New", "Lucida Console", monospace;
+  font-size: 16px;
+  font-weight: 4px;
+  font-style: bold;
+  background-color: slategray;
+  display: block;
+  float: left;
+}
+
+.planetUpgradeButton:hover {
+  background-color: cadetblue;
+}
+
+.planetUpgradeTitle {
+  margin-left: 16px;
+  margin-right: 8px;
+  width: 100px;
+  text-align: center;
+  height: fit-content;
+  margin-top: auto;
+  margin-bottom: auto;
+
+  border-style: solid;
+  border-radius: 10px;
+  padding: 4px;
+  border-color: whitesmoke;
+  background-color: dimgray;
 }

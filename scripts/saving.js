@@ -1,29 +1,23 @@
 function saveData() {
-  //saves stuff
+  //saves stuff to local storage
   window.localStorage.setItem(
     "saveKey",
     JSON.stringify({
       money,
       resources,
       refinedResources,
+      oil,
+      gasoline,
       workers,
       energy,
       researchPoints,
       planetsControlled,
       solarPanels,
-      workerLevel,
-      workerHousingLevel,
-      researchCenterLevel,
-      manualResourceLevel,
-      solarPanelLevel,
-      factoryLevel,
-      solarPanelSpaceLevel,
+      upgradeLevelsIndex,
       spaceshipBuilt,
       rocketFuel,
       resourceSellRate,
       resourceSellUpgrades,
-      fuelRefineryLevel,
-      telescopeLevel,
       planetsColonized,
       spaceshipLaunched,
       buildingsBuilt,
@@ -39,7 +33,7 @@ function saveData() {
 }
 
 function loadData() {
-  //loads stuff
+  //loads stuff from local storage
   const saveString = localStorage.getItem("saveKey");
   if (!saveString) return;
   const save = JSON.parse(saveString);
@@ -47,24 +41,18 @@ function loadData() {
   money = save.money;
   resources = save.resources;
   refinedResources = save.refinedResources;
+  oil = save.oil;
+  gasoline = save.gasoline;
   workers = save.workers;
   energy = save.energy;
   researchPoints = save.researchPoints;
   planetsControlled = save.planetsControlled;
   solarPanels = save.solarPanels;
-  workerLevel = save.workerLevel;
-  workerHousingLevel = save.workerHousingLevel;
-  researchCenterLevel = save.researchCenterLevel;
-  manualResourceLevel = save.manualResourceLevel;
-  solarPanelLevel = save.solarPanelLevel;
-  factoryLevel = save.factoryLevel;
-  solarPanelSpaceLevel = save.solarPanelSpaceLevel;
+  upgradeLevelsIndex = save.upgradeLevelsIndex;
   spaceshipBuilt = save.spaceshipBuilt;
   rocketFuel = save.rocketFuel;
   resourceSellRate = save.resourceSellRate;
   resourceSellUpgrades = save.resourceSellUpgrades;
-  fuelRefineryLevel = save.fuelRefineryLevel;
-  telescopeLevel = save.telescopeLevel;
   planetsColonized = save.planetsColonized;
   spaceshipLaunched = save.spaceshipLaunched;
   buildingsBuilt = save.buildingsBuilt;
@@ -104,7 +92,7 @@ async function uploadData() {
     // Clear input value so you can import the same file twice in a row
     importInput.value = "";
     localStorage.setItem("saveKey", contents);
-    initialize();
+    initialize(true);
   } catch (err) {
     console.error(err);
   }
