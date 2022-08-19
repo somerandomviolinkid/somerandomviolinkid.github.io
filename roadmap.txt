@@ -1,13 +1,25 @@
 (current road map of the game)
 
-high priority: 
-    balance upgrades and pacing
-    start adding content for later stages of game
+* = not implemented yet
 
-medium priority:
-    clean up code
-    fix minor ui graphical errors
-    make buttons in general look better
+planet buildings:
+research center
+oil drill*
+drilling facility*
+solar panel
+factory
+oil refinery*
+fuel refinery
+telescope
+spaceport
 
-low priority:
-    icons for upgrade buttons
+planet orbital buildings:
+orbital telescope
+space station
+shipyard
+asteroid mining complex
+space elevator*
+
+system buildings:
+dyson swarm
+matrioshka brain*

@@ -16,7 +16,7 @@
     <p id="warning"></p>
     <header>
       <h1>Spaceship Incremental Game</h1>
-      <h2 id="versionNumber">Alpha v1.6.101</h2>
+      <h2 id="versionNumber">Beta 1.0.0 demo</h2>
     </header>
 
     <aside id="resourceCountView">
@@ -69,12 +69,12 @@
             >
               Build solar panels<br /><img src="assets/solarpanelicon.png" alt="Spaceport Icon" style="width: 64px; height: 64px" /><br />Cost: 20,000 Money<br />100 Refined Resources
             </button>
-            <button id="buildTelescope" onclick="buildBuilding(80000, 0, 400, 0, 3, 'buildTelescope', 'unlockFuelRefinery', 'upgradeTelescopeButton')">
+            <button id="buildTelescopeButton" onclick="buildBuilding(80000, 0, 400, 0, 3, 'buildTelescopeButton', 'unlockFuelRefinery', 'upgradeTelescopeButton')">
               Build a telescope<br /><img src="assets/telescopeicon.png" alt="Telescope Icon" style="width: 64px; height: 64px" /><br />Cost: 80,000 Money<br />400 Refined Resources
             </button>
             <button
-              id="buildFuelRefinery"
-              onclick="buildBuilding(150000, 0, 1000, 0, 4, 'buildFuelRefinery', 'unlockSpacePort', 'refineryDiv', 'toggleRefineryButton', 'upgradeRefineryButton', undefined, 'rocketFuelCount')"
+              id="buildFuelRefineryButton"
+              onclick="buildBuilding(150000, 0, 1000, 0, 4, 'buildFuelRefineryButton', 'unlockSpacePort', 'refineryDiv', 'toggleRefineryButton', 'upgradeRefineryButton', undefined, 'rocketFuelCount')"
             >
               Build a fuel refinery<br /><img src="assets/fuelrefineryicon.png" alt="Fuel Refinery Icon" style="width: 64px; height: 64px" /><br />Cost: 150,000 Money<br />1,000 Refined Resources
             </button>
@@ -161,11 +161,11 @@
           <button id="upgradeResearchCenterButton" onclick="upgradeResearchCenter()"></button>
           <hr id="researchTitleBreak" />
           <h3 id="researchTitle">Research</h3>
-          <button id="unlockFactory" onclick="researchFactory()">Unlock factory<br />Costs 100 research.</button>
-          <button id="unlockSolarPanels" onclick="researchSolarPanels()">Unlock solar panels<br />Costs 500 research.</button>
-          <button id="unlockTelescope" onclick="researchTelescope()">Unlock telescope<br />Costs 1,500 research.</button>
-          <button id="unlockFuelRefinery" onclick="researchFuelRefinery()">Unlock fuel refinery<br />Costs 2,500 research.</button>
-          <button id="unlockSpacePort" onclick="researchSpaceport()">Unlock spaceport<br />Costs 10,000 research.</button>
+          <button id="unlockFactory" onclick="unlockBuilding(100, 1, 'unlockFactory', 'buildFactoryButton')">Unlock factory<br />Costs 100 research.</button>
+          <button id="unlockSolarPanels" onclick="unlockBuilding(500, 2, 'unlockSolarPanels', 'buildSolarPanelButton')">Unlock solar panels<br />Costs 500 research.</button>
+          <button id="unlockTelescope" onclick="unlockBuilding(1500, 3, 'unlockTelescope', 'buildTelescopeButton')">Unlock telescope<br />Costs 1,500 research.</button>
+          <button id="unlockFuelRefinery" onclick="unlockBuilding(2500, 4, 'unlockFuelRefinery', 'buildFuelRefineryButton')">Unlock fuel refinery<br />Costs 2,500 research.</button>
+          <button id="unlockSpacePort" onclick="unlockBuilding(10000, 5, 'unlockSpacePort', 'buildSpaceportButton')">Unlock spaceport<br />Costs 10,000 research.</button>
           <button id="unlockSpaceships">Unlock spaceships</button>
           <button id="unlockUnmannedSpacecraft">Unlock unmanned spacecraft</button>
           <button id="unlockAsteroidMiningComplex">Unlock asteroid miners</button>
@@ -265,7 +265,7 @@
           <p class="shipCount" id="fighterCount"></p>
           <p class="shipCount" id="battleshipCount"></p>
           <h3>Ship Construction</h3>
-          <button id="buildAsteroidMinerButton" onclick="buildShip(2000000, 1200000, 1, 0)">
+          <button id="buildAsteroidMinerButton" onclick="buildShip(2000000, 50000, 1, 0)">
             Build asteroid miner<br /><img src="assets/asteroidminericon.png" alt="Asteroid Miner Icon" style="width: 64px; height: 64px" /><br />Cost: 2,000,000 Money<br />50,000 Refined Resources<br />1
             solar panel
           </button>
@@ -284,10 +284,13 @@
         </div>
       </section>
     </main>
+
     <footer>(mostly) Made by Bobby M 2022 (check settings/information for full credits). All art assets created by me.</footer>
 
-    <script src="page.js"></script>
-    <script src="util.js"></script>
-    <script src="game.js"></script>
+    <script src="scripts/util.js"></script>
+    <script src="scripts/game.js"></script>
+    <script src="scripts/page.js"></script>
+    <script src="scripts/saving.js"></script>
+    <script src="scripts/init.js"></script>
   </body>
 </html>
